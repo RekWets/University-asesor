@@ -1,0 +1,3202 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-04-2024 a las 15:03:41
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.1.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `uptt`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `actividad`
+--
+
+CREATE TABLE `actividad` (
+  `id` int(11) NOT NULL,
+  `actividad` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id`, `actividad`) VALUES
+(1, 'ACTIVO'),
+(2, 'INACTIVO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `analistas`
+--
+
+CREATE TABLE `analistas` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(255) DEFAULT NULL,
+  `cedula` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `nombres` varchar(255) DEFAULT NULL,
+  `sexo_id` int(11) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `telefono_movil` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `condicion_id` int(11) DEFAULT NULL,
+  `categoria_analista_id` int(11) DEFAULT NULL,
+  `rol_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `analistas`
+--
+
+INSERT INTO `analistas` (`id`, `codigo`, `cedula`, `apellidos`, `nombres`, `sexo_id`, `fecha_nacimiento`, `telefono_movil`, `email`, `condicion_id`, `categoria_analista_id`, `rol_id`) VALUES
+(1, '123456', '12345678', 'DE LAS ISLAS DEL SUR', 'DON JUAN', 2, '1980-07-14', '04166825931', 'admin@mail.com', 1, 2, NULL),
+(3, '19283', '29384765', 'BENCOMO', 'EDUARDO', 2, '1987-09-18', '04161234567', 'admin@mail.com', 1, 2, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `analista_categoria`
+--
+
+CREATE TABLE `analista_categoria` (
+  `id` int(11) NOT NULL,
+  `categoria` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `analista_categoria`
+--
+
+INSERT INTO `analista_categoria` (`id`, `categoria`) VALUES
+(1, 'p1'),
+(2, 'p2'),
+(3, 'p3'),
+(4, 'p4'),
+(5, 'p5');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cargo_coordinacion`
+--
+
+CREATE TABLE `cargo_coordinacion` (
+  `id` int(11) NOT NULL,
+  `cargo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `cargo_coordinacion`
+--
+
+INSERT INTO `cargo_coordinacion` (`id`, `cargo`) VALUES
+(1, 'SECRETARIO/A'),
+(2, 'ADMINISTRADOR(A)');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `condicion`
+--
+
+CREATE TABLE `condicion` (
+  `id` int(11) NOT NULL,
+  `condicion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `condicion`
+--
+
+INSERT INTO `condicion` (`id`, `condicion`) VALUES
+(1, 'FIJO'),
+(2, 'CONTRATADO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dedicacion`
+--
+
+CREATE TABLE `dedicacion` (
+  `id` int(11) NOT NULL,
+  `dedicacion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `dedicacion`
+--
+
+INSERT INTO `dedicacion` (`id`, `dedicacion`) VALUES
+(1, 'CONVENCIONAL'),
+(2, 'MEDIO TIEMPO'),
+(3, 'TIEMPO COMPLETO'),
+(4, 'DEDICACION EXCLUSIVA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `delegado`
+--
+
+CREATE TABLE `delegado` (
+  `id` int(11) NOT NULL,
+  `delegado` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `delegado`
+--
+
+INSERT INTO `delegado` (`id`, `delegado`) VALUES
+(1, 'PSIT'),
+(2, 'AREAS DE CONOCIMIENTO'),
+(3, 'linea de investigacion');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docentes`
+--
+
+CREATE TABLE `docentes` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(255) DEFAULT NULL,
+  `cedula` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `nombres` varchar(255) DEFAULT NULL,
+  `sexo_id` int(11) DEFAULT NULL,
+  `fecha_nacimiento` varchar(255) DEFAULT NULL,
+  `telefono_movil` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `linea_investigacion` varchar(255) DEFAULT NULL,
+  `delegado_id` int(11) DEFAULT NULL,
+  `cargo_coordinacion_id` int(11) DEFAULT NULL,
+  `condicion_id` int(11) DEFAULT NULL,
+  `dedicacion_id` int(11) DEFAULT NULL,
+  `docente_categoria_id` int(11) DEFAULT NULL,
+  `modalidad_id` int(11) DEFAULT NULL,
+  `rol_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `docentes`
+--
+
+INSERT INTO `docentes` (`id`, `codigo`, `cedula`, `apellidos`, `nombres`, `sexo_id`, `fecha_nacimiento`, `telefono_movil`, `email`, `linea_investigacion`, `delegado_id`, `cargo_coordinacion_id`, `condicion_id`, `dedicacion_id`, `docente_categoria_id`, `modalidad_id`, `rol_id`) VALUES
+(1, '123456', '1234567', 'ALVARADO ROJO', 'DANIEL DE JESUS', 2, '2000-12-12', '04166825931', 'admin@mail.com', 'IDK', 2, NULL, 2, 2, 2, 2, NULL),
+(2, '5795794', '585785', 'RUZA LINARES', 'JOSE DEL CARMEN', 2, '1987-07-04', '04161234567', 'admin@admin.com', 'IDK', 3, NULL, 2, 2, 1, 2, NULL),
+(3, '683383', '4573483', 'GADOT VARSANO', 'GAL', 1, '1992-07-05', '04161234567', 'admin@admin.com', 'IDK', 1, NULL, 1, 2, 3, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docente_categoria`
+--
+
+CREATE TABLE `docente_categoria` (
+  `id` int(11) NOT NULL,
+  `categoria` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `docente_categoria`
+--
+
+INSERT INTO `docente_categoria` (`id`, `categoria`) VALUES
+(1, 'INSTRUCTOR'),
+(2, 'ASISTENTE'),
+(3, 'AGREGADO'),
+(4, 'ASOCIADO'),
+(5, 'titular');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_civil`
+--
+
+CREATE TABLE `estado_civil` (
+  `id` int(11) NOT NULL,
+  `edo_civil` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `estado_civil`
+--
+
+INSERT INTO `estado_civil` (`id`, `edo_civil`) VALUES
+(1, 'SOLTERO/A'),
+(2, 'CASADO/A'),
+(3, 'DIVORCIADO/A'),
+(4, 'VIUDO/A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_natal`
+--
+
+CREATE TABLE `estado_natal` (
+  `id` int(11) NOT NULL,
+  `estado` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `estado_natal`
+--
+
+INSERT INTO `estado_natal` (`id`, `estado`) VALUES
+(1, 'DTTO. CAPITAL'),
+(2, 'EDO. ANZOATEGUI'),
+(3, 'EDO. APURE'),
+(4, 'EDO. ARAGUA'),
+(5, 'EDO. BARINAS'),
+(6, 'EDO. BOLIVAR'),
+(7, 'EDO. CARABOBO'),
+(8, 'EDO. COJEDES'),
+(9, 'EDO. FALCON'),
+(10, 'EDO. GUARICO'),
+(11, 'EDO. LARA'),
+(12, 'EDO. MERIDA'),
+(13, 'EDO. MIRANDA'),
+(14, 'EDO. MONAGAS'),
+(15, 'EDO. NVA. ESPARTA'),
+(16, 'EDO. PORTUGUESA'),
+(17, 'EDO. SUCRE'),
+(18, 'EDO. TACHIRA'),
+(19, 'EDO. TRUJILLO'),
+(20, 'EDO. YARACUY'),
+(21, 'EDO. ZULIA'),
+(22, 'EDO. AMAZONAS'),
+(23, 'EDO. DELTA AMACURO'),
+(24, 'EDO. VARGAS');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudiantes`
+--
+
+CREATE TABLE `estudiantes` (
+  `id` int(11) NOT NULL,
+  `cedula` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `nombres` varchar(255) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `edad` varchar(255) DEFAULT NULL,
+  `sexo_id` int(11) DEFAULT NULL,
+  `estado_civil_id` int(11) DEFAULT NULL,
+  `estado_natal_id` int(11) DEFAULT NULL,
+  `municipio_natal_id` int(11) DEFAULT NULL,
+  `parroquia_natal_id` int(11) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `telefono_movil` varchar(255) DEFAULT NULL,
+  `telefono_resd` varchar(255) DEFAULT NULL,
+  `otro_telefono` varchar(255) DEFAULT NULL,
+  `direccion_resd` varchar(255) DEFAULT NULL,
+  `pais_id` int(11) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `rol_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `estudiantes`
+--
+
+INSERT INTO `estudiantes` (`id`, `cedula`, `apellidos`, `nombres`, `fecha_nacimiento`, `edad`, `sexo_id`, `estado_civil_id`, `estado_natal_id`, `municipio_natal_id`, `parroquia_natal_id`, `email`, `telefono_movil`, `telefono_resd`, `otro_telefono`, `direccion_resd`, `pais_id`, `foto`, `rol_id`) VALUES
+(1, '30024424', 'BRICEÑO PEREZ', 'GABRIEL DAVID', '2003-09-19', '20', 2, 1, 19, 167, 554, 'admin@mail.com', '04166825931', '02722363120', '04261165196', 'El recreo, Sector 2', 1, 'IMG-20220614-WA0004.jpg', NULL),
+(8, '35326543', 'BENITEZ MATHEUS', 'DANIELA ROXANA', '1989-02-13', '23', 1, 2, 15, 89, 317, 'admin@mail.com', '04166825931', '02722363120', '04261165196', 'El recreo, Sector 2', 1, 'IMG-20211218-WA0003.jpg', NULL),
+(9, '30840155', 'BARRETO SULBARAN', 'STEFANY GISETH', '2004-10-23', '19', 1, 1, 19, 169, 565, 'admin@mail.com', '04165029832', '02721234567', '04168491543', 'Monay', 1, 'WhatsApp Image 2023-11-26 at 22.33.35.jpeg', NULL),
+(10, '30717273', 'PADILLA ROJAS', 'STHEVIN ALEJANDRO', '2004-04-23', '19', 2, 1, 19, 167, 557, 'STHVINPADILLA@GMAIL.COM', '04268261913', '02722360850', '0426-8261913', 'SECTOR SAN JACINTO, CASA SIN NUMERO', 1, 'WhatsApp Image 2023-11-26 at 22.33.21 (1).jpeg', NULL),
+(11, '98326623', 'LAFORUCADE', 'NATALIA', '1999-03-12', '24', 1, 2, 1, 1, 1, 'admin@admin.com', '04161234567', '02721234567', '04161234567', 'La Plazuela, calle principal casa #18', 1, '', NULL),
+(12, '30559327', 'GONZALES BARRUETA', 'GENESIS', '2004-12-29', '18', 1, 3, 19, 167, 181, 'admin@admin.com', '04161234567', '02721234567', '04161234567', 'El Barranco', 1, NULL, NULL),
+(14, '16273849', 'DE LA SANTISIMA TRINIDAD', 'JUAN ANTONIO', '1989-07-02', '34', 2, 3, 9, 316, 1073, 'admin@mail.com', '04161234567', '02721234567', '04161234567', 'Calle Principal', 1, '', NULL),
+(15, '32647389', 'POTTER', 'HARRY', '1983-11-11', '40', 2, 2, 7, 290, 1003, 'admin@mail.com', '04161234567', '02721234567', '04161234567', 'Av. Ppal Paraparal, C.c. Caratal, Nivel Pb, Loc: 3. Sector Nomentana. Fte A Urb.', 1, 'IMG-20220824-WA0045.jpg', NULL),
+(16, '30879929', 'BAEZA NEGRO', 'JESUS DEL CARMEN', '2004-07-05', '19', 2, 1, 19, 164, 540, 'admin@mail.com', '04161234567', '02721234567', '04161234567', 'Calle los Ramos de palma', 1, 'IMG-20220603-WA0055.jpg', NULL),
+(17, '30047902', 'ROMAN BARRIOS', 'VALERIA MARIA', '2003-09-05', '20', 1, 1, 19, 169, 565, 'VALUNA2021@GMAIL.COM', '04167201499', '02726781988', '04167201499', 'URBANIZACION ANTONIO NICOLAS BRICEÑO', 1, 'WhatsApp Image 2023-11-26 at 22.33.21.jpeg', NULL),
+(18, '29541925', 'BRICEÑO BRICEÑO', 'JOSE MANUEL', '2001-02-10', '22', 2, 1, 19, 155, 500, 'PANCAFE1917@GMAIL.COM', '04269129583', '02721234567', '04161234567', 'DIAGONAL AL CDI CASA S/N', 1, 'WhatsApp Image 2023-11-26 at 22.36.18.jpeg', NULL),
+(21, '658739284', 'kjbshcas', 'mhbdshkfabdsc', '2002-05-12', '21', 2, 3, 3, 241, 833, 'admin@mail.com', '04161234567', '02721234567', '04161234567', 'Calle Principal', 1, 'nmnl.jpg', NULL),
+(22, '2930457', 'Abcdefg', 'Abcdefg', '2004-05-12', '19', 1, 1, 16, 107, 366, 'admin@mail.com', '04161234567', '02721234567', '04161234567', 'Calle Principal', 1, 'mqdefault.jpg', NULL),
+(23, '30559327', 'GONZALES RAMIREZ', 'GENESIS', '2005-01-11', '18', 1, 1, 19, 167, 554, 'admin@mail.com', '04161234567', '02721234567', '04161234567', 'Centro, La barranca', 1, 'IMG_20231128_095448.jpg', NULL),
+(24, '30879929', 'BAEZA BLANCO', 'JESUS LEONEL', '2004-07-05', '19', 2, 1, 19, 164, 540, 'jesus567leonel@gmail.com', '04262335802', '02726712907', '04147259139', 'Urb La Floresta Calle los Ramos', 1, '399987936_2552795871547875_6491506432048625225_n.png', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudiantes_datos_academicos`
+--
+
+CREATE TABLE `estudiantes_datos_academicos` (
+  `id_eda` int(11) NOT NULL,
+  `estudiante_id` int(11) DEFAULT NULL,
+  `codigo` varchar(255) DEFAULT NULL,
+  `pnf_id` varchar(255) DEFAULT NULL,
+  `malla_id` int(11) DEFAULT NULL,
+  `actividad_id` int(11) DEFAULT NULL,
+  `periodo_ingreso` varchar(255) DEFAULT NULL,
+  `tipo_ingreso_id` int(11) DEFAULT NULL,
+  `dir_titulo` varchar(50) DEFAULT NULL,
+  `graduacion_bachiller` year(4) DEFAULT NULL,
+  `liceo_colegio` varchar(255) DEFAULT NULL,
+  `tipo_institucion_id` int(11) DEFAULT NULL,
+  `procedencia_institucion` varchar(255) DEFAULT NULL,
+  `posicion_opsu` varchar(255) DEFAULT NULL,
+  `nse_id` int(11) DEFAULT NULL,
+  `trabaja` varchar(255) DEFAULT NULL,
+  `direccion_trabajo` varchar(255) DEFAULT NULL,
+  `grupo_asignado` varchar(255) DEFAULT NULL,
+  `retiro` varchar(255) DEFAULT NULL,
+  `reincorporacion` varchar(255) DEFAULT NULL,
+  `ultimo_periodo_cursado` varchar(255) DEFAULT NULL,
+  `cambio_pnf` varchar(255) DEFAULT NULL,
+  `promocion` varchar(255) DEFAULT NULL,
+  `lapso_egreso` varchar(255) DEFAULT NULL,
+  `fecha_grado` date DEFAULT NULL,
+  `posicion_promocion` varchar(255) DEFAULT NULL,
+  `ira` varchar(255) DEFAULT NULL,
+  `iraa` varchar(255) DEFAULT NULL,
+  `iras` varchar(255) DEFAULT NULL,
+  `turno_id` int(11) DEFAULT NULL,
+  `grupo_id` int(11) DEFAULT NULL,
+  `modalidad_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `estudiantes_datos_academicos`
+--
+
+INSERT INTO `estudiantes_datos_academicos` (`id_eda`, `estudiante_id`, `codigo`, `pnf_id`, `malla_id`, `actividad_id`, `periodo_ingreso`, `tipo_ingreso_id`, `dir_titulo`, `graduacion_bachiller`, `liceo_colegio`, `tipo_institucion_id`, `procedencia_institucion`, `posicion_opsu`, `nse_id`, `trabaja`, `direccion_trabajo`, `grupo_asignado`, `retiro`, `reincorporacion`, `ultimo_periodo_cursado`, `cambio_pnf`, `promocion`, `lapso_egreso`, `fecha_grado`, `posicion_promocion`, `ira`, `iraa`, `iras`, `turno_id`, `grupo_id`, `modalidad_id`) VALUES
+(1, 1, '123123', 'INFORMATICA', 1, 1, '2021-2', 1, 'titulo2011.jpg', 2020, 'UEPJCM', 1, 'IDK', '4', 2, 'SI', 'EL RECREO SECTOR 2', 'N1', '----', '----', '2023-3', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 1),
+(8, 8, '678765', 'INFORMATICA', 1, 2, '13535', 1, 'titulo2011.jpg', 2016, 'fgdfg', 2, 'sdggfsefef', '6', 3, 'simero', 'dfsgbtujyt', 'htrhtrutu', 'thyhth', 'tyhtyht', 'thyrhert', 'retheryh', 'htyhtyh', 'thytyh', '2023-06-24', '5', '45785678', '56785', '4745', 1, 1, 1),
+(9, 9, '123456', 'INFORMATICA', 1, 1, '2021-2', 2, 'titulo2011.jpg', 2021, 'IDK', 1, 'IDK', '10', 1, 'SI', 'MONAY', 'N1', '----', '----', '2023-3', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 1),
+(10, 10, '12714', 'INFORMATICA', 1, 1, '2021-2', 2, 'titulo2011.jpg', 2021, 'ABCDEFG', 1, 'IDK', '19', 2, 'SI', 'SANTA ROSA', 'N1', '----', '----', '2023-3', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 1),
+(11, 11, '67457457', 'INFORMATICA', 1, 1, '4', 4, NULL, 2014, 'UEPJCM', 1, 'IDK', '6', 2, 'SI', 'Centro', 'IDK', '-', '-', '3', 'NO', '16', '4', '2024-02-29', '2', '46467', '46356', '567584', 1, 1, 1),
+(12, 12, '123456', 'INFORMATICA', 2, 1, '8', 3, NULL, 2022, 'NOSE', 1, 'IDK', '5', 2, 'NO', '----', 'IDK', '----', '----', '----', '----', '24', '3', '2024-06-07', '1', '17', '14', '18', 1, 2, 1),
+(15, 14, '5795794', 'ADMINISTRACION', 3, 1, '4', 2, NULL, 2005, 'NOSE', 2, 'IDK', '2', 3, 'NO', '----', 'IDK', '----', '----', '----', '----', '16', '4', '2013-02-08', '4', '19', '18', '18', 1, 2, 2),
+(16, 15, '73742315', 'TURISMO', 1, 2, '8', 2, NULL, 1984, 'NOSE', 2, 'IDK', '6', 3, 'SI', 'Av. Ppal Paraparal, C.c. Caratal, Nivel Pb, Loc: 3. Sector Nomentana. Fte A Urb.', 'IDK', '----', '----', '----', '----', '12', '8', '1988-07-30', '5', '18', '16', '17', 1, 2, 2),
+(17, 16, '3575753', 'INFORMATICA', 2, 1, '5', 4, 'titulo2011.jpg', 2021, 'UETD', 1, 'IDK', '5', 1, 'NO', '----', 'IDK', '----', '----', '3', '----', '24', '3', '2024-07-19', '7', '20', '20', '20', 1, 2, 1),
+(18, 17, '12719', 'INFORMATICA', 1, 1, '2021-2', 1, 'titulo2011.jpg', 2020, 'ABCDEFG', 1, 'IDK', '5', 2, 'NO', '----', 'N1', '----', '----', '----', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 1),
+(19, 18, '11492', 'INFORMATICA', 2, 1, '2019-2', 2, 'titulo2011.jpg', 2018, 'ABCDEFG', 1, 'IDK', '14', 2, 'SI', 'PAMPAN', 'N1', '----', '----', '2023-1', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 2, 1),
+(21, 21, '192837', 'ADMINISTRACION', 3, 2, '2018-2', 2, 'titulo2011.jpg', 2017, 'ABCDEFG', 1, 'IDK', '5', 2, 'NO', '----', 'N2', '----', '----', '----', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 2),
+(22, 22, '12057', 'CONTADURIA', 1, 1, '2021-4', 2, 'titulo2011.jpg', 2019, 'ABCDEFGÑ', 1, 'IDK', '16', 2, 'SI', '----', 'N1', '----', '----', '----', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 2),
+(23, 23, '123456', 'INFORMATICA', 2, 1, '2021-2', 1, 'titulo2011.jpg', 2021, 'ABCDEFG', 1, 'IDK', '5', 2, 'NO', '----', 'N1', '----', '----', '----', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 1),
+(24, 24, '12345', 'INFORMATICA', 1, 1, '2021-2', 3, 'titulo2011.jpg', 2021, 'UETD Unidad Educativa de Talento Deportivo', 1, 'IDK', '5', 1, 'NO', '----', 'N1', '----', '----', '----', '----', '----', '----', '0001-01-01', '----', '20', '20', '20', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gestion_y_recursos_educativos`
+--
+
+CREATE TABLE `gestion_y_recursos_educativos` (
+  `id` int(11) NOT NULL,
+  `Registro` varchar(100) NOT NULL,
+  `PNF` varchar(100) NOT NULL,
+  `Unidad_Curricular` varchar(100) NOT NULL,
+  `Descripcion` varchar(1000) NOT NULL,
+  `link` varchar(100) DEFAULT NULL,
+  `Archivo_Adjunto` mediumblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `gestion_y_recursos_educativos`
+--
+
+INSERT INTO `gestion_y_recursos_educativos` (`id`, `Registro`, `PNF`, `Unidad_Curricular`, `Descripcion`, `link`, `Archivo_Adjunto`) VALUES
+(8, 'habitos atomicos ', 'Informatica', 'electiva', 'nwy', 'https://youtube.com/', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `grupo`
+--
+
+CREATE TABLE `grupo` (
+  `id` int(11) NOT NULL,
+  `grupo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `grupo`
+--
+
+INSERT INTO `grupo` (`id`, `grupo`) VALUES
+(1, 'GRUPO'),
+(2, 'INDIVIDUAL');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `malla`
+--
+
+CREATE TABLE `malla` (
+  `id` int(11) NOT NULL,
+  `malla` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `malla`
+--
+
+INSERT INTO `malla` (`id`, `malla`) VALUES
+(1, 'TSU'),
+(2, 'INGENIERO/A'),
+(3, 'LICENCIADO/A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modalidad`
+--
+
+CREATE TABLE `modalidad` (
+  `id` int(11) NOT NULL,
+  `modalidad` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `modalidad`
+--
+
+INSERT INTO `modalidad` (`id`, `modalidad`) VALUES
+(1, 'ENTRE SEMANA'),
+(2, 'FIN DE SEMANA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `municipio_natal`
+--
+
+CREATE TABLE `municipio_natal` (
+  `id` int(11) NOT NULL,
+  `municipio` varchar(255) DEFAULT NULL,
+  `estado_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `municipio_natal`
+--
+
+INSERT INTO `municipio_natal` (`id`, `municipio`, `estado_id`) VALUES
+(1, 'MP. LIBERTADOR', '1'),
+(2, 'MP. INFANTE', '10'),
+(3, 'MP. LAS MERCEDES', '10'),
+(4, 'MP. EL SOCORRO', '10'),
+(5, 'MP. ORTIZ', '10'),
+(6, 'MP. S MARIA DE IPIRE', '10'),
+(7, 'MP. CHAGUARAMAS', '10'),
+(8, 'MP.SAN GERONIMO DE G', '10'),
+(9, 'MP. MELLADO', '10'),
+(10, 'MP. MIRANDA', '10'),
+(11, 'MP. MONAGAS', '10'),
+(12, 'MP. RIBAS', '10'),
+(13, 'MP. ROSCIO', '10'),
+(14, 'MP. ZARAZA', '10'),
+(15, 'MP. CAMAGUAN', '10'),
+(16, 'MP.S JOSE DE GUARIBE', '10'),
+(17, 'MP. CRESPO', '11'),
+(18, 'MP. IRIBARREN', '11'),
+(19, 'MP. JIMENEZ', '11'),
+(20, 'MP. MORAN', '11'),
+(21, 'MP. PALAVECINO', '11'),
+(22, 'MP. TORRES', '11'),
+(23, 'MP. URDANETA', '11'),
+(24, 'MP. ANDRES E BLANCO', '11'),
+(25, 'MP. SIMON PLANAS', '11'),
+(26, 'MP. ALBERTO ADRIANI', '12'),
+(27, 'MP. MIRANDA', '12'),
+(28, 'MP. ANTONIO PINTO S.', '12'),
+(29, 'MP.OB. RAMOS DE LORA', '12'),
+(30, 'MP. CARACCIOLO PARRA', '12'),
+(31, 'MP.CARDENAL QUINTERO', '12'),
+(32, 'MP. PUEBLO LLANO', '12'),
+(33, 'MP. RANGEL', '12'),
+(34, 'MP. RIVAS DAVILA', '12'),
+(35, 'MP. SUCRE', '12'),
+(36, 'MP. TOVAR', '12'),
+(37, 'MP. ANDRES BELLO', '12'),
+(38, 'MP. TULIO F CORDERO', '12'),
+(39, 'MP. PADRE NOGUERA', '12'),
+(40, 'MP. ARICAGUA', '12'),
+(41, 'MP. ZEA', '12'),
+(42, 'MP. ARZOBISPO CHACON', '12'),
+(43, 'MP. CAMPO ELIAS', '12'),
+(44, 'MP. GUARAQUE', '12'),
+(45, 'MP.JULIO CESAR SALAS', '12'),
+(46, 'MP. JUSTO BRICE#O', '12'),
+(47, 'MP. LIBERTADOR', '12'),
+(48, 'MP. SANTOS MARQUINA', '12'),
+(49, 'MP. ACEVEDO', '13'),
+(50, 'MP. URDANETA', '13'),
+(51, 'MP. ZAMORA', '13'),
+(52, 'MP. CRISTOBAL ROJAS', '13'),
+(53, 'MP. LOS SALIAS', '13'),
+(54, 'MP. ANDRES BELLO', '13'),
+(55, 'MP. SIMON BOLIVAR', '13'),
+(56, 'MP. BARUTA', '13'),
+(57, 'MP. CARRIZAL', '13'),
+(58, 'MP. CHACAO', '13'),
+(59, 'MP. EL HATILLO', '13'),
+(60, 'MP. BRION', '13'),
+(61, 'MP. BUROZ', '13'),
+(62, 'MP. PEDRO GUAL', '13'),
+(63, 'MP. GUAICAIPURO', '13'),
+(64, 'MP. INDEPENDENCIA', '13'),
+(65, 'MP. LANDER', '13'),
+(66, 'MP. PAEZ', '13'),
+(67, 'MP. PAZ CASTILLO', '13'),
+(68, 'MP. PLAZA', '13'),
+(69, 'MP. SUCRE', '13'),
+(70, 'MP. ACOSTA', '14'),
+(71, 'MP. SOTILLO', '14'),
+(72, 'MP. AGUASAY', '14'),
+(73, 'MP. SANTA BARBARA', '14'),
+(74, 'MP. URACOA', '14'),
+(75, 'MP. BOLIVAR', '14'),
+(76, 'MP. CARIPE', '14'),
+(77, 'MP. CEDE#O', '14'),
+(78, 'MP. EZEQUIEL ZAMORA', '14'),
+(79, 'MP. LIBERTADOR', '14'),
+(80, 'MP. MATURIN', '14'),
+(81, 'MP. PIAR', '14'),
+(82, 'MP. PUNCERES', '14'),
+(83, 'MP. ARISMENDI', '15'),
+(84, 'MP.ANTOLIN DEL CAMPO', '15'),
+(85, 'MP. GARCIA', '15'),
+(86, 'MP. DIAZ', '15'),
+(87, 'MP. GOMEZ', '15'),
+(88, 'MP. MANEIRO', '15'),
+(89, 'MP. MARCANO', '15'),
+(90, 'MP. MARI#O', '15'),
+(91, 'MP.PENIN. DE MACANAO', '15'),
+(92, 'MP.VILLALBA(I.COCHE)', '15'),
+(93, 'MP. TUBORES', '15'),
+(94, 'MP. ARAURE', '16'),
+(95, 'MP. AGUA BLANCA', '16'),
+(96, 'MP. PAPELON', '16'),
+(97, 'MP.GENARO BOCONOITO', '16'),
+(98, 'MP.S RAFAEL DE ONOTO', '16'),
+(99, 'MP. SANTA ROSALIA', '16'),
+(100, 'MP. ESTELLER', '16'),
+(101, 'MP. GUANARE', '16'),
+(102, 'MP. GUANARITO', '16'),
+(103, 'MP. OSPINO', '16'),
+(104, 'MP. PAEZ', '16'),
+(105, 'MP. SUCRE', '16'),
+(106, 'MP. TUREN', '16'),
+(107, 'MP. M.JOSE V DE UNDA', '16'),
+(108, 'MP. ARISMENDI', '17'),
+(109, 'MP. VALDEZ', '17'),
+(110, 'MP. ANDRES E BLANCO', '17'),
+(111, 'MP. LIBERTADOR', '17'),
+(112, 'MP. ANDRES MATA', '17'),
+(113, 'MP. BOLIVAR', '17'),
+(114, 'MP. CRUZ S ACOSTA', '17'),
+(115, 'MP. BENITEZ', '17'),
+(116, 'MP. BERMUDEZ', '17'),
+(117, 'MP. CAJIGAL', '17'),
+(118, 'MP. MARI#O', '17'),
+(119, 'MP. MEJIA', '17'),
+(120, 'MP. MONTES', '17'),
+(121, 'MP. RIBERO', '17'),
+(122, 'MP. SUCRE', '17'),
+(123, 'MP. AYACUCHO', '18'),
+(124, 'MP. CORDOBA', '18'),
+(125, 'MP. GARCIA DE HEVIA', '18'),
+(126, 'MP. GUASIMOS', '18'),
+(127, 'MP. MICHELENA', '18'),
+(128, 'MP. LIBERTADOR', '18'),
+(129, 'MP. PANAMERICANO', '18'),
+(130, 'MP. PEDRO MARIA UREÃ‘A', '18'),
+(131, 'MP. SUCRE', '18'),
+(132, 'MP. ANDRES BELLO', '18'),
+(133, 'MP. FERNANDEZ FEO', '18'),
+(134, 'MP. BOLIVAR', '18'),
+(135, 'MP. LIBERTAD', '18'),
+(136, 'MP. SAMUEL MALDONADO', '18'),
+(137, 'MP. SEBORUCO', '18'),
+(138, 'MP. ANTONIO ROMULO C', '18'),
+(139, 'MP. FCO DE MIRANDA', '18'),
+(140, 'MP. JOSE MARIA VARGA', '18'),
+(141, 'MP. RAFAEL URDANETA', '18'),
+(142, 'MP. SIMON RODRIGUEZ', '18'),
+(143, 'MP. TORBES', '18'),
+(144, 'MP. SAN JUDAS TADEO', '18'),
+(145, 'MP. INDEPENDENCIA', '18'),
+(146, 'MP. CARDENAS', '18'),
+(147, 'MP. JAUREGUI', '18'),
+(148, 'MP. JUNIN', '18'),
+(149, 'MP. LOBATERA', '18'),
+(150, 'MP. SAN CRISTOBAL', '18'),
+(151, 'MP. URIBANTE', '18'),
+(152, 'MP. BETIJOQUE', '19'),
+(153, 'MP. MONTE CARMELO', '19'),
+(154, 'MP. MOTATAN', '19'),
+(155, 'MP. PAMPAN', '19'),
+(156, 'MP. SAN RAFAEL DE CARVAJAL', '19'),
+(157, 'MP. SUCRE', '19'),
+(158, 'MP. ANDRES BELLO', '19'),
+(159, 'MP. BOLIVAR', '19'),
+(160, 'MP. JOSE FELIPE MARQUEZ CAÃ‘IZALES', '19'),
+(161, 'MP. JUAN VICENTE CAMPO ELIAS', '19'),
+(162, 'MP. LA CEIBA', '19'),
+(163, 'MP. BOCONÃ“', '19'),
+(164, 'MP. PAMPANITO', '19'),
+(165, 'MP. CARACHE', '19'),
+(166, 'MP. ESCUQUE', '19'),
+(167, 'MP. TRUJILLO', '19'),
+(168, 'MP. URDANETA', '19'),
+(169, 'MP. VALERA', '19'),
+(170, 'MP. CANDELARIA', '19'),
+(171, 'MP. MIRANDA', '19'),
+(172, 'MP. ANACO', '2'),
+(173, 'MP. MONAGAS', '2'),
+(174, 'MP. PEÃ‘ALVER', '2'),
+(175, 'MP. SIMON RODRIGUEZ', '2'),
+(176, 'MP. SOTILLO', '2'),
+(177, 'MP. GUANIPA', '2'),
+(178, 'MP. GUANTA', '2'),
+(179, 'MP. PIRITU', '2'),
+(180, 'MP. DIEGO BAUTISTA U', '2'),
+(181, 'MP. CARVAJAL', '2'),
+(182, 'MP. SANTA ANA', '2'),
+(183, 'MP. ARAGUA', '2'),
+(184, 'MP. MC GREGOR', '2'),
+(185, 'MP.S JUAN CAPISTRANO', '2'),
+(186, 'MP. BOLIVAR', '2'),
+(187, 'MP. BRUZUAL', '2'),
+(188, 'MP. CAJIGAL', '2'),
+(189, 'MP. FREITES', '2'),
+(190, 'MP. INDEPENDENCIA', '2'),
+(191, 'MP. LIBERTAD', '2'),
+(192, 'MP. MIRANDA', '2'),
+(193, 'MP. BOLIVAR', '20'),
+(194, 'MP. COCOROTE', '20'),
+(195, 'MP. INDEPENDENCIA', '20'),
+(196, 'MP. ARISTIDES BASTID', '20'),
+(197, 'MP. MANUEL MONGE', '20'),
+(198, 'MP. VEROES', '20'),
+(199, 'MP. BRUZUAL', '20'),
+(200, 'MP. NIRGUA', '20'),
+(201, 'MP. SAN FELIPE', '20'),
+(202, 'MP. SUCRE', '20'),
+(203, 'MP. URACHICHE', '20'),
+(204, 'MP. PE#A', '20'),
+(205, 'MP.JOSE ANTONIO PAEZ', '20'),
+(206, 'MP. LA TRINIDAD', '20'),
+(207, 'MP. BARALT', '21'),
+(208, 'MP. LA CA#ADA DE U.', '21'),
+(209, 'MP. LAGUNILLAS', '21'),
+(210, 'MP. CATATUMBO', '21'),
+(211, 'MP. ROSARIO DE PERIJA', '21'),
+(212, 'MP. CABIMAS', '21'),
+(213, 'MP.VALMORE RODRIGUEZ', '21'),
+(214, 'MP. JESUS E LOSSADA', '21'),
+(215, 'MP. ALMIRANTE P', '21'),
+(216, 'MP. SAN FRANCISCO', '21'),
+(217, 'MP. JESUS M SEMPRUN', '21'),
+(218, 'MP. SANTA RITA', '21'),
+(219, 'MP. FRANCISCO J PULG', '21'),
+(220, 'MP. SIMON BOLIVAR', '21'),
+(221, 'MP. COLON', '21'),
+(222, 'MP. MARA', '21'),
+(223, 'MP. MARACAIBO', '21'),
+(224, 'MP. MIRANDA', '21'),
+(225, 'MP. PAEZ', '21'),
+(226, 'MP. MACHIQUES DE P', '21'),
+(227, 'MP. SUCRE', '21'),
+(228, 'MP. ATURES', '22'),
+(229, 'MP. ATABAPO', '22'),
+(230, 'MP. MAROA', '22'),
+(231, 'MP. RIO NEGRO', '22'),
+(232, 'MP. AUTANA', '22'),
+(233, 'MP. MANAPIARE', '22'),
+(234, 'MP. ALTO ORINOCO', '22'),
+(235, 'MP. TUCUPITA', '23'),
+(236, 'MP. PEDERNALES', '23'),
+(237, 'MP. ANTONIO DIAZ', '23'),
+(238, 'MP. CASACOIMA', '23'),
+(239, 'MP. VARGAS', '24'),
+(240, 'MP. ACHAGUAS', '3'),
+(241, 'MP. MU#OZ', '3'),
+(242, 'MP. PAEZ', '3'),
+(243, 'MP. PEDRO CAMEJO', '3'),
+(244, 'MP. ROMULO GALLEGOS', '3'),
+(245, 'MP. SAN FERNANDO', '3'),
+(246, 'MP. BIRUACA', '3'),
+(247, 'MP. GIRARDOT', '4'),
+(248, 'MP. JOSE ANGEL LAMAS', '4'),
+(249, 'MP. BOLIVAR', '4'),
+(250, 'MP. SANTOS MICHELENA', '4'),
+(251, 'MP. MARIO B IRAGORRY', '4'),
+(252, 'MP. TOVAR', '4'),
+(253, 'MP. CAMATAGUA', '4'),
+(254, 'MP. JOSE R REVENGA', '4'),
+(255, 'MP. FRANCISCO LINARES A.', '4'),
+(256, 'MP. OCUMARE D LA COSTA', '4'),
+(257, 'MP. SANTIAGO MARI#O', '4'),
+(258, 'MP. JOSE FELIX RIVAS', '4'),
+(259, 'MP. SAN CASIMIRO', '4'),
+(260, 'MP. SAN SEBASTIAN', '4'),
+(261, 'MP. SUCRE', '4'),
+(262, 'MP. URDANETA', '4'),
+(263, 'MP. ZAMORA', '4'),
+(264, 'MP. LIBERTADOR', '4'),
+(265, 'MP. ARISMENDI', '5'),
+(266, 'MP. A JOSE DE SUCRE', '5'),
+(267, 'MP. CRUZ PAREDES', '5'),
+(268, 'MP. ANDRES E. BLANCO', '5'),
+(269, 'MP. BARINAS', '5'),
+(270, 'MP. BOLIVAR', '5'),
+(271, 'MP. EZEQUIEL ZAMORA', '5'),
+(272, 'MP. OBISPOS', '5'),
+(273, 'MP. PEDRAZA', '5'),
+(274, 'MP. ROJAS', '5'),
+(275, 'MP. SOSA', '5'),
+(276, 'MP. ALBERTO ARVELO T', '5'),
+(277, 'MP. CARONI', '6'),
+(278, 'MP. EL CALLAO', '6'),
+(279, 'MP.PADRE PEDRO CHIEN', '6'),
+(280, 'MP. CEDE#O', '6'),
+(281, 'MP. HERES', '6'),
+(282, 'MP. PIAR', '6'),
+(283, 'MP. ROSCIO', '6'),
+(284, 'MP. SUCRE', '6'),
+(285, 'MP. SIFONTES', '6'),
+(286, 'MP. RAUL LEONI', '6'),
+(287, 'MP. GRAN SABANA', '6'),
+(288, 'MP. BEJUMA', '7'),
+(289, 'MP. MIRANDA', '7'),
+(290, 'MP. LOS GUAYOS', '7'),
+(291, 'MP. NAGUANAGUA', '7'),
+(292, 'MP. SAN DIEGO', '7'),
+(293, 'MP. LIBERTADOR', '7'),
+(294, 'MP. CARLOS ARVELO', '7'),
+(295, 'MP. DIEGO IBARRA', '7'),
+(296, 'MP. GUACARA', '7'),
+(297, 'MP. MONTALBAN', '7'),
+(298, 'MP. JUAN JOSE MORA', '7'),
+(299, 'MP. PUERTO CABELLO', '7'),
+(300, 'MP. SAN JOAQUIN', '7'),
+(301, 'MP. VALENCIA', '7'),
+(302, 'MP. ANZOATEGUI', '8'),
+(303, 'MP. FALCON', '8'),
+(304, 'MP. GIRARDOT', '8'),
+(305, 'MP. PAO SAN J BAUTISTA', '8'),
+(306, 'MP. RICAURTE', '8'),
+(307, 'MP. SAN CARLOS', '8'),
+(308, 'MP. TINACO', '8'),
+(309, 'MP. LIMA BLANCO', '8'),
+(310, 'MP. ROMULO GALLEGOS', '8'),
+(311, 'MP. ACOSTA', '9'),
+(312, 'MP. MIRANDA', '9'),
+(313, 'MP. PETIT', '9'),
+(314, 'MP. SILVA', '9'),
+(315, 'MP. ZAMORA', '9'),
+(316, 'MP. DABAJURO', '9'),
+(317, 'MP. MONS. ITURRIZA', '9'),
+(318, 'MP. LOS TAQUES', '9'),
+(319, 'MP. PIRITU', '9'),
+(320, 'MP. UNION', '9'),
+(321, 'MP. SAN FRANCISCO', '9'),
+(322, 'MP. BOLIVAR', '9'),
+(323, 'MP. JACURA', '9'),
+(324, 'MP. CACIQUE MANAURE', '9'),
+(325, 'MP. PALMA SOLA', '9'),
+(326, 'MP. SUCRE', '9'),
+(327, 'MP. URUMACO', '9'),
+(328, 'MP. TOCOPERO', '9'),
+(329, 'MP. BUCHIVACOA', '9'),
+(330, 'MP. CARIRUBANA', '9'),
+(331, 'MP. COLINA', '9'),
+(332, 'MP. DEMOCRACIA', '9'),
+(333, 'MP. FALCON', '9'),
+(334, 'MP. FEDERACION', '9'),
+(335, 'MP. MAUROA', '9');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nse`
+--
+
+CREATE TABLE `nse` (
+  `id` int(11) NOT NULL,
+  `nse` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `nse`
+--
+
+INSERT INTO `nse` (`id`, `nse`) VALUES
+(1, 'BAJO'),
+(2, 'MEDIO'),
+(3, 'ALTO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pais`
+--
+
+CREATE TABLE `pais` (
+  `id` int(11) NOT NULL,
+  `pais` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `pais`
+--
+
+INSERT INTO `pais` (`id`, `pais`) VALUES
+(1, 'Venezuela'),
+(2, 'Argentina'),
+(3, 'Bolivia'),
+(4, 'Brasil'),
+(5, 'Chile'),
+(6, 'Colombia'),
+(7, 'Costa Rica'),
+(8, 'Cuba'),
+(9, 'Ecuador'),
+(10, 'El Salvador'),
+(11, 'Guatemala'),
+(12, 'Honduras'),
+(13, 'México'),
+(14, 'Nicaragua'),
+(15, 'Panamá'),
+(16, 'Paraguay'),
+(17, 'Perú'),
+(18, 'República Dominicana'),
+(19, 'Uruguay');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parroquia_natal`
+--
+
+CREATE TABLE `parroquia_natal` (
+  `id` int(11) NOT NULL,
+  `parroquia` varchar(255) DEFAULT NULL,
+  `mcpio_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `parroquia_natal`
+--
+
+INSERT INTO `parroquia_natal` (`id`, `parroquia`, `mcpio_id`) VALUES
+(1, 'PQ. ALTAGRACIA', '1'),
+(2, 'PQ. SUCRE', '1'),
+(3, 'PQ. 23 DE ENERO', '1'),
+(4, 'PQ. ANTIMANO', '1'),
+(5, 'PQ. EL RECREO', '1'),
+(6, 'PQ. EL VALLE', '1'),
+(7, 'PQ. LA VEGA', '1'),
+(8, 'PQ. MACARAO', '1'),
+(9, 'PQ. CARICUAO', '1'),
+(10, 'PQ. EL JUNQUITO', '1'),
+(11, 'PQ. COCHE', '1'),
+(12, 'PQ. CANDELARIA', '1'),
+(13, 'PQ. SAN PEDRO', '1'),
+(14, 'PQ. SAN BERNARDINO', '1'),
+(15, 'PQ. EL PARAISO', '1'),
+(16, 'PQ. CATEDRAL', '1'),
+(17, 'PQ. LA PASTORA', '1'),
+(18, 'PQ. SAN AGUSTIN', '1'),
+(19, 'PQ. SAN JOSE', '1'),
+(20, 'PQ. SAN JUAN', '1'),
+(21, 'PQ. SANTA ROSALIA', '1'),
+(22, 'PQ. SANTA TERESA', '1'),
+(23, 'PQ. VALLE DE LA PASCUA', '2'),
+(24, 'PQ. ESPINO', '2'),
+(25, 'PQ. LAS MERCEDES', '3'),
+(26, 'PQ. STA RITA DE MANAPIRE', '3'),
+(27, 'PQ. CABRUTA', '3'),
+(28, 'PQ. EL SOCORRO', '4'),
+(29, 'PQ. ORTIZ', '5'),
+(30, 'PQ. SAN FCO. DE TIZNADOS', '5'),
+(31, 'PQ. SAN JOSE DE TIZNADOS', '5'),
+(32, 'PQ. S LORENZO DE TIZNADOS', '5'),
+(33, 'PQ. SANTA MARIA DE IPIRE', '6'),
+(34, 'PQ. ALTAMIRA', '6'),
+(35, 'PQ. CHAGUARAMAS', '7'),
+(36, 'PQ. GUAYABAL', '8'),
+(37, 'PQ. CAZORLA', '8'),
+(38, 'PQ. EL SOMBRERO', '9'),
+(39, 'PQ. SOSA', '9'),
+(40, 'PQ. CALABOZO', '10'),
+(41, 'PQ. EL CALVARIO', '10'),
+(42, 'PQ. EL RASTRO', '10'),
+(43, 'PQ. GUARDATINAJAS', '10'),
+(44, 'PQ. ALTAGRACIA DE ORITUCO', '11'),
+(45, 'PQ. LEZAMA', '11'),
+(46, 'PQ. LIBERTAD DE ORITUCO', '11'),
+(47, 'PQ. SAN FCO DE MACAIRA', '11'),
+(48, 'PQ. SAN RAFAEL DE ORITUCO', '11'),
+(49, 'PQ. SOUBLETTE', '11'),
+(50, 'PQ. PASO REAL DE MACAIRA', '11'),
+(51, 'PQ. TUCUPIDO', '12'),
+(52, 'PQ. SAN RAFAEL DE LAYA', '12'),
+(53, 'PQ.SAN JUAN DE LOS MORROS', '13'),
+(54, 'PQ. PARAPARA', '13'),
+(55, 'PQ. CANTAGALLO', '13'),
+(56, 'PQ. ZARAZA', '14'),
+(57, 'PQ. SAN JOSE DE UNARE', '14'),
+(58, 'PQ. CAMAGUAN', '15'),
+(59, 'PQ. PUERTO MIRANDA', '15'),
+(60, 'PQ. UVERITO', '15'),
+(61, 'PQ. SAN JOSE DE GUARIBE', '16'),
+(62, 'PQ. FREITEZ', '17'),
+(63, 'PQ. JOSE MARIA BLANCO', '17'),
+(64, 'PQ. CATEDRAL', '18'),
+(65, 'PQ. JUAREZ', '18'),
+(66, 'PQ. LA CONCEPCION', '18'),
+(67, 'PQ. SANTA ROSA', '18'),
+(68, 'PQ. UNION', '18'),
+(69, 'PQ. EL CUJI', '18'),
+(70, 'PQ. TAMACA', '18'),
+(71, 'PQ. JUAN DE VILLEGAS', '18'),
+(72, 'PQ. AGUEDO F. ALVARADO', '18'),
+(73, 'PQ. BUENA VISTA', '18'),
+(74, 'PQ. JUAN B RODRIGUEZ', '19'),
+(75, 'PQ. DIEGO DE LOZADA', '19'),
+(76, 'PQ. SAN MIGUEL', '19'),
+(77, 'PQ. CUARA', '19'),
+(78, 'PQ. PARAISO DE SAN JOSE', '19'),
+(79, 'PQ. TINTORERO', '19'),
+(80, 'PQ. JOSE BERNARDO DORANTE', '19'),
+(81, 'PQ. CRNEL. MARIANO PERAZA', '19'),
+(82, 'PQ. BOLIVAR', '20'),
+(83, 'PQ. ANZOATEGUI', '20'),
+(84, 'PQ. GUARICO', '20'),
+(85, 'PQ. HUMOCARO ALTO', '20'),
+(86, 'PQ. HUMOCARO BAJO', '20'),
+(87, 'PQ. MORAN', '20'),
+(88, 'PQ. HILARIO LUNA Y LUNA', '20'),
+(89, 'PQ. LA CANDELARIA', '20'),
+(90, 'PQ. CABUDARE', '21'),
+(91, 'PQ. JOSE G. BASTIDAS', '21'),
+(92, 'PQ. AGUA VIVA', '21'),
+(93, 'PQ. TRINIDAD SAMUEL', '22'),
+(94, 'PQ. TORRES', '22'),
+(95, 'PQ. EL BLANCO', '22'),
+(96, 'PQ. MONTA A VERDE', '22'),
+(97, 'PQ. HERIBERTO ARROYO', '22'),
+(98, 'PQ. LAS MERCEDES', '22'),
+(99, 'PQ. CECILIO ZUBILLAGA', '22'),
+(100, 'PQ. REYES VARGAS', '22'),
+(101, 'PQ. ALTAGRACIA', '22'),
+(102, 'PQ. ANTONIO DIAZ', '22'),
+(103, 'PQ. CAMACARO', '22'),
+(104, 'PQ. CASTA#EDA', '22'),
+(105, 'PQ. CHIQUINQUIRA', '22'),
+(106, 'PQ. ESPINOZA LOS MONTEROS', '22'),
+(107, 'PQ. LARA', '22'),
+(108, 'PQ. MANUEL MORILLO', '22'),
+(109, 'PQ. MONTES DE OCA', '22'),
+(110, 'PQ. SIQUISIQUE', '23'),
+(111, 'PQ. SAN MIGUEL', '23'),
+(112, 'PQ. XAGUAS', '23'),
+(113, 'PQ. MOROTURO', '23'),
+(114, 'PQ. PIO TAMAYO', '24'),
+(115, 'PQ. YACAMBU', '24'),
+(116, 'PQ. QBDA. HONDA DE GUACHE', '24'),
+(117, 'PQ. SARARE', '25'),
+(118, 'PQ. GUSTAVO VEGAS LEON', '25'),
+(119, 'PQ. BURIA', '25'),
+(120, 'PQ. GABRIEL PICON G.', '26'),
+(121, 'PQ. HECTOR AMABLE MORA', '26'),
+(122, 'PQ. JOSE NUCETE SARDI', '26'),
+(123, 'PQ. PULIDO MENDEZ', '26'),
+(124, 'PQ. PTE. ROMULO GALLEGOS', '26'),
+(125, 'PQ. PRESIDENTE BETANCOURT', '26'),
+(126, 'PQ. PRESIDENTE PAEZ', '26'),
+(127, 'CM. TIMOTES', '27'),
+(128, 'PQ. ANDRES ELOY BLANCO', '27'),
+(129, 'PQ. PI#ANGO', '27'),
+(130, 'PQ. LA VENTA', '27'),
+(131, 'CM. STA CRUZ DE MORA', '28'),
+(132, 'PQ. MESA BOLIVAR', '28'),
+(133, 'PQ. MESA DE LAS PALMAS', '28'),
+(134, 'CM. STA ELENA DE ARENALES', '29'),
+(135, 'PQ. ELOY PAREDES', '29'),
+(136, 'PQ. PQ R DE ALCAZAR', '29'),
+(137, 'CM. TUCANI', '30'),
+(138, 'PQ. FLORENCIO RAMIREZ', '30'),
+(139, 'CM. SANTO DOMINGO', '31'),
+(140, 'PQ. LAS PIEDRAS', '31'),
+(141, 'CM. PUEBLO LLANO', '32'),
+(142, 'CM. MUCUCHIES', '33'),
+(143, 'PQ. MUCURUBA', '33'),
+(144, 'PQ. SAN RAFAEL', '33'),
+(145, 'PQ. CACUTE', '33'),
+(146, 'PQ. LA TOMA', '33'),
+(147, 'CM. BAILADORES', '34'),
+(148, 'PQ. GERONIMO MALDONADO', '34'),
+(149, 'CM. LAGUNILLAS', '35'),
+(150, 'PQ. CHIGUARA', '35'),
+(151, 'PQ. ESTANQUES', '35'),
+(152, 'PQ. SAN JUAN', '35'),
+(153, 'PQ. PUEBLO NUEVO DEL SUR', '35'),
+(154, 'PQ. LA TRAMPA', '35'),
+(155, 'PQ. EL LLANO', '36'),
+(156, 'PQ. TOVAR', '36'),
+(157, 'PQ. EL AMPARO', '36'),
+(158, 'PQ. SAN FRANCISCO', '36'),
+(159, 'CM. LA AZULITA', '37'),
+(160, 'CM. NUEVA BOLIVIA', '38'),
+(161, 'PQ. INDEPENDENCIA', '38'),
+(162, 'PQ. MARIA C PALACIOS', '38'),
+(163, 'PQ. SANTA APOLONIA', '38'),
+(164, 'CM. STA MARIA DE CAPARO', '39'),
+(165, 'CM. ARICAGUA', '40'),
+(166, 'PQ. SAN ANTONIO', '40'),
+(167, 'CM. ZEA', '41'),
+(168, 'PQ. CA#O EL TIGRE', '41'),
+(169, 'CM. CANAGUA', '42'),
+(170, 'PQ. CAPURI', '42'),
+(171, 'PQ. CHACANTA', '42'),
+(172, 'PQ. EL MOLINO', '42'),
+(173, 'PQ. GUAIMARAL', '42'),
+(174, 'PQ. MUCUTUY', '42'),
+(175, 'PQ. MUCUCHACHI', '42'),
+(176, 'PQ. ACEQUIAS', '43'),
+(177, 'PQ. JAJI', '43'),
+(178, 'PQ. LA MESA', '43'),
+(179, 'PQ. SAN JOSE', '43'),
+(180, 'PQ. MONTALBAN', '43'),
+(181, 'PQ. MATRIZ', '43'),
+(182, 'PQ. FERNANDEZ PE#A', '43'),
+(183, 'CM. GUARAQUE', '44'),
+(184, 'PQ. MESA DE QUINTERO', '44'),
+(185, 'PQ. RIO NEGRO', '44'),
+(186, 'CM. ARAPUEY', '45'),
+(187, 'PQ. PALMIRA', '45'),
+(188, 'CM. TORONDOY', '46'),
+(189, 'PQ. SAN CRISTOBAL DE T', '46'),
+(190, 'PQ. ARIAS', '47'),
+(191, 'PQ. LASSO DE LA VEGA', '47'),
+(192, 'PQ. CARACCIOLO PARRA P', '47'),
+(193, 'PQ. MARIANO PICON SALAS', '47'),
+(194, 'PQ. ANTONIO SPINETTI DINI', '47'),
+(195, 'PQ. EL MORRO', '47'),
+(196, 'PQ. LOS NEVADOS', '47'),
+(197, 'PQ. SAGRARIO', '47'),
+(198, 'PQ. MILLA', '47'),
+(199, 'PQ. EL LLANO', '47'),
+(200, 'PQ. JUAN RODRIGUEZ SUAREZ', '47'),
+(201, 'PQ. JACINTO PLAZA', '47'),
+(202, 'PQ. DOMINGO PE#A', '47'),
+(203, 'PQ. GONZALO PICON FEBRES', '47'),
+(204, 'PQ. OSUNA RODRIGUEZ', '47'),
+(205, 'CM. TABAY', '48'),
+(206, 'PQ. CAUCAGUA', '49'),
+(207, 'PQ. ARAGUITA', '49'),
+(208, 'PQ. AREVALO GONZALEZ', '49'),
+(209, 'PQ. CAPAYA', '49'),
+(210, 'PQ. PANAQUIRE', '49'),
+(211, 'PQ. RIBAS', '49'),
+(212, 'PQ. EL CAFE', '49'),
+(213, 'PQ. MARIZAPA', '49'),
+(214, 'PQ. CUA', '50'),
+(215, 'PQ. NUEVA CUA', '50'),
+(216, 'PQ. GUATIRE', '51'),
+(217, 'PQ. BOLIVAR', '51'),
+(218, 'PQ. CHARALLAVE', '52'),
+(219, 'PQ. LAS BRISAS', '52'),
+(220, 'PQ. SAN ANTONIO LOS ALTOS', '53'),
+(221, 'PQ.SAN JOSE DE BARLOVENTO', '54'),
+(222, 'PQ. CUMBO', '54'),
+(223, 'PQ. SAN FCO DE YARE', '55'),
+(224, 'PQ. S ANTONIO DE YARE', '55'),
+(225, 'PQ. BARUTA', '56'),
+(226, 'PQ. EL CAFETAL', '56'),
+(227, 'PQ. LAS MINAS DE BARUTA', '56'),
+(228, 'PQ. CARRIZAL', '57'),
+(229, 'PQ. CHACAO', '58'),
+(230, 'PQ. EL HATILLO', '59'),
+(231, 'PQ. HIGUEROTE', '60'),
+(232, 'PQ. CURIEPE', '60'),
+(233, 'PQ. TACARIGUA', '60'),
+(234, 'PQ. MAMPORAL', '61'),
+(235, 'PQ. CUPIRA', '62'),
+(236, 'PQ. MACHURUCUTO', '62'),
+(237, 'PQ. LOS TEQUES', '63'),
+(238, 'PQ. CECILIO ACOSTA', '63'),
+(239, 'PQ. PARACOTOS', '63'),
+(240, 'PQ. SAN PEDRO', '63'),
+(241, 'PQ. TACATA', '63'),
+(242, 'PQ. EL JARILLO', '63'),
+(243, 'PQ. ALTAGRACIA DE LA M', '63'),
+(244, 'PQ. STA TERESA DEL TUY', '64'),
+(245, 'PQ. EL CARTANAL', '64'),
+(246, 'PQ. OCUMARE DEL TUY', '65'),
+(247, 'PQ. LA DEMOCRACIA', '65'),
+(248, 'PQ. SANTA BARBARA', '65'),
+(249, 'PQ. RIO CHICO', '66'),
+(250, 'PQ. EL GUAPO', '66'),
+(251, 'PQ.TACARIGUA DE LA LAGUNA', '66'),
+(252, 'PQ. PAPARO', '66'),
+(253, 'PQ. SN FERNANDO DEL GUAPO', '66'),
+(254, 'PQ. SANTA LUCIA', '67'),
+(255, 'PQ. GUARENAS', '68'),
+(256, 'PQ. PETARE', '69'),
+(257, 'PQ. LEONCIO MARTINEZ', '69'),
+(258, 'PQ. CAUCAGUITA', '69'),
+(259, 'PQ. FILAS DE MARICHES', '69'),
+(260, 'PQ. LA DOLORITA', '69'),
+(261, 'CM. SAN ANTONIO', '70'),
+(262, 'PQ. SAN FRANCISCO', '70'),
+(263, 'CM. BARRANCAS', '71'),
+(264, 'LOS BARRANCOS DE FAJARDO', '71'),
+(265, 'CM. AGUASAY', '72'),
+(266, 'CM. SANTA BARBARA', '73'),
+(267, 'CM. URACOA', '74'),
+(268, 'CM. CARIPITO', '75'),
+(269, 'CM. CARIPE', '76'),
+(270, 'PQ. TERESEN', '76'),
+(271, 'PQ. EL GUACHARO', '76'),
+(272, 'PQ. SAN AGUSTIN', '76'),
+(273, 'PQ. LA GUANOTA', '76'),
+(274, 'PQ. SABANA DE PIEDRA', '76'),
+(275, 'CM. CAICARA', '77'),
+(276, 'PQ. AREO', '77'),
+(277, 'PQ. SAN FELIX', '77'),
+(278, 'PQ. VIENTO FRESCO', '77'),
+(279, 'CM. PUNTA DE MATA', '78'),
+(280, 'PQ. EL TEJERO', '78'),
+(281, 'CM. TEMBLADOR', '79'),
+(282, 'PQ. TABASCA', '79'),
+(283, 'PQ. LAS ALHUACAS', '79'),
+(284, 'PQ. CHAGUARAMAS', '79'),
+(285, 'PQ. EL FURRIAL', '80'),
+(286, 'PQ. SAN SIMON', '80'),
+(287, 'PQ. JUSEPIN', '80'),
+(288, 'PQ. EL COROZO', '80'),
+(289, 'PQ. SAN VICENTE', '80'),
+(290, 'PQ. LA PICA', '80'),
+(291, 'PQ. ALTO DE LOS GODOS', '80'),
+(292, 'PQ. BOQUERON', '80'),
+(293, 'PQ. LAS COCUIZAS', '80'),
+(294, 'PQ. SANTA CRUZ', '80'),
+(295, 'CM. ARAGUA', '81'),
+(296, 'PQ. CHAGUARAMAL', '81'),
+(297, 'PQ. GUANAGUANA', '81'),
+(298, 'PQ. APARICIO', '81'),
+(299, 'PQ. TAGUAYA', '81'),
+(300, 'PQ. EL PINTO', '81'),
+(301, 'PQ. LA TOSCANA', '81'),
+(302, 'CM. QUIRIQUIRE', '82'),
+(303, 'PQ. CACHIPO', '82'),
+(304, 'CM. LA ASUNCION', '83'),
+(305, 'CM.LA PLAZA DE PARAGUACHI', '84'),
+(306, 'CM. VALLE ESP SANTO', '85'),
+(307, 'PQ. FRANCISCO FAJARDO', '85'),
+(308, 'CM. SAN JUAN BAUTISTA', '86'),
+(309, 'PQ. ZABALA', '86'),
+(310, 'CM. SANTA ANA', '87'),
+(311, 'PQ. GUEVARA', '87'),
+(312, 'PQ. MATASIETE', '87'),
+(313, 'PQ. BOLIVAR', '87'),
+(314, 'PQ. SUCRE', '87'),
+(315, 'CM. PAMPATAR', '88'),
+(316, 'PQ. AGUIRRE', '88'),
+(317, 'CM. JUAN GRIEGO', '89'),
+(318, 'PQ. ADRIAN', '89'),
+(319, 'CM. PORLAMAR', '90'),
+(320, 'CM. BOCA DEL RIO', '91'),
+(321, 'PQ. SAN FRANCISCO', '91'),
+(322, 'CM. SAN PEDRO DE COCHE', '92'),
+(323, 'PQ. VICENTE FUENTES', '92'),
+(324, 'CM. PUNTA DE PIEDRAS', '93'),
+(325, 'PQ. LOS BARALES', '93'),
+(326, 'CM. ARAURE', '94'),
+(327, 'PQ. RIO ACARIGUA', '94'),
+(328, 'CM. AGUA BLANCA', '95'),
+(329, 'CM. PAPELON', '96'),
+(330, 'PQ. CA#O DELGADITO', '96'),
+(331, 'CM. BOCONOITO', '97'),
+(332, 'PQ. ANTOLIN TOVAR AQUINO', '97'),
+(333, 'CM. SAN RAFAEL DE ONOTO', '98'),
+(334, 'PQ. SANTA FE', '98'),
+(335, 'PQ. THERMO MORLES', '98'),
+(336, 'CM. EL PLAYON', '99'),
+(337, 'PQ. FLORIDA', '99'),
+(338, 'CM. PIRITU', '100'),
+(339, 'PQ. UVERAL', '100'),
+(340, 'CM. GUANARE', '101'),
+(341, 'PQ. CORDOBA', '101'),
+(342, 'PQ.SAN JUAN GUANAGUANARE', '101'),
+(343, 'PQ. VIRGEN DE LA COROMOTO', '101'),
+(344, 'PQ.SAN JOSE DE LA MONTA#A', '101'),
+(345, 'CM. GUANARITO', '102'),
+(346, 'PQ.TRINIDAD DE LA CAPILLA', '102'),
+(347, 'PQ. DIVINA PASTORA', '102'),
+(348, 'CM. OSPINO', '103'),
+(349, 'PQ. APARICION', '103'),
+(350, 'PQ. LA ESTACION', '103'),
+(351, 'CM. ACARIGUA', '104'),
+(352, 'PQ. PAYARA', '104'),
+(353, 'PQ. PIMPINELA', '104'),
+(354, 'PQ. RAMON PERAZA', '104'),
+(355, 'CM. BISCUCUY', '105'),
+(356, 'PQ. CONCEPCION', '105'),
+(357, 'PQ.SAN RAFAEL PALO ALZADO', '105'),
+(358, 'PQ. UVENCIO A VELASQUEZ', '105'),
+(359, 'PQ. SAN JOSE DE SAGUAZ', '105'),
+(360, 'PQ. VILLA ROSA', '105'),
+(361, 'CM. VILLA BRUZUAL', '106'),
+(362, 'PQ. CANELONES', '106'),
+(363, 'PQ. SANTA CRUZ', '106'),
+(364, 'PQ. SAN ISIDRO LABRADOR', '106'),
+(365, 'CM. CHABASQUEN', '107'),
+(366, 'PQ. PE#A BLANCA', '107'),
+(367, 'PQ. RIO CARIBE', '108'),
+(368, 'PQ. SAN JUAN GALDONAS', '108'),
+(369, 'PQ. PUERTO SANTO', '108'),
+(370, 'PQ. EL MORRO DE PTO SANTO', '108'),
+(371, 'PQ. ANTONIO JOSE DE SUCRE', '108'),
+(372, 'PQ. GUIRIA', '109'),
+(373, 'PQ. CRISTOBAL COLON', '109'),
+(374, 'PQ. PUNTA DE PIEDRA', '109'),
+(375, 'PQ. BIDEAU', '109'),
+(376, 'PQ. MARI#O', '110'),
+(377, 'PQ. ROMULO GALLEGOS', '110'),
+(378, 'PQ. TUNAPUY', '111'),
+(379, 'PQ. CAMPO ELIAS', '111'),
+(380, 'PQ. SAN JOSE DE AREOCUAR', '112'),
+(381, 'PQ. TAVERA ACOSTA', '112'),
+(382, 'CM. MARIGUITAR', '113'),
+(383, 'PQ. ARAYA', '114'),
+(384, 'PQ. MANICUARE', '114'),
+(385, 'PQ. CHACOPATA', '114'),
+(386, 'PQ. EL PILAR', '115'),
+(387, 'PQ. EL RINCON', '115'),
+(388, 'PQ. GUARAUNOS', '115'),
+(389, 'PQ. TUNAPUICITO', '115'),
+(390, 'PQ. UNION', '115'),
+(391, 'PQ. GRAL FCO. A VASQUEZ', '115'),
+(392, 'PQ. SANTA CATALINA', '116'),
+(393, 'PQ. SANTA ROSA', '116'),
+(394, 'PQ. SANTA TERESA', '116'),
+(395, 'PQ. BOLIVAR', '116'),
+(396, 'PQ. MACARAPANA', '116'),
+(397, 'PQ. YAGUARAPARO', '117'),
+(398, 'PQ. LIBERTAD', '117'),
+(399, 'PQ. PAUJIL', '117'),
+(400, 'PQ. IRAPA', '118'),
+(401, 'PQ. CAMPO CLARO', '118'),
+(402, 'PQ. SORO', '118'),
+(403, 'PQ. SAN ANTONIO DE IRAPA', '118'),
+(404, 'PQ. MARABAL', '118'),
+(405, 'CM. SAN ANT DEL GOLFO', '119'),
+(406, 'PQ. CUMANACOA', '120'),
+(407, 'PQ. ARENAS', '120'),
+(408, 'PQ. ARICAGUA', '120'),
+(409, 'PQ. COCOLLAR', '120'),
+(410, 'PQ. SAN FERNANDO', '120'),
+(411, 'PQ. SAN LORENZO', '120'),
+(412, 'PQ. CARIACO', '121'),
+(413, 'PQ. CATUARO', '121'),
+(414, 'PQ. RENDON', '121'),
+(415, 'PQ. SANTA CRUZ', '121'),
+(416, 'PQ. SANTA MARIA', '121'),
+(417, 'PQ. ALTAGRACIA', '122'),
+(418, 'PQ. AYACUCHO', '122'),
+(419, 'PQ. SANTA INES', '122'),
+(420, 'PQ. VALENTIN VALIENTE', '122'),
+(421, 'PQ. SAN JUAN', '122'),
+(422, 'PQ.GRAN MARISCAL', '122'),
+(423, 'PQ. RAUL LEONI', '122'),
+(424, 'CM. COLON', '123'),
+(425, 'PQ. RIVAS BERTI', '123'),
+(426, 'PQ. SAN PEDRO DEL RIO', '123'),
+(427, 'CM. STA. ANA  DEL TACHIRA', '124'),
+(428, 'CM. LA FRIA', '125'),
+(429, 'PQ. BOCA DE GRITA', '125'),
+(430, 'PQ. JOSE ANTONIO PAEZ', '125'),
+(431, 'CM. PALMIRA', '126'),
+(432, 'CM. MICHELENA', '127'),
+(433, 'CM. ABEJALES', '128'),
+(434, 'PQ. SAN JOAQUIN DE NAVAY', '128'),
+(435, 'PQ. DORADAS', '128'),
+(436, 'PQ. EMETERIO OCHOA', '128'),
+(437, 'CM. COLONCITO', '129'),
+(438, 'PQ. LA PALMITA', '129'),
+(439, 'CM. URE#A', '130'),
+(440, 'PQ. NUEVA ARCADIA', '130'),
+(441, 'CM. QUENIQUEA', '131'),
+(442, 'PQ. SAN PABLO', '131'),
+(443, 'PQ.ELEAZAR LOPEZ CONTRERA', '131'),
+(444, 'CM. CORDERO', '132'),
+(445, 'CM.SAN RAFAEL DEL PINAL', '133'),
+(446, 'PQ. SANTO DOMINGO', '133'),
+(447, 'PQ. ALBERTO ADRIANI', '133'),
+(448, 'CM. SAN ANT DEL TACHIRA', '134'),
+(449, 'PQ. PALOTAL', '134'),
+(450, 'PQ. JUAN VICENTE GOMEZ', '134'),
+(451, 'PQ. ISAIAS MEDINA ANGARIT', '134'),
+(452, 'CM. CAPACHO VIEJO', '135'),
+(453, 'PQ. CIPRIANO CASTRO', '135'),
+(454, 'PQ. MANUEL FELIPE RUGELES', '135'),
+(455, 'CM. LA TENDIDA', '136'),
+(456, 'PQ. BOCONO', '136'),
+(457, 'PQ. HERNANDEZ', '136'),
+(458, 'CM. SEBORUCO', '137'),
+(459, 'CM. LAS MESAS', '138'),
+(460, 'CM. SAN JOSE DE BOLIVAR', '139'),
+(461, 'CM. EL COBRE', '140'),
+(462, 'CM. DELICIAS', '141'),
+(463, 'CM. SAN SIMON', '142'),
+(464, 'CM. SAN JOSECITO', '143'),
+(465, 'CM. UMUQUENA', '144'),
+(466, 'CM. CAPACHO NUEVO', '145'),
+(467, 'PQ. JUAN GERMAN ROSCIO', '145'),
+(468, 'PQ. ROMAN CARDENAS', '145'),
+(469, 'CM. TARIBA', '146'),
+(470, 'PQ. LA FLORIDA', '146'),
+(471, 'PQ. AMENODORO RANGEL LAMU', '146'),
+(472, 'CM. LA GRITA', '147'),
+(473, 'PQ. EMILIO C. GUERRERO', '147'),
+(474, 'PQ. MONS. MIGUEL A SALAS', '147'),
+(475, 'CM. RUBIO', '148'),
+(476, 'PQ. BRAMON', '148'),
+(477, 'PQ. LA PETROLEA', '148'),
+(478, 'PQ. QUINIMARI', '148'),
+(479, 'CM. LOBATERA', '149'),
+(480, 'PQ. CONSTITUCION', '149'),
+(481, 'PQ. LA CONCORDIA', '150'),
+(482, 'PQ. PEDRO MARIA MORANTES', '150'),
+(483, 'PQ. SN JUAN BAUTISTA', '150'),
+(484, 'PQ. SAN SEBASTIAN', '150'),
+(485, 'PQ. DR. FCO. ROMERO LOBO', '150'),
+(486, 'CM. PREGONERO', '151'),
+(487, 'PQ. CARDENAS', '151'),
+(488, 'PQ. POTOSI', '151'),
+(489, 'PQ. JUAN PABLO PE#ALOZA', '151'),
+(490, 'PQ. BETIJOQUE', '152'),
+(491, 'PQ. JOSE G HERNANDEZ', '152'),
+(492, 'PQ. LA PUEBLITA', '152'),
+(493, 'PQ. EL CEDRO', '152'),
+(494, 'PQ. MONTE CARMELO', '153'),
+(495, 'PQ. BUENA VISTA', '153'),
+(496, 'PQ. STA MARIA DEL HORCON', '153'),
+(497, 'PQ. MOTATAN', '154'),
+(498, 'PQ. EL BAÃ‘O', '154'),
+(499, 'PQ. JALISCO', '154'),
+(500, 'PQ. PAMPAN', '155'),
+(501, 'PQ. SANTA ANA', '155'),
+(502, 'PQ. LA PAZ', '155'),
+(503, 'PQ. FLOR DE PATRIA', '155'),
+(504, 'PQ. CARVAJAL', '156'),
+(505, 'PQ. ANTONIO N BRICEÃ±O', '156'),
+(506, 'PQ. CAMPO ALEGRE', '156'),
+(507, 'PQ. JOSE LEONARDO SUAREZ', '156'),
+(508, 'PQ. SABANA DE MENDOZA', '157'),
+(509, 'PQ. JUNIN', '157'),
+(510, 'PQ. VALMORE RODRIGUEZ', '157'),
+(511, 'PQ. EL PARAISO', '157'),
+(512, 'PQ. SANTA ISABEL', '158'),
+(513, 'PQ. ARAGUANEY', '158'),
+(514, 'PQ. EL JAGUITO', '158'),
+(515, 'PQ. LA ESPERANZA', '158'),
+(516, 'PQ. SABANA GRANDE', '159'),
+(517, 'PQ. CHEREGUE', '159'),
+(518, 'PQ. GRANADOS', '159'),
+(519, 'PQ. EL SOCORRO', '160'),
+(520, 'PQ. LOS CAPRICHOS', '160'),
+(521, 'PQ. ANTONIO JOSE DE SUCRE', '160'),
+(522, 'PQ. CAMPO ELIAS', '161'),
+(523, 'PQ. ARNOLDO GABALDON', '161'),
+(524, 'PQ. SANTA APOLONIA', '162'),
+(525, 'PQ. LA CEIBA', '162'),
+(526, 'PQ. EL PROGRESO', '162'),
+(527, 'PQ. TRES DE FEBRERO', '162'),
+(528, 'PQ. BOCONÃ“', '163'),
+(529, 'PQ. SAN MIGUEL', '163'),
+(530, 'PQ. GUARAMACAL', '163'),
+(531, 'PQ. LA VEGA DE GUARAMACAL', '163'),
+(532, 'PQ. EL CARMEN', '163'),
+(533, 'PQ. MOSQUEY', '163'),
+(534, 'PQ. AYACUCHO', '163'),
+(535, 'PQ. BURBUSAY', '163'),
+(536, 'PQ. GENERAL RIVAS', '163'),
+(537, 'PQ. MONSEÃ±OR JAUREGUI', '163'),
+(538, 'PQ. RAFAEL RANGEL', '163'),
+(539, 'PQ. SAN JOSE', '163'),
+(540, 'PQ. PAMPANITO', '164'),
+(541, 'PQ. PAMPANITO II', '164'),
+(542, 'PQ. LA CONCEPCION', '164'),
+(543, 'PQ. CARACHE', '165'),
+(544, 'PQ. LA CONCEPCION', '165'),
+(545, 'PQ. CUICAS', '165'),
+(546, 'PQ. PANAMERICANA', '165'),
+(547, 'PQ. SANTA CRUZ', '165'),
+(548, 'PQ. ESCUQUE', '166'),
+(549, 'PQ. SABANA LIBRE', '166'),
+(550, 'PQ. LA UNION', '166'),
+(551, 'PQ. SANTA RITA', '166'),
+(552, 'PQ. CRISTOBAL MENDOZA', '167'),
+(553, 'PQ. CHIQUINQUIRA', '167'),
+(554, 'PQ. MATRIZ', '167'),
+(555, 'PQ. MONSEÃ‘OR CARRILLO', '167'),
+(556, 'PQ. CRUZ CARRILLO', '167'),
+(557, 'PQ. ANDRES LINARES', '167'),
+(558, 'PQ. TRES ESQUINAS', '167'),
+(559, 'PQ. LA QUEBRADA', '168'),
+(560, 'PQ. JAJO', '168'),
+(561, 'PQ. LA MESA', '168'),
+(562, 'PQ. SANTIAGO', '168'),
+(563, 'PQ. CABIMBU', '168'),
+(564, 'PQ. TUÃ±AME', '168'),
+(565, 'PQ. MERCEDES DIAZ', '169'),
+(566, 'PQ. JUAN IGNACIO MONTILLA', '169'),
+(567, 'PQ. LA BEATRIZ', '169'),
+(568, 'PQ. MENDOZA', '169'),
+(569, 'PQ. LA PUERTA', '169'),
+(570, 'PQ. SAN LUIS', '169'),
+(571, 'PQ. CHEJENDE', '170'),
+(572, 'PQ. CARRILLO', '170'),
+(573, 'PQ. CEGARRA', '170'),
+(574, 'PQ. BOLIVIA', '170'),
+(575, 'PQ. MANUEL SALVADOR ULLOA', '170'),
+(576, 'PQ. SAN JOSE', '170'),
+(577, 'PQ. ARNOLDO GABALDON', '170'),
+(578, 'PQ. EL DIVIDIVE', '171'),
+(579, 'PQ. AGUA CALIENTE', '171'),
+(580, 'PQ. EL CENIZO', '171'),
+(581, 'PQ. AGUA SANTA', '171'),
+(582, 'PQ. VALERITA', '171'),
+(583, 'PQ. ANACO', '172'),
+(584, 'PQ. SAN JOAQUIN', '172'),
+(585, 'CM. MAPIRE', '173'),
+(586, 'PQ. PIAR', '173'),
+(587, 'PQ. SN DIEGO DE CABRUTICA', '173'),
+(588, 'PQ. SANTA CLARA', '173'),
+(589, 'PQ. UVERITO', '173'),
+(590, 'PQ. ZUATA', '173'),
+(591, 'CM. PUERTO PIRITU', '174'),
+(592, 'PQ. SAN MIGUEL', '174'),
+(593, 'PQ. SUCRE', '174'),
+(594, 'CM. EL TIGRE', '175'),
+(595, 'PQ. POZUELOS', '176'),
+(596, 'CM PTO. LA CRUZ', '176'),
+(597, 'CM. SAN JOSE DE GUANIPA', '177'),
+(598, 'PQ. GUANTA', '178'),
+(599, 'PQ. CHORRERON', '178'),
+(600, 'PQ. PIRITU', '179'),
+(601, 'PQ. SAN FRANCISCO', '179'),
+(602, 'PQ. LECHERIAS', '180'),
+(603, 'PQ. EL MORRO', '180'),
+(604, 'PQ. VALLE GUANAPE', '181'),
+(605, 'PQ. SANTA BARBARA', '181'),
+(606, 'PQ. SANTA ANA', '182'),
+(607, 'PQ. PUEBLO NUEVO', '182'),
+(608, 'CM. ARAGUA DE BARCELONA', '183'),
+(609, 'PQ. CACHIPO', '183'),
+(610, 'PQ. EL CHAPARRO', '184'),
+(611, 'PQ.TOMAS ALFARO CALATRAVA', '184'),
+(612, 'PQ. BOCA UCHIRE', '185'),
+(613, 'PQ. BOCA DE CHAVEZ', '185'),
+(614, 'PQ. EL CARMEN', '186'),
+(615, 'PQ. SAN CRISTOBAL', '186'),
+(616, 'PQ. BERGANTIN', '186'),
+(617, 'PQ. CAIGUA', '186'),
+(618, 'PQ. EL PILAR', '186'),
+(619, 'PQ. NARICUAL', '186'),
+(620, 'CM. CLARINES', '187'),
+(621, 'PQ. GUANAPE', '187'),
+(622, 'PQ. SABANA DE UCHIRE', '187'),
+(623, 'CM. ONOTO', '188'),
+(624, 'PQ. SAN PABLO', '188'),
+(625, 'CM. CANTAURA', '189'),
+(626, 'PQ. LIBERTADOR', '189'),
+(627, 'PQ. SANTA ROSA', '189'),
+(628, 'PQ. URICA', '189'),
+(629, 'CM. SOLEDAD', '190'),
+(630, 'PQ. MAMO', '190'),
+(631, 'CM. SAN MATEO', '191'),
+(632, 'PQ. EL CARITO', '191'),
+(633, 'PQ. SANTA INES', '191'),
+(634, 'CM. PARIAGUAN', '192'),
+(635, 'PQ. ATAPIRIRE', '192'),
+(636, 'PQ. BOCA DEL PAO', '192'),
+(637, 'PQ. EL PAO', '192'),
+(638, 'CM. AROA', '193'),
+(639, 'CM. COCOROTE', '194'),
+(640, 'CM. INDEPENDENCIA', '195'),
+(641, 'CM. SAN PABLO', '196'),
+(642, 'CM. YUMARE', '197'),
+(643, 'CM. FARRIAR', '198'),
+(644, 'PQ. EL GUAYABO', '198'),
+(645, 'CM. CHIVACOA', '199'),
+(646, 'PQ. CAMPO ELIAS', '199'),
+(647, 'CM. NIRGUA', '200'),
+(648, 'PQ. SALOM', '200'),
+(649, 'PQ. TEMERLA', '200'),
+(650, 'CM. SAN FELIPE', '201'),
+(651, 'PQ. ALBARICO', '201'),
+(652, 'PQ. SAN JAVIER', '201'),
+(653, 'CM. GUAMA', '202'),
+(654, 'CM. URACHICHE', '203'),
+(655, 'CM. YARITAGUA', '204'),
+(656, 'PQ. SAN ANDRES', '204'),
+(657, 'CM. SABANA DE PARRA', '205'),
+(658, 'CM. BORAURE', '206'),
+(659, 'PQ. GENERAL URDANETA', '207'),
+(660, 'PQ. LIBERTADOR', '207'),
+(661, 'PQ. MANUEL GUANIPA MATOS', '207'),
+(662, 'PQ. MARCELINO BRICE#O', '207'),
+(663, 'PQ. SAN TIMOTEO', '207'),
+(664, 'PQ. PUEBLO NUEVO', '207'),
+(665, 'PQ. ANDRES BELLO (KM 48)', '208'),
+(666, 'PQ. POTRERITOS', '208'),
+(667, 'PQ. EL CARMELO', '208'),
+(668, 'PQ. CHIQUINQUIRA', '208'),
+(669, 'PQ. CONCEPCION', '208'),
+(670, 'PQ. ELEAZAR LOPEZ C', '209'),
+(671, 'PQ. ALONSO DE OJEDA', '209'),
+(672, 'PQ. VENEZUELA', '209'),
+(673, 'PQ. CAMPO LARA', '209'),
+(674, 'PQ. LIBERTAD', '209'),
+(675, 'PQ. UDON PEREZ', '210'),
+(676, 'PQ. ENCONTRADOS', '210'),
+(677, 'PQ. DONALDO GARCIA', '211'),
+(678, 'PQ. SIXTO ZAMBRANO', '211'),
+(679, 'PQ. EL ROSARIO', '211'),
+(680, 'PQ. AMBROSIO', '212'),
+(681, 'PQ. GERMAN RIOS LINARES', '212'),
+(682, 'PQ. JORGE HERNANDEZ', '212'),
+(683, 'PQ. LA ROSA', '212'),
+(684, 'PQ. PUNTA GORDA', '212'),
+(685, 'PQ. CARMEN HERRERA', '212'),
+(686, 'PQ. SAN BENITO', '212'),
+(687, 'PQ. ROMULO BETANCOURT', '212'),
+(688, 'PQ. ARISTIDES CALVANI', '212'),
+(689, 'PQ. RAUL CUENCA', '213'),
+(690, 'PQ. LA VICTORIA', '213'),
+(691, 'PQ. RAFAEL URDANETA', '213'),
+(692, 'PQ. JOSE RAMON YEPEZ', '214'),
+(693, 'PQ. LA CONCEPCION', '214'),
+(694, 'PQ. SAN JOSE', '214'),
+(695, 'PQ. MARIANO PARRA LEON', '214'),
+(696, 'PQ. MONAGAS', '215'),
+(697, 'PQ. ISLA DE TOAS', '215'),
+(698, 'PQ. MARCIAL HERNANDEZ', '216'),
+(699, 'PQ. FRANCISCO OCHOA', '216'),
+(700, 'PQ. SAN FRANCISCO', '216'),
+(701, 'PQ. EL BAJO', '216'),
+(702, 'PQ. DOMITILA FLORES', '216'),
+(703, 'PQ. LOS CORTIJOS', '216'),
+(704, 'PQ. BARI', '217'),
+(705, 'PQ. JESUS M SEMPRUN', '217'),
+(706, 'PQ. PEDRO LUCAS URRIBARRI', '218'),
+(707, 'PQ. SANTA RITA', '218'),
+(708, 'PQ. JOSE CENOVIO URRIBARR', '218'),
+(709, 'PQ. EL MENE', '218'),
+(710, 'PQ. SIMON RODRIGUEZ', '219'),
+(711, 'PQ. CARLOS QUEVEDO', '219'),
+(712, 'PQ. FRANCISCO J PULGAR', '219'),
+(713, 'PQ. RAFAEL MARIA BARALT', '220'),
+(714, 'PQ. MANUEL MANRIQUE', '220'),
+(715, 'PQ. RAFAEL URDANETA', '220'),
+(716, 'PQ. SANTA CRUZ DEL ZULIA', '221'),
+(717, 'PQ. URRIBARRI', '221'),
+(718, 'PQ. MORALITO', '221'),
+(719, 'PQ. SAN CARLOS DEL ZULIA', '221'),
+(720, 'PQ. SANTA BARBARA', '221'),
+(721, 'PQ. LUIS DE VICENTE', '222'),
+(722, 'PQ. RICAURTE', '222'),
+(723, 'PQ. MONS.MARCOS SERGIO G', '222'),
+(724, 'PQ. SAN RAFAEL', '222'),
+(725, 'PQ. LAS PARCELAS', '222'),
+(726, 'PQ. TAMARE', '222'),
+(727, 'PQ. LA SIERRITA', '222'),
+(728, 'PQ. BOLIVAR', '223'),
+(729, 'PQ. CACIQUE MARA', '223'),
+(730, 'PQ. CECILIO ACOSTA', '223'),
+(731, 'PQ. RAUL LEONI', '223'),
+(732, 'PQ. FRANCISCO EUGENIO B', '223'),
+(733, 'PQ. MANUEL DAGNINO', '223'),
+(734, 'PQ. LUIS HURTADO HIGUERA', '223'),
+(735, 'PQ. VENANCIO PULGAR', '223'),
+(736, 'PQ. ANTONIO BORJAS ROMERO', '223'),
+(737, 'PQ. SAN ISIDRO', '223'),
+(738, 'PQ. COQUIVACOA', '223'),
+(739, 'PQ. CRISTO DE ARANZA', '223'),
+(740, 'PQ. CHIQUINQUIRA', '223'),
+(741, 'PQ. SANTA LUCIA', '223'),
+(742, 'PQ. OLEGARIO VILLALOBOS', '223'),
+(743, 'PQ. JUANA DE AVILA', '223'),
+(744, 'PQ.CARACCIOLO PARRA PEREZ', '223'),
+(745, 'PQ. IDELFONZO VASQUEZ', '223'),
+(746, 'PQ. FARIA', '224'),
+(747, 'PQ. SAN ANTONIO', '224'),
+(748, 'PQ. ANA MARIA CAMPOS', '224'),
+(749, 'PQ. SAN JOSE', '224'),
+(750, 'PQ. ALTAGRACIA', '224'),
+(751, 'PQ. GOAJIRA', '225'),
+(752, 'PQ. ELIAS SANCHEZ RUBIO', '225'),
+(753, 'PQ. SINAMAICA', '225'),
+(754, 'PQ. ALTA GUAJIRA', '225'),
+(755, 'PQ. SAN JOSE DE PERIJA', '226'),
+(756, 'PQ.BARTOLOME DE LAS CASAS', '226'),
+(757, 'PQ. LIBERTAD', '226'),
+(758, 'PQ. RIO NEGRO', '226'),
+(759, 'PQ. GIBRALTAR', '227'),
+(760, 'PQ. HERAS', '227'),
+(761, 'PQ. M.ARTURO CELESTINO A', '227'),
+(762, 'PQ. ROMULO GALLEGOS', '227'),
+(763, 'PQ. BOBURES', '227'),
+(764, 'PQ. EL BATEY', '227'),
+(765, 'PQ. FERNANDO GIRON TOVAR', '228'),
+(766, 'PQ. LUIS ALBERTO GOMEZ', '228'),
+(767, 'PQ. PARHUE#A', '228'),
+(768, 'PQ. PLATANILLAL', '228'),
+(769, 'CM. SAN FERNANDO DE ATABA', '229'),
+(770, 'PQ. UCATA', '229'),
+(771, 'PQ. YAPACANA', '229'),
+(772, 'PQ. CANAME', '229'),
+(773, 'CM. MAROA', '230'),
+(774, 'PQ. VICTORINO', '230'),
+(775, 'PQ. COMUNIDAD', '230'),
+(776, 'CM. SAN CARLOS DE RIO NEG', '231'),
+(777, 'PQ. SOLANO', '231'),
+(778, 'PQ. COCUY', '231'),
+(779, 'CM. ISLA DE RATON', '232'),
+(780, 'PQ. SAMARIAPO', '232'),
+(781, 'PQ. SIPAPO', '232'),
+(782, 'PQ. MUNDUAPO', '232'),
+(783, 'PQ. GUAYAPO', '232'),
+(784, 'CM. SAN JUAN DE MANAPIARE', '233'),
+(785, 'PQ. ALTO VENTUARI', '233'),
+(786, 'PQ. MEDIO VENTUARI', '233'),
+(787, 'PQ. BAJO VENTUARI', '233'),
+(788, 'CM. LA ESMERALDA', '234'),
+(789, 'PQ. HUACHAMACARE', '234'),
+(790, 'PQ. MARAWAKA', '234'),
+(791, 'PQ. MAVACA', '234'),
+(792, 'PQ. SIERRA PARIMA', '234'),
+(793, 'PQ. SAN JOSE', '235'),
+(794, 'PQ. VIRGEN DEL VALLE', '235'),
+(795, 'PQ. SAN RAFAEL', '235'),
+(796, 'PQ. JOSE VIDAL MARCANO', '235'),
+(797, 'PQ. LEONARDO RUIZ PINEDA', '235'),
+(798, 'PQ. MONS. ARGIMIRO GARCIA', '235'),
+(799, 'PQ.MCL.ANTONIO J DE SUCRE', '235'),
+(800, 'PQ. JUAN MILLAN', '235'),
+(801, 'PQ. PEDERNALES', '236'),
+(802, 'PQ. LUIS B PRIETO FIGUERO', '236'),
+(803, 'PQ. CURIAPO', '237'),
+(804, 'PQ. SANTOS DE ABELGAS', '237'),
+(805, 'PQ. MANUEL RENAUD', '237'),
+(806, 'PQ. PADRE BARRAL', '237'),
+(807, 'PQ. ANICETO LUGO', '237'),
+(808, 'PQ. ALMIRANTE LUIS BRION', '237'),
+(809, 'PQ. IMATACA', '238'),
+(810, 'PQ. ROMULO GALLEGOS', '238'),
+(811, 'PQ. JUAN BAUTISTA ARISMEN', '238'),
+(812, 'PQ. MANUEL PIAR', '238'),
+(813, 'PQ. 5 DE JULIO', '238'),
+(814, 'PQ. CARABALLEDA', '239'),
+(815, 'PQ. PQ RAUL LEONI', '239'),
+(816, 'PQ. PQ CARLOS SOUBLETTE', '239'),
+(817, 'PQ. CARAYACA', '239'),
+(818, 'PQ. CARUAO', '239'),
+(819, 'PQ. CATIA LA MAR', '239'),
+(820, 'PQ. LA GUAIRA', '239'),
+(821, 'PQ. MACUTO', '239'),
+(822, 'PQ. MAIQUETIA', '239'),
+(823, 'PQ. NAIGUATA', '239'),
+(824, 'PQ. EL JUNKO', '239'),
+(825, 'PQ. ACHAGUAS', '240'),
+(826, 'PQ. APURITO', '240'),
+(827, 'PQ. EL YAGUAL', '240'),
+(828, 'PQ. GUACHARA', '240'),
+(829, 'PQ. MUCURITAS', '240'),
+(830, 'PQ. QUESERAS DEL MEDIO', '240'),
+(831, 'PQ. BRUZUAL', '241'),
+(832, 'PQ. MANTECAL', '241'),
+(833, 'PQ. QUINTERO', '241'),
+(834, 'PQ. SAN VICENTE', '241'),
+(835, 'PQ. RINCON HONDO', '241'),
+(836, 'PQ. GUASDUALITO', '242'),
+(837, 'PQ. ARAMENDI', '242'),
+(838, 'PQ. EL AMPARO', '242'),
+(839, 'PQ. SAN CAMILO', '242'),
+(840, 'PQ. URDANETA', '242'),
+(841, 'PQ. SAN JUAN DE PAYARA', '243'),
+(842, 'PQ. CODAZZI', '243'),
+(843, 'PQ. CUNAVICHE', '243'),
+(844, 'PQ. ELORZA', '244'),
+(845, 'PQ. LA TRINIDAD', '244'),
+(846, 'PQ. SAN FERNANDO', '245'),
+(847, 'PQ. PE#ALVER', '245'),
+(848, 'PQ. EL RECREO', '245'),
+(849, 'PQ. SN RAFAEL DE ATAMAICA', '245'),
+(850, 'PQ. BIRUACA', '246'),
+(851, 'CM. LAS DELICIAS', '247'),
+(852, 'PQ. CHORONI', '247'),
+(853, 'PQ. MADRE MA DE SAN JOSE', '247'),
+(854, 'PQ. JOAQUIN CRESPO', '247'),
+(855, 'PQ. PEDRO JOSE OVALLES', '247'),
+(856, 'PQ. JOSE CASANOVA GODOY', '247'),
+(857, 'PQ. ANDRES ELOY BLANCO', '247'),
+(858, 'PQ. LOS TACARIGUAS', '247'),
+(859, 'CM. SANTA CRUZ', '248'),
+(860, 'CM. SAN MATEO', '249'),
+(861, 'CM. LAS TEJERIAS', '250'),
+(862, 'PQ. TIARA', '250'),
+(863, 'CM. EL LIMON', '251'),
+(864, 'PQ. CA A DE AZUCAR', '251'),
+(865, 'CM. COLONIA TOVAR', '252'),
+(866, 'CM. CAMATAGUA', '253'),
+(867, 'PQ. CARMEN DE CURA', '253'),
+(868, 'CM. EL CONSEJO', '254'),
+(869, 'CM. SANTA RITA', '255'),
+(870, 'PQ. FRANCISCO DE MIRANDA', '255'),
+(871, 'PQ. MONS FELICIANO G', '255'),
+(872, 'PQ. OCUMARE DE LA COSTA', '256'),
+(873, 'CM. TURMERO', '257'),
+(874, 'PQ. SAMAN DE GUERE', '257'),
+(875, 'PQ. ALFREDO PACHECO M', '257'),
+(876, 'PQ. CHUAO', '257'),
+(877, 'PQ. AREVALO APONTE', '257'),
+(878, 'CM. LA VICTORIA', '258'),
+(879, 'PQ. ZUATA', '258'),
+(880, 'PQ. PAO DE ZARATE', '258'),
+(881, 'PQ. CASTOR NIEVES RIOS', '258'),
+(882, 'PQ. LAS GUACAMAYAS', '258'),
+(883, 'CM. SAN CASIMIRO', '259'),
+(884, 'PQ. VALLE MORIN', '259'),
+(885, 'PQ. GUIRIPA', '259'),
+(886, 'PQ. OLLAS DE CARAMACATE', '259'),
+(887, 'CM. SAN SEBASTIAN', '260'),
+(888, 'CM. CAGUA', '261'),
+(889, 'PQ. BELLA VISTA', '261'),
+(890, 'CM. BARBACOAS', '262'),
+(891, 'PQ. SAN FRANCISCO DE CARA', '262'),
+(892, 'PQ. TAGUAY', '262'),
+(893, 'PQ. LAS PE#ITAS', '262'),
+(894, 'CM. VILLA DE CURA', '263'),
+(895, 'PQ. MAGDALENO', '263'),
+(896, 'PQ. SAN FRANCISCO DE ASIS', '263'),
+(897, 'PQ. VALLES DE TUCUTUNEMO', '263'),
+(898, 'PQ. PQ AUGUSTO MIJARES', '263'),
+(899, 'CM. PALO NEGRO', '264'),
+(900, 'PQ. SAN MARTIN DE PORRES', '264'),
+(901, 'PQ. ARISMENDI', '265'),
+(902, 'PQ. GUADARRAMA', '265'),
+(903, 'PQ. LA UNION', '265'),
+(904, 'PQ. SAN ANTONIO', '265'),
+(905, 'PQ. TICOPORO', '266'),
+(906, 'PQ. NICOLAS PULIDO', '266'),
+(907, 'PQ. ANDRES BELLO', '266'),
+(908, 'PQ. BARRANCAS', '267'),
+(909, 'PQ. EL SOCORRO', '267'),
+(910, 'PQ. MASPARRITO', '267'),
+(911, 'PQ. EL CANTON', '268'),
+(912, 'PQ. SANTA CRUZ DE GUACAS', '268'),
+(913, 'PQ. PUERTO VIVAS', '268'),
+(914, 'PQ. ALFREDO A LARRIVA', '269'),
+(915, 'PQ. RAMON I MENDEZ', '269'),
+(916, 'PQ. ALTO BARINAS', '269'),
+(917, 'PQ. MANUEL P FAJARDO', '269'),
+(918, 'PQ. JUAN A RODRIGUEZ D', '269'),
+(919, 'PQ. DOMINGA ORTIZ P', '269'),
+(920, 'PQ. BARINAS', '269'),
+(921, 'PQ. SAN SILVESTRE', '269'),
+(922, 'PQ. SANTA INES', '269'),
+(923, 'PQ. SANTA LUCIA', '269'),
+(924, 'PQ. TORUNOS', '269'),
+(925, 'PQ. EL CARMEN', '269'),
+(926, 'PQ. ROMULO BETANCOURT', '269'),
+(927, 'PQ. CORAZON DE JESUS', '269'),
+(928, 'PQ. ALTAMIRA', '270'),
+(929, 'PQ. BARINITAS', '270'),
+(930, 'PQ. CALDERAS', '270'),
+(931, 'PQ. SANTA BARBARA', '271'),
+(932, 'PQ.JOSE IGNACIO DEL PUMAR', '271'),
+(933, 'PQ. RAMON IGNACIO MENDEZ', '271'),
+(934, 'PQ. PEDRO BRICE#O MENDEZ', '271'),
+(935, 'PQ. EL REAL', '272'),
+(936, 'PQ. LA LUZ', '272'),
+(937, 'PQ. OBISPOS', '272'),
+(938, 'PQ. LOS GUASIMITOS', '272'),
+(939, 'PQ. CIUDAD BOLIVIA', '273'),
+(940, 'PQ. IGNACIO BRICE#O', '273'),
+(941, 'PQ. PAEZ', '273'),
+(942, 'PQ. JOSE FELIX RIBAS', '273'),
+(943, 'PQ. DOLORES', '274'),
+(944, 'PQ. LIBERTAD', '274'),
+(945, 'PQ. PALACIO FAJARDO', '274'),
+(946, 'PQ. SANTA ROSA', '274'),
+(947, 'PQ. CIUDAD DE NUTRIAS', '275'),
+(948, 'PQ. EL REGALO', '275'),
+(949, 'PQ. PUERTO DE NUTRIAS', '275'),
+(950, 'PQ. SANTA CATALINA', '275'),
+(951, 'PQ. RODRIGUEZ DOMINGUEZ', '276'),
+(952, 'PQ. SABANETA', '276'),
+(953, 'PQ. SIMON BOLIVAR', '277'),
+(954, 'PQ. POZO VERDE', '277'),
+(955, 'PQ. ONCE DE ABRIL', '277'),
+(956, 'PQ. VISTA AL SOL', '277'),
+(957, 'PQ. CHIRICA', '277'),
+(958, 'PQ. DALLA COSTA', '277'),
+(959, 'PQ. CACHAMAY', '277'),
+(960, 'PQ. UNIVERSIDAD', '277'),
+(961, 'PQ. UNARE', '277'),
+(962, 'PQ. YOCOIMA', '277'),
+(963, 'CM. EL CALLAO', '278'),
+(964, 'CM. EL PALMAR', '279'),
+(965, 'CM. CAICARA DEL ORINOCO', '280'),
+(966, 'PQ. ASCENSION FARRERAS', '280'),
+(967, 'PQ. ALTAGRACIA', '280'),
+(968, 'PQ. LA URBANA', '280'),
+(969, 'PQ. GUANIAMO', '280'),
+(970, 'PQ. PIJIGUAOS', '280'),
+(971, 'PQ. CATEDRAL', '281'),
+(972, 'PQ. AGUA SALADA', '281'),
+(973, 'PQ. LA SABANITA', '281'),
+(974, 'PQ. VISTA HERMOSA', '281'),
+(975, 'PQ. MARHUANTA', '281'),
+(976, 'PQ. JOSE ANTONIO PAEZ', '281'),
+(977, 'PQ. ORINOCO', '281'),
+(978, 'PQ. PANAPANA', '281'),
+(979, 'PQ. ZEA', '281'),
+(980, 'CM. UPATA', '282'),
+(981, 'PQ. ANDRES ELOY BLANCO', '282'),
+(982, 'PQ. PEDRO COVA', '282'),
+(983, 'CM. GUASIPATI', '283'),
+(984, 'PQ. SALOM', '283'),
+(985, 'CM. MARIPA', '284'),
+(986, 'PQ. ARIPAO', '284'),
+(987, 'PQ. LAS MAJADAS', '284'),
+(988, 'PQ. MOITACO', '284'),
+(989, 'PQ. GUARATARO', '284'),
+(990, 'CM. TUMEREMO', '285'),
+(991, 'PQ. DALLA COSTA', '285'),
+(992, 'PQ. SAN ISIDRO', '285'),
+(993, 'CM. CIUDAD PIAR', '286'),
+(994, 'PQ. SAN FRANCISCO', '286'),
+(995, 'PQ. BARCELONETA', '286'),
+(996, 'PQ. SANTA BARBARA', '286'),
+(997, 'CM. SANTA ELENA DE UAIREN', '287'),
+(998, 'PQ. IKABARU', '287'),
+(999, 'PQ. BEJUMA', '288'),
+(1000, 'PQ. CANOABO', '288'),
+(1001, 'PQ. SIMON BOLIVAR', '288'),
+(1002, 'PQ. MIRANDA', '289'),
+(1003, 'PQ. U LOS GUAYOS', '290'),
+(1004, 'PQ. NAGUANAGUA', '291'),
+(1005, 'PQ. URB SAN DIEGO', '292'),
+(1006, 'PQ. U TOCUYITO', '293'),
+(1007, 'PQ. U INDEPENDENCIA', '293'),
+(1008, 'PQ. GUIGUE', '294'),
+(1009, 'PQ. BELEN', '294'),
+(1010, 'PQ. TACARIGUA', '294'),
+(1011, 'PQ. MARIARA', '295'),
+(1012, 'PQ. AGUAS CALIENTES', '295'),
+(1013, 'PQ. GUACARA', '296'),
+(1014, 'PQ. CIUDAD ALIANZA', '296'),
+(1015, 'PQ. YAGUA', '296'),
+(1016, 'PQ. MONTALBAN', '297'),
+(1017, 'PQ. MORON', '298'),
+(1018, 'PQ. URAMA', '298'),
+(1019, 'PQ. DEMOCRACIA', '299'),
+(1020, 'PQ. FRATERNIDAD', '299'),
+(1021, 'PQ. GOAIGOAZA', '299'),
+(1022, 'PQ. JUAN JOSE FLORES', '299'),
+(1023, 'PQ. BARTOLOME SALOM', '299'),
+(1024, 'PQ. UNION', '299'),
+(1025, 'PQ. BORBURATA', '299'),
+(1026, 'PQ. PATANEMO', '299'),
+(1027, 'PQ. SAN JOAQUIN', '300'),
+(1028, 'PQ. CANDELARIA', '301'),
+(1029, 'PQ. CATEDRAL', '301'),
+(1030, 'PQ. EL SOCORRO', '301'),
+(1031, 'PQ. MIGUEL PE#A', '301'),
+(1032, 'PQ. SAN BLAS', '301'),
+(1033, 'PQ. SAN JOSE', '301'),
+(1034, 'PQ. SANTA ROSA', '301'),
+(1035, 'PQ. RAFAEL URDANETA', '301'),
+(1036, 'PQ. NEGRO PRIMERO', '301'),
+(1037, 'PQ. COJEDES', '302'),
+(1038, 'PQ. JUAN DE MATA SUAREZ', '302'),
+(1039, 'PQ. TINAQUILLO', '303'),
+(1040, 'PQ. EL BAUL', '304'),
+(1041, 'PQ. SUCRE', '304'),
+(1042, 'PQ. EL PAO', '305'),
+(1043, 'PQ. LIBERTAD DE COJEDES', '306'),
+(1044, 'PQ. EL AMPARO', '306'),
+(1045, 'PQ. SAN CARLOS DE AUSTRIA', '307'),
+(1046, 'PQ. JUAN ANGEL BRAVO', '307'),
+(1047, 'PQ. MANUEL MANRIQUE', '307'),
+(1048, 'PQ. GRL/JEFE JOSE L SILVA', '308'),
+(1049, 'PQ. MACAPO', '309'),
+(1050, 'PQ. LA AGUADITA', '309'),
+(1051, 'PQ. ROMULO GALLEGOS', '310'),
+(1052, 'PQ. SAN JUAN DE LOS CAYOS', '311'),
+(1053, 'PQ. CAPADARE', '311'),
+(1054, 'PQ. LA PASTORA', '311'),
+(1055, 'PQ. LIBERTADOR', '311'),
+(1056, 'PQ. SAN ANTONIO', '312'),
+(1057, 'PQ. SAN GABRIEL', '312'),
+(1058, 'PQ. SANTA ANA', '312'),
+(1059, 'PQ. GUZMAN GUILLERMO', '312'),
+(1060, 'PQ. MITARE', '312'),
+(1061, 'PQ. SABANETA', '312'),
+(1062, 'PQ. RIO SECO', '312'),
+(1063, 'PQ. CABURE', '313'),
+(1064, 'PQ. CURIMAGUA', '313'),
+(1065, 'PQ. COLINA', '313'),
+(1066, 'PQ. TUCACAS', '314'),
+(1067, 'PQ. BOCA DE AROA', '314'),
+(1068, 'PQ. PUERTO CUMAREBO', '315'),
+(1069, 'PQ. LA CIENAGA', '315'),
+(1070, 'PQ. LA SOLEDAD', '315'),
+(1071, 'PQ. PUEBLO CUMAREBO', '315'),
+(1072, 'PQ. ZAZARIDA', '315'),
+(1073, 'CM. DABAJURO', '316'),
+(1074, 'PQ. CHICHIRIVICHE', '317'),
+(1075, 'PQ. BOCA DE TOCUYO', '317'),
+(1076, 'PQ. TOCUYO DE LA COSTA', '317'),
+(1077, 'PQ. LOS TAQUES', '318'),
+(1078, 'PQ. JUDIBANA', '318'),
+(1079, 'PQ. PIRITU', '319'),
+(1080, 'PQ. SAN JOSE DE LA COSTA', '319'),
+(1081, 'PQ. STA.CRUZ DE BUCARAL', '320'),
+(1082, 'PQ. EL CHARAL', '320'),
+(1083, 'PQ. LAS VEGAS DEL TUY', '320'),
+(1084, 'CM. MIRIMIRE', '321'),
+(1085, 'PQ. SAN LUIS', '322'),
+(1086, 'PQ. ARACUA', '322'),
+(1087, 'PQ. LA PE#A', '322'),
+(1088, 'PQ. JACURA', '323'),
+(1089, 'PQ. AGUA LINDA', '323'),
+(1090, 'PQ. ARAURIMA', '323'),
+(1091, 'CM. YARACAL', '324'),
+(1092, 'CM. PALMA SOLA', '325'),
+(1093, 'PQ. SUCRE', '326'),
+(1094, 'PQ. PECAYA', '326'),
+(1095, 'PQ. URUMACO', '327'),
+(1096, 'PQ. BRUZUAL', '327'),
+(1097, 'CM. TOCOPERO', '328'),
+(1098, 'PQ. CAPATARIDA', '329'),
+(1099, 'PQ. BOROJO', '329'),
+(1100, 'PQ. SEQUE', '329'),
+(1101, 'PQ. ZAZARIDA', '329'),
+(1102, 'PQ. BARIRO', '329'),
+(1103, 'PQ. GUAJIRO', '329'),
+(1104, 'PQ. NORTE', '330'),
+(1105, 'PQ. CARIRUBANA', '330'),
+(1106, 'PQ. PUNTA CARDON', '330'),
+(1107, 'PQ. SANTA ANA', '330'),
+(1108, 'PQ. LA VELA DE CORO', '331'),
+(1109, 'PQ. ACURIGUA', '331'),
+(1110, 'PQ. GUAIBACOA', '331'),
+(1111, 'PQ. MACORUCA', '331'),
+(1112, 'PQ. LAS CALDERAS', '331'),
+(1113, 'PQ. PEDREGAL', '332'),
+(1114, 'PQ. AGUA CLARA', '332'),
+(1115, 'PQ. AVARIA', '332'),
+(1116, 'PQ. PIEDRA GRANDE', '332'),
+(1117, 'PQ. PURURECHE', '332'),
+(1118, 'PQ. PUEBLO NUEVO', '333'),
+(1119, 'PQ. ADICORA', '333'),
+(1120, 'PQ. BARAIVED', '333'),
+(1121, 'PQ. BUENA VISTA', '333'),
+(1122, 'PQ. JADACAQUIVA', '333'),
+(1123, 'PQ. MORUY', '333'),
+(1124, 'PQ. EL VINCULO', '333'),
+(1125, 'PQ. EL HATO', '333'),
+(1126, 'PQ. ADAURE', '333'),
+(1127, 'PQ. CHURUGUARA', '334'),
+(1128, 'PQ. AGUA LARGA', '334'),
+(1129, 'PQ. INDEPENDENCIA', '334'),
+(1130, 'PQ. MAPARARI', '334'),
+(1131, 'PQ. EL PAUJI', '334'),
+(1132, 'PQ. MENE DE MAUROA', '335'),
+(1133, 'PQ. CASIGUA', '335'),
+(1134, 'PQ. SAN FELIX', '335');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pnf`
+--
+
+CREATE TABLE `pnf` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `pnf`
+--
+
+INSERT INTO `pnf` (`id`, `descripcion`) VALUES
+(1, 'ADMINISTRACION'),
+(2, 'CONTADURIA'),
+(3, 'INFORMATICA'),
+(4, 'TURISMO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pnf_has_analistas`
+--
+
+CREATE TABLE `pnf_has_analistas` (
+  `r_id` int(11) NOT NULL,
+  `pnf_id` int(11) DEFAULT NULL,
+  `analista_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pnf_has_docentes`
+--
+
+CREATE TABLE `pnf_has_docentes` (
+  `r_id` int(11) NOT NULL,
+  `pnf_id` int(11) DEFAULT NULL,
+  `docente_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `pnf_has_docentes`
+--
+
+INSERT INTO `pnf_has_docentes` (`r_id`, `pnf_id`, `docente_id`) VALUES
+(1, 1, 1),
+(2, 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pnf_has_estudiantes`
+--
+
+CREATE TABLE `pnf_has_estudiantes` (
+  `r_id` int(11) NOT NULL,
+  `pnf_id` int(11) DEFAULT NULL,
+  `estudiante_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `pnf_has_estudiantes`
+--
+
+INSERT INTO `pnf_has_estudiantes` (`r_id`, `pnf_id`, `estudiante_id`) VALUES
+(1, 2, 1),
+(2, 1, 8),
+(4, 4, 11),
+(5, 2, 9),
+(6, 3, 10),
+(7, 4, 14),
+(8, 4, 15),
+(9, 1, 21),
+(10, 3, 23);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pnf_has_trayecto`
+--
+
+CREATE TABLE `pnf_has_trayecto` (
+  `r_id` int(11) NOT NULL,
+  `pnf_id` int(11) DEFAULT NULL,
+  `trayecto_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pnf_has_unidad_curricular`
+--
+
+CREATE TABLE `pnf_has_unidad_curricular` (
+  `r_id` int(11) NOT NULL,
+  `pnf_id` int(11) DEFAULT NULL,
+  `unidad_curricular_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sexo`
+--
+
+CREATE TABLE `sexo` (
+  `id` int(11) NOT NULL,
+  `sexo` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `sexo`
+--
+
+INSERT INTO `sexo` (`id`, `sexo`) VALUES
+(1, 'FEMENINO'),
+(2, 'MASCULINO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tables`
+--
+
+CREATE TABLE `tables` (
+  `id` int(11) NOT NULL,
+  `data` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tables`
+--
+
+INSERT INTO `tables` (`id`, `data`) VALUES
+(1, 'Esto es un dato de pruebass');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_ingreso`
+--
+
+CREATE TABLE `tipo_ingreso` (
+  `id` int(11) NOT NULL,
+  `t_ingreso` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `tipo_ingreso`
+--
+
+INSERT INTO `tipo_ingreso` (`id`, `t_ingreso`) VALUES
+(1, 'OPSU'),
+(2, 'CENSO'),
+(3, 'CONVENIO INSTITUCIONAL'),
+(4, 'TRASLADO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_institucion`
+--
+
+CREATE TABLE `tipo_institucion` (
+  `id` int(11) NOT NULL,
+  `t_institucion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `tipo_institucion`
+--
+
+INSERT INTO `tipo_institucion` (`id`, `t_institucion`) VALUES
+(1, 'PUBLICA'),
+(2, 'PRIVADA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trayecto`
+--
+
+CREATE TABLE `trayecto` (
+  `id` int(11) NOT NULL,
+  `trayecto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `trayecto`
+--
+
+INSERT INTO `trayecto` (`id`, `trayecto`) VALUES
+(1, 'Inicial'),
+(2, 'I'),
+(3, 'II'),
+(4, 'III'),
+(5, 'VI');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trayecto_has_estudiantes`
+--
+
+CREATE TABLE `trayecto_has_estudiantes` (
+  `r_id` int(11) NOT NULL,
+  `trayecto_id` int(11) DEFAULT NULL,
+  `estudiante_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `trayecto_has_estudiantes`
+--
+
+INSERT INTO `trayecto_has_estudiantes` (`r_id`, `trayecto_id`, `estudiante_id`) VALUES
+(1, 3, 1),
+(2, 5, 10),
+(3, 3, 24),
+(4, 3, 23);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trayecto_has_trimestre`
+--
+
+CREATE TABLE `trayecto_has_trimestre` (
+  `r_id` int(11) NOT NULL,
+  `trayecto_id` int(11) DEFAULT NULL,
+  `trimestre_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trayecto_has_unidad_curricular`
+--
+
+CREATE TABLE `trayecto_has_unidad_curricular` (
+  `r_id` int(11) NOT NULL,
+  `trayecto_id` int(11) DEFAULT NULL,
+  `unidad_curricular_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `trayecto_has_unidad_curricular`
+--
+
+INSERT INTO `trayecto_has_unidad_curricular` (`r_id`, `trayecto_id`, `unidad_curricular_id`) VALUES
+(1, 2, 3),
+(2, 3, 3),
+(3, 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trimestre`
+--
+
+CREATE TABLE `trimestre` (
+  `id` int(11) NOT NULL,
+  `trimestre` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `trimestre`
+--
+
+INSERT INTO `trimestre` (`id`, `trimestre`) VALUES
+(1, 'I'),
+(2, 'II'),
+(3, 'III'),
+(4, 'IV'),
+(5, 'V'),
+(6, 'VI');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trimestre_has_estudiantes`
+--
+
+CREATE TABLE `trimestre_has_estudiantes` (
+  `r_id` int(11) NOT NULL,
+  `trimestre_id` int(11) DEFAULT NULL,
+  `estudiante_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `trimestre_has_estudiantes`
+--
+
+INSERT INTO `trimestre_has_estudiantes` (`r_id`, `trimestre_id`, `estudiante_id`) VALUES
+(1, 2, 1),
+(2, 4, 12),
+(3, 3, 10),
+(4, 6, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `turno`
+--
+
+CREATE TABLE `turno` (
+  `id` int(11) NOT NULL,
+  `turno` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `turno`
+--
+
+INSERT INTO `turno` (`id`, `turno`) VALUES
+(1, 'DIURNO'),
+(2, 'VESPERTINO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidad_curricular`
+--
+
+CREATE TABLE `unidad_curricular` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `unidad_curricular`
+--
+
+INSERT INTO `unidad_curricular` (`id`, `descripcion`) VALUES
+(1, 'ELECTIVA'),
+(2, 'PST'),
+(3, 'BASE DE DATOS'),
+(4, 'ACREDITABLE');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidad_curricular_has_docentes`
+--
+
+CREATE TABLE `unidad_curricular_has_docentes` (
+  `r_id` int(11) NOT NULL,
+  `unidad_curricular_id` int(11) DEFAULT NULL,
+  `docentes_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `unidad_curricular_has_docentes`
+--
+
+INSERT INTO `unidad_curricular_has_docentes` (`r_id`, `unidad_curricular_id`, `docentes_id`) VALUES
+(1, 4, 3),
+(2, 2, 1),
+(3, 3, 1),
+(4, 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidad_curricular_has_estudiantes`
+--
+
+CREATE TABLE `unidad_curricular_has_estudiantes` (
+  `r_id` int(11) NOT NULL,
+  `unidad_curricular_id` int(11) DEFAULT NULL,
+  `estudiante_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `unidad_curricular_has_estudiantes`
+--
+
+INSERT INTO `unidad_curricular_has_estudiantes` (`r_id`, `unidad_curricular_id`, `estudiante_id`) VALUES
+(1, 3, 8),
+(2, 1, 8),
+(3, 3, 11),
+(4, 2, 12),
+(5, 4, 14),
+(6, 3, 14),
+(7, 1, 14),
+(8, 2, 15),
+(9, 1, 15),
+(10, 4, 24);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
+(1, 'admin@mail.com', 'admin', '1234'),
+(2, '', '1234', '1234'),
+(3, '', '1234', '1234'),
+(4, '', '1234', '1234'),
+(5, '', '1234', '1234');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `analistas`
+--
+ALTER TABLE `analistas`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE,
+  ADD KEY `sexo` (`sexo_id`) USING BTREE,
+  ADD KEY `condicion` (`condicion_id`) USING BTREE,
+  ADD KEY `categoria_analista` (`categoria_analista_id`) USING BTREE,
+  ADD KEY `rol` (`rol_id`) USING BTREE;
+
+--
+-- Indices de la tabla `analista_categoria`
+--
+ALTER TABLE `analista_categoria`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `cargo_coordinacion`
+--
+ALTER TABLE `cargo_coordinacion`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `condicion`
+--
+ALTER TABLE `condicion`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `dedicacion`
+--
+ALTER TABLE `dedicacion`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `delegado`
+--
+ALTER TABLE `delegado`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE,
+  ADD KEY `sexo` (`sexo_id`) USING BTREE,
+  ADD KEY `delegado` (`delegado_id`) USING BTREE,
+  ADD KEY `cargo` (`cargo_coordinacion_id`) USING BTREE,
+  ADD KEY `condicion` (`condicion_id`) USING BTREE,
+  ADD KEY `dedicacion` (`dedicacion_id`) USING BTREE,
+  ADD KEY `categoria` (`docente_categoria_id`) USING BTREE,
+  ADD KEY `modalidad` (`modalidad_id`) USING BTREE,
+  ADD KEY `rol` (`rol_id`) USING BTREE;
+
+--
+-- Indices de la tabla `docente_categoria`
+--
+ALTER TABLE `docente_categoria`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `estado_civil`
+--
+ALTER TABLE `estado_civil`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `estado_natal`
+--
+ALTER TABLE `estado_natal`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `estudiantes`
+--
+ALTER TABLE `estudiantes`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE,
+  ADD KEY `edo_civil` (`estado_civil_id`) USING BTREE,
+  ADD KEY `edo_natal` (`estado_natal_id`) USING BTREE,
+  ADD KEY `mcpio_natal` (`municipio_natal_id`) USING BTREE,
+  ADD KEY `parroquia_natal` (`parroquia_natal_id`) USING BTREE,
+  ADD KEY `pais` (`pais_id`) USING BTREE,
+  ADD KEY `sexo_id` (`sexo_id`) USING BTREE,
+  ADD KEY `rol` (`rol_id`) USING BTREE;
+
+--
+-- Indices de la tabla `estudiantes_datos_academicos`
+--
+ALTER TABLE `estudiantes_datos_academicos`
+  ADD PRIMARY KEY (`id_eda`) USING BTREE,
+  ADD KEY `malla` (`malla_id`) USING BTREE,
+  ADD KEY `actividad` (`actividad_id`) USING BTREE,
+  ADD KEY `tipo_ingreso` (`tipo_ingreso_id`) USING BTREE,
+  ADD KEY `tipo_institucion` (`tipo_institucion_id`) USING BTREE,
+  ADD KEY `nse` (`nse_id`) USING BTREE,
+  ADD KEY `turno` (`turno_id`) USING BTREE,
+  ADD KEY `grupo` (`grupo_id`) USING BTREE,
+  ADD KEY `modalidad` (`modalidad_id`) USING BTREE,
+  ADD KEY `estudiante_id` (`estudiante_id`);
+
+--
+-- Indices de la tabla `gestion_y_recursos_educativos`
+--
+ALTER TABLE `gestion_y_recursos_educativos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `grupo`
+--
+ALTER TABLE `grupo`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `malla`
+--
+ALTER TABLE `malla`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `modalidad`
+--
+ALTER TABLE `modalidad`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `municipio_natal`
+--
+ALTER TABLE `municipio_natal`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `nse`
+--
+ALTER TABLE `nse`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `pais`
+--
+ALTER TABLE `pais`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `parroquia_natal`
+--
+ALTER TABLE `parroquia_natal`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `pnf`
+--
+ALTER TABLE `pnf`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `pnf_has_analistas`
+--
+ALTER TABLE `pnf_has_analistas`
+  ADD PRIMARY KEY (`r_id`) USING BTREE,
+  ADD UNIQUE KEY `analista` (`analista_id`) USING BTREE,
+  ADD KEY `pnf` (`pnf_id`) USING BTREE;
+
+--
+-- Indices de la tabla `pnf_has_docentes`
+--
+ALTER TABLE `pnf_has_docentes`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `docentes` (`docente_id`) USING BTREE,
+  ADD KEY `pnf` (`pnf_id`) USING BTREE;
+
+--
+-- Indices de la tabla `pnf_has_estudiantes`
+--
+ALTER TABLE `pnf_has_estudiantes`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `pnf` (`pnf_id`) USING BTREE,
+  ADD KEY `estudiantes` (`estudiante_id`) USING BTREE;
+
+--
+-- Indices de la tabla `pnf_has_trayecto`
+--
+ALTER TABLE `pnf_has_trayecto`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `pnf` (`pnf_id`) USING BTREE,
+  ADD KEY `trayecto` (`trayecto_id`) USING BTREE;
+
+--
+-- Indices de la tabla `pnf_has_unidad_curricular`
+--
+ALTER TABLE `pnf_has_unidad_curricular`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE,
+  ADD KEY `pnf` (`pnf_id`) USING BTREE;
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `sexo`
+--
+ALTER TABLE `sexo`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `tables`
+--
+ALTER TABLE `tables`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tipo_ingreso`
+--
+ALTER TABLE `tipo_ingreso`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `tipo_institucion`
+--
+ALTER TABLE `tipo_institucion`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `trayecto`
+--
+ALTER TABLE `trayecto`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `trayecto_id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `trayecto_has_estudiantes`
+--
+ALTER TABLE `trayecto_has_estudiantes`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `trayecto` (`trayecto_id`) USING BTREE,
+  ADD KEY `estudiante` (`estudiante_id`) USING BTREE;
+
+--
+-- Indices de la tabla `trayecto_has_trimestre`
+--
+ALTER TABLE `trayecto_has_trimestre`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `trayecto` (`trayecto_id`) USING BTREE,
+  ADD KEY `trimestre` (`trimestre_id`) USING BTREE;
+
+--
+-- Indices de la tabla `trayecto_has_unidad_curricular`
+--
+ALTER TABLE `trayecto_has_unidad_curricular`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `trayecto` (`trayecto_id`) USING BTREE,
+  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE;
+
+--
+-- Indices de la tabla `trimestre`
+--
+ALTER TABLE `trimestre`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `trimestre_id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `trimestre_has_estudiantes`
+--
+ALTER TABLE `trimestre_has_estudiantes`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `trimestre` (`trimestre_id`),
+  ADD KEY `estudiante` (`estudiante_id`);
+
+--
+-- Indices de la tabla `turno`
+--
+ALTER TABLE `turno`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `unidad_curricular`
+--
+ALTER TABLE `unidad_curricular`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+
+--
+-- Indices de la tabla `unidad_curricular_has_docentes`
+--
+ALTER TABLE `unidad_curricular_has_docentes`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE,
+  ADD KEY `docente` (`docentes_id`) USING BTREE;
+
+--
+-- Indices de la tabla `unidad_curricular_has_estudiantes`
+--
+ALTER TABLE `unidad_curricular_has_estudiantes`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `estudiantes` (`estudiante_id`) USING BTREE,
+  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE;
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `analistas`
+--
+ALTER TABLE `analistas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `analista_categoria`
+--
+ALTER TABLE `analista_categoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `cargo_coordinacion`
+--
+ALTER TABLE `cargo_coordinacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `condicion`
+--
+ALTER TABLE `condicion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `dedicacion`
+--
+ALTER TABLE `dedicacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `delegado`
+--
+ALTER TABLE `delegado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `docente_categoria`
+--
+ALTER TABLE `docente_categoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_civil`
+--
+ALTER TABLE `estado_civil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_natal`
+--
+ALTER TABLE `estado_natal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `estudiantes`
+--
+ALTER TABLE `estudiantes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `estudiantes_datos_academicos`
+--
+ALTER TABLE `estudiantes_datos_academicos`
+  MODIFY `id_eda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `gestion_y_recursos_educativos`
+--
+ALTER TABLE `gestion_y_recursos_educativos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `grupo`
+--
+ALTER TABLE `grupo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `malla`
+--
+ALTER TABLE `malla`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `modalidad`
+--
+ALTER TABLE `modalidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `municipio_natal`
+--
+ALTER TABLE `municipio_natal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
+
+--
+-- AUTO_INCREMENT de la tabla `nse`
+--
+ALTER TABLE `nse`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pais`
+--
+ALTER TABLE `pais`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `parroquia_natal`
+--
+ALTER TABLE `parroquia_natal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1135;
+
+--
+-- AUTO_INCREMENT de la tabla `pnf`
+--
+ALTER TABLE `pnf`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `pnf_has_analistas`
+--
+ALTER TABLE `pnf_has_analistas`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pnf_has_docentes`
+--
+ALTER TABLE `pnf_has_docentes`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `pnf_has_estudiantes`
+--
+ALTER TABLE `pnf_has_estudiantes`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `pnf_has_trayecto`
+--
+ALTER TABLE `pnf_has_trayecto`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pnf_has_unidad_curricular`
+--
+ALTER TABLE `pnf_has_unidad_curricular`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sexo`
+--
+ALTER TABLE `sexo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tables`
+--
+ALTER TABLE `tables`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_ingreso`
+--
+ALTER TABLE `tipo_ingreso`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_institucion`
+--
+ALTER TABLE `tipo_institucion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `trayecto`
+--
+ALTER TABLE `trayecto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `trayecto_has_estudiantes`
+--
+ALTER TABLE `trayecto_has_estudiantes`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `trayecto_has_trimestre`
+--
+ALTER TABLE `trayecto_has_trimestre`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `trayecto_has_unidad_curricular`
+--
+ALTER TABLE `trayecto_has_unidad_curricular`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `trimestre`
+--
+ALTER TABLE `trimestre`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `trimestre_has_estudiantes`
+--
+ALTER TABLE `trimestre_has_estudiantes`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `turno`
+--
+ALTER TABLE `turno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `unidad_curricular`
+--
+ALTER TABLE `unidad_curricular`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `unidad_curricular_has_docentes`
+--
+ALTER TABLE `unidad_curricular_has_docentes`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `unidad_curricular_has_estudiantes`
+--
+ALTER TABLE `unidad_curricular_has_estudiantes`
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `analistas`
+--
+ALTER TABLE `analistas`
+  ADD CONSTRAINT `r_categoria_a` FOREIGN KEY (`categoria_analista_id`) REFERENCES `analista_categoria` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_condicion_a` FOREIGN KEY (`condicion_id`) REFERENCES `condicion` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_rol_a` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_sexo_a` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  ADD CONSTRAINT `r_cargo_d` FOREIGN KEY (`cargo_coordinacion_id`) REFERENCES `cargo_coordinacion` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_categoria_d` FOREIGN KEY (`docente_categoria_id`) REFERENCES `docente_categoria` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_condicion_d` FOREIGN KEY (`condicion_id`) REFERENCES `condicion` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_dedicacion_d` FOREIGN KEY (`dedicacion_id`) REFERENCES `dedicacion` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_delegado_d` FOREIGN KEY (`delegado_id`) REFERENCES `delegado` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_modalidad_d` FOREIGN KEY (`modalidad_id`) REFERENCES `modalidad` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_rol_d` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_sexo_d` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `estudiantes`
+--
+ALTER TABLE `estudiantes`
+  ADD CONSTRAINT `r_edo_civil_e` FOREIGN KEY (`estado_civil_id`) REFERENCES `estado_civil` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_estado_e` FOREIGN KEY (`estado_natal_id`) REFERENCES `estado_natal` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_municipio_e` FOREIGN KEY (`municipio_natal_id`) REFERENCES `municipio_natal` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_pais_e` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_parroquia_e` FOREIGN KEY (`parroquia_natal_id`) REFERENCES `parroquia_natal` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_rol_e` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_sexo_e` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `estudiantes_datos_academicos`
+--
+ALTER TABLE `estudiantes_datos_academicos`
+  ADD CONSTRAINT `r_actividad` FOREIGN KEY (`actividad_id`) REFERENCES `actividad` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_estudiante_da` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`),
+  ADD CONSTRAINT `r_grupo` FOREIGN KEY (`grupo_id`) REFERENCES `grupo` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_malla` FOREIGN KEY (`malla_id`) REFERENCES `malla` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_modalidad` FOREIGN KEY (`modalidad_id`) REFERENCES `modalidad` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_nse` FOREIGN KEY (`nse_id`) REFERENCES `nse` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_tipo_ingreso` FOREIGN KEY (`tipo_ingreso_id`) REFERENCES `tipo_ingreso` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_tipo_institucion` FOREIGN KEY (`tipo_institucion_id`) REFERENCES `tipo_institucion` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_turno` FOREIGN KEY (`turno_id`) REFERENCES `turno` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pnf_has_analistas`
+--
+ALTER TABLE `pnf_has_analistas`
+  ADD CONSTRAINT `r_analista` FOREIGN KEY (`analista_id`) REFERENCES `analistas` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_pnf` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pnf_has_docentes`
+--
+ALTER TABLE `pnf_has_docentes`
+  ADD CONSTRAINT `rdocentes` FOREIGN KEY (`docente_id`) REFERENCES `docentes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `rpnf` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pnf_has_estudiantes`
+--
+ALTER TABLE `pnf_has_estudiantes`
+  ADD CONSTRAINT `r_estudiante_p` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_pnf_e` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pnf_has_trayecto`
+--
+ALTER TABLE `pnf_has_trayecto`
+  ADD CONSTRAINT `r_pnf_t` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_trayecto_p` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pnf_has_unidad_curricular`
+--
+ALTER TABLE `pnf_has_unidad_curricular`
+  ADD CONSTRAINT `r_pnf_u` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_unidad_curricular_p` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `trayecto_has_estudiantes`
+--
+ALTER TABLE `trayecto_has_estudiantes`
+  ADD CONSTRAINT `r_estudiante_t` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_trayecto_e` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `trayecto_has_trimestre`
+--
+ALTER TABLE `trayecto_has_trimestre`
+  ADD CONSTRAINT `r_trayecto` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_trimestre` FOREIGN KEY (`trimestre_id`) REFERENCES `trimestre` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `trayecto_has_unidad_curricular`
+--
+ALTER TABLE `trayecto_has_unidad_curricular`
+  ADD CONSTRAINT `r_trayecto_u` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_unidad_t` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `trimestre_has_estudiantes`
+--
+ALTER TABLE `trimestre_has_estudiantes`
+  ADD CONSTRAINT `r_estudiante_q` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_trimestre_e` FOREIGN KEY (`trimestre_id`) REFERENCES `trimestre` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `unidad_curricular_has_docentes`
+--
+ALTER TABLE `unidad_curricular_has_docentes`
+  ADD CONSTRAINT `r_docentes` FOREIGN KEY (`docentes_id`) REFERENCES `docentes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_unidad` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `unidad_curricular_has_estudiantes`
+--
+ALTER TABLE `unidad_curricular_has_estudiantes`
+  ADD CONSTRAINT `r_estudiante_u` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `r_unidad_e` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
