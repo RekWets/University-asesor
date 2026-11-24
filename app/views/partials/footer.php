@@ -59,8 +59,13 @@
     <script src="public/js/datatables-spanish.js"></script>
     <script src="public/js/student_age.js"></script>
     <script src="public/js/emp.js"></script>
-    <script src="/public/js/functions.js"></script>
-    <script src="/public/js/interactions.js"></script>
+    <script src="public/js/functions.js"></script>
+    <script src="public/js/interactions.js"></script>
+    <script src="public/js/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="public/js/sweetalert2/sweetalert2.all.js"></script>
+    <script src="public/js/sweetalert2/sweetalert2.min.js"></script>
+    <script src="public/js/sweetalert2/sweetalert2.js"></script>
+
     <script>
         $(document).ready(function () {
             $('.table').DataTable({language: translate});

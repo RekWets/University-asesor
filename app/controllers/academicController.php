@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/academic.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/academic.php");
 class AcademicController{
     private $model;
 
@@ -45,7 +45,7 @@ class AcademicController{
     public function update($form)
     {
         $rows = $this->model->update($form);
-        header("location: ?route=studentsAcademic&method=index&state=ok&msj=$rows");
+        header("location: ?route=students&method=index");
     }
 
     public function destroy($id)

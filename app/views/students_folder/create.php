@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>Inscripcion- Estudiantes - Nuevo Ingreso -
 		<a href="?route=students&method=index" class="btn">
@@ -132,4 +132,4 @@
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

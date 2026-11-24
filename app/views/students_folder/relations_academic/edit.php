@@ -1,12 +1,35 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/pnf.php");?>
 <section class="container">
 	<h2>Estudiantes - Datos Academicos - Modificar -
-		<a href="?route=students&method=show&id=<?php echo $rows['id']; ?>" class="btn">
+		<a href="?route=students&method=edit&id=<?php echo $rows['estudiante_id']; ?>" class="btn">
 			<i class="fa fa-arrow-left"></i> Regresar</a>
 	</h2>
 </section>
 <hr>
 <section class="container p-4 bg-white">
+	<form class="row g-4" action="?route=degree&method=store" method="POST" enctype="multipart/form-data">
+		<div class="col-12 my-2">
+			<h5>Titulo de Bachillerato</h5>
+			<hr>
+		</div>
+		<div class="col-12 my-2">
+			<div class="card" style="width: 18rem;">
+				<img src="public/img/img_folders/degree_img/<?php echo $rows['dir_titulo']; ?>" class="card-img-top" alt="..." width="100%" height="100%">
+				<div class="card-body">
+					<p class="card-text"><?php echo $rows['dir_titulo']; ?></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 my-2">
+			<label for="dir_titulo">Foto del Titulo: * </label>
+			<input type="file" name="dir_titulo" id="dir_titulo" class="form-control-sm" value="<?php echo $rows['dir_titulo']; ?>">
+		</div>
+		<div class="col-md-4 my-5">
+			<input type="hidden" name="estudiante_id" id="estudiante_id" value="<?php echo $rows['estudiante_id']; ?>">
+			<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Guardar</button>
+		</div>
+	</form>
 	<form class="row g-3" action="?route=studentsAcademic&method=update" method="POST">
 		<div class="col-md-4 my-2">
 			<label for="codigo">Codigo: *</label>
@@ -15,28 +38,40 @@
 		<div class="col-md-4 my-2">
 			<label for="pnf_id">PNF: * </label>
 			<select name="pnf_id" id="pnf_id" class="form-control" required>
-				<option></option>
-				<option>ADMINISTRACION</option>
-				<option>CONTADURIA</option>
-				<option>INFORMATICA</option>
-				<option>TURISMO</option>
+				<option><?php echo $rows['pnf_id']; ?></option>
+				<?php $pnf = new PNF(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option><?php echo($key['descripcion']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
 		</div>
 		<div class="col-md-4 my-2">
 			<label for="malla_id">Malla: * </label>
 			<select name="malla_id" id="malla_id" class="form-control" required>
-				<option></option>
-				<option value="1">TSU</option>
-				<option value="2">INGENIERO/A</option>
-				<option value="3">LICENCIADO/A</option>
+				<option value="<?php echo($rows['malla_id']); ?>"><?php echo($rows['malla']); ?></option>
+				<?php $pnf = new Malla(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['malla']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
 		</div>
 		<div class="col-md-4 my-2">
 			<label for="actividad_id">Actividad: * </label>
 			<select name="actividad_id" id="actividad_id" class="form-control" required>
-				<option></option>
-				<option value="1">ACTIVO/A</option>
-				<option value="2">INACTIVO/A</option>
+				<option value="<?php echo($rows['actividad_id']); ?>"><?php echo($rows['actividad']); ?></option>
+				<?php $pnf = new Actividad(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['actividad']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
 		</div>
 		<div class="col-md-4 my-2">
@@ -46,16 +81,15 @@
 		<div class="col-md-4 my-2">
 			<label for="tipo_ingreso_id">Tipo de Ingreso: * </label>
 			<select name="tipo_ingreso_id" id="tipo_ingreso_id" class="form-control">
-				<option></option>
-				<option value="1">OPSU</option>
-				<option value="2">CENSO</option>
-				<option value="3">CONVENIO INSTITUCIONAL</option>
-				<option value="4">TRASLADO</option>
+				<option value="<?php echo($rows['tipo_ingreso_id']); ?>"><?php echo($rows['t_ingreso']); ?></option>
+				<?php $pnf = new TipoIngreso(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['t_ingreso']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
-		</div>
-		<div class="col-md-8 my-2">
-			<label for="titulo_bachillerato">Titulo de Bachiller: *</label>
-			<input type="file" name="titulo_bachillerato" id="titulo_bachillerato" class="form-control">
 		</div>
 		<div class="col-md-4 my-2">
 			<label for="graduacion_bachiller">Año de Graduacion del Bachiller: *</label>
@@ -68,33 +102,46 @@
 		<div class="col-md-4 my-2">
 			<label for="tipo_institucion_id">Tipo de Institucion: *</label>
 			<select name="tipo_institucion_id" id="tipo_institucion_id" class="form-control" required>
-				<option></option>
-				<option value="1">PUBLICA</option>
-				<option value="2">PRIVADA</option>
+				<option value="<?php echo($rows['tipo_institucion_id']); ?>"><?php echo($rows['t_institucion']); ?></option>
+				<?php $pnf = new TipoInstitucion(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['t_institucion']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
 		</div>
 		<div class="col-md-5 my-2">
 			<label for="procedencia_institucion">Estado de Procedencia del Liceo/Colegio: *</label>
 			<input type="text" name="procedencia_institucion" id="procedencia_institucion" class="form-control" required value="<?php echo $rows['procedencia_institucion']; ?>">
 		</div>
+		<div class="col-md-3 my-2">
+			<label for="nse_id">Nivel Socio Economico: * </label>
+			<select name="nse_id" id="nse_id" class="form-control" required>
+				<option value="<?php echo($rows['nse_id']); ?>"><?php echo($rows['nse']); ?></option>
+				<?php $pnf = new NSE(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['nse']); ?></option>
+				<?php 	}?>
+				<?php }?>
+			</select>
+		</div>
 		<div class="col-md-4 my-2">
 			<label for="posicion_opsu">Posicion de la Seleccion en la OPSU: *</label>
 			<input type="text" name="posicion_opsu" id="posicion_opsu" class="form-control" required value="<?php echo $rows['posicion_opsu']; ?>">
 		</div>
-		<div class="col-md-3 my-2">
-			<label for="nse_id">Nivel Socio Economico: * </label>
-			<select name="nse_id" id="nse_id" class="form-control" required>
-				<option></option>
-				<option value="1">BAJO</option>
-				<option value="2">MEDIO</option>
-				<option value="3">ALTO</option>
+		<div class="col-md-2 my-2">
+			<label for="trabaja">Trabaja: *</label>
+			<select name="trabaja" id="trabaja" class="form-control" required>
+				<option><?php echo($rows['trabaja']); ?></option>
+				<option value="SI">SI</option>
+				<option value="NO">NO</option>
 			</select>
 		</div>
-		<div class="col-md-4 my-2">
-			<label for="trabaja">Trabaja: *</label>
-			<input type="text" name="trabaja" id="trabaja" class="form-control" required value="<?php echo $rows['trabaja']; ?>">
-		</div>
-		<div class="col-md-8 my-2">
+		<div class="col-md-6 my-2">
 			<label for="direccion_trabajo">Direccion de Trabajo: *</label>
 			<input type="text" name="direccion_trabajo" id="direccion_trabajo" class="form-control" required value="<?php echo $rows['direccion_trabajo']; ?>">
 		</div>
@@ -149,32 +196,47 @@
 		<div class="col-md-4 my-2">
 			<label for="turno_id">Turno: *</label>
 			<select name="turno_id" id="turno_id" class="form-control" required>
-				<option></option>
-				<option value="1">DIURNO</option>
-				<option value="2">VESPERTINO</option>
+				<option value="<?php echo($rows['turno_id']); ?>"><?php echo($rows['turno']); ?></option>
+				<?php $pnf = new Turno(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['turno']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
 		</div>
 		<div class="col-md-4 my-2">
 			<label for="grupo_id">Grupo: *</label>
 			<select name="grupo_id" id="grupo_id" class="form-control">
-				<option></option>
-				<option value="1">GRUPO</option>
-				<option value="2">INDIVIDUAL</option>
+				<option value="<?php echo($rows['grupo_id']); ?>"><?php echo($rows['grupo']); ?></option>
+				<?php $pnf = new Grupo(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['grupo']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select> 
 		</div>
 		<div class="col-md-4 my-2">
 			<label for="modalidad_id">Modalidad: *</label>
 			<select name="modalidad_id" id="modalidad_id" class="form-control" required>
-				<option></option>
-				<option value="1">ENTRE SEMANA</option>
-				<option value="2">FIN DE SEMANA</option>
+				<option value="<?php echo($rows['modalidad_id']); ?>"><?php echo($rows['modalidad']); ?></option>
+				<?php $pnf = new Modalidad(); ?>
+				<?php $field = $pnf->get(); ?>
+				<?php if (!empty($field)){ ?>
+				<?php 	foreach ($field as $key){ ?>
+							<option value="<?php echo($key['id']); ?>"><?php echo($key['modalidad']); ?></option>
+				<?php 	}?>
+				<?php }?>
 			</select>
 		</div>
 		<hr class="col-12 my-2">
 		<div class="col my-2">
-			<input type="hidden" name="id" id="id" value="<?php echo $rows['id']; ?>">
+			<input type="hidden" name="estudiante_id" id="estudiante_id" value="<?php echo $rows['estudiante_id']; ?>">
 			<button type="submit" class="btn btn-info btn-lg"><i class="fa fa-check"></i> Finalizar modificación</button>
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

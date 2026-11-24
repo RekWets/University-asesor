@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/students.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/students.php");
 class StudentsController{
     private $model;
 
@@ -12,7 +12,7 @@ class StudentsController{
     public function index()
     {
         $title = "Estudiantes";
-        //$rows = $this->model->get();
+        $rows = $this->model->get();
         include('app/views/students_folder/index.php');
     }
 

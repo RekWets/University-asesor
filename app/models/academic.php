@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/db/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/db/db.php");
 
 class Academic extends BDConexion{
     public $conn;
@@ -27,7 +27,16 @@ class Academic extends BDConexion{
     // Get one row in the table by id
     public function show($id){
         $data = "";
-        $sql = "SELECT * FROM estudiantes_datos_academicos WHERE estudiante_id = :id";
+        $sql = "SELECT * FROM estudiantes_datos_academicos
+                INNER JOIN malla ON estudiantes_datos_academicos.malla_id=malla.id
+                INNER JOIN actividad ON estudiantes_datos_academicos.actividad_id=actividad.id
+                INNER JOIN tipo_ingreso ON estudiantes_datos_academicos.tipo_ingreso_id=tipo_ingreso.id
+                INNER JOIN tipo_institucion ON estudiantes_datos_academicos.tipo_institucion_id=tipo_institucion.id
+                INNER JOIN nse ON estudiantes_datos_academicos.nse_id=nse.id
+                INNER JOIN turno ON estudiantes_datos_academicos.turno_id=turno.id
+                INNER JOIN grupo ON estudiantes_datos_academicos.grupo_id=grupo.id
+                INNER JOIN modalidad ON estudiantes_datos_academicos.modalidad_id=modalidad.id
+                WHERE estudiante_id = :id";
         $pdo = $this->conn->prepare($sql);        
         $pdo->bindParam(':id', $id);
         if($pdo->execute()){
@@ -86,7 +95,7 @@ class Academic extends BDConexion{
 
     // Update row in the table by id
     public function update($form){
-        $sql = "UPDATE estudiantes_datos_academicos SET codigo = :codigo, pnf_id = :pnf_id, malla_id = :malla_id, actividad_id = :actividad_id, periodo_ingreso = :periodo_ingreso, tipo_ingreso_id = :tipo_ingreso_id, dir_titulo = :dir_titulo, graduacion_bachiller = :graduacion_bachiller, liceo_colegio = :liceo_colegio, tipo_institucion_id = :tipo_institucion_id,  procedencia_institucion = :procedencia_institucion, posicion_opsu = :posicion_opsu, nse_id = :nse_id, trabaja = :trabaja, direccion_trabajo = :direccion_trabajo, grupo_asignado = :grupo_asignado, retiro= :retiro, reincorporacion = :reincorporacion, ultimo_periodo_cursado = :ultimo_periodo_cursado, cambio_pnf = :cambio_pnf, promocion = :promocion, lapso_egreso = :lapso_egreso, fecha_grado = :fecha_grado, posicion_promocion = :posicion_promocion, ira = :ira, iraa = :iraa, iras = :iras, turno = :turno_id, grupo = :grupo_id, modalidad = :modalidad_id WHERE estudiante_id = :estudiante_id";
+        $sql = "UPDATE estudiantes_datos_academicos SET codigo = :codigo, pnf_id = :pnf_id, malla_id = :malla_id, actividad_id = :actividad_id, periodo_ingreso = :periodo_ingreso, tipo_ingreso_id = :tipo_ingreso_id, graduacion_bachiller = :graduacion_bachiller, liceo_colegio = :liceo_colegio, tipo_institucion_id = :tipo_institucion_id,  procedencia_institucion = :procedencia_institucion, posicion_opsu = :posicion_opsu, nse_id = :nse_id, trabaja = :trabaja, direccion_trabajo = :direccion_trabajo, grupo_asignado = :grupo_asignado, retiro= :retiro, reincorporacion = :reincorporacion, ultimo_periodo_cursado = :ultimo_periodo_cursado, cambio_pnf = :cambio_pnf, promocion = :promocion, lapso_egreso = :lapso_egreso, fecha_grado = :fecha_grado, posicion_promocion = :posicion_promocion, ira = :ira, iraa = :iraa, iras = :iras, turno_id = :turno_id, grupo_id = :grupo_id, modalidad_id = :modalidad_id WHERE estudiantes_datos_academicos.estudiante_id = :id";
         $pdo = $this->conn->prepare($sql);        
         $pdo->bindParam(':codigo', $form['codigo']);
         $pdo->bindParam(':pnf_id', $form['pnf_id']);
@@ -94,7 +103,6 @@ class Academic extends BDConexion{
         $pdo->bindParam(':actividad_id', $form['actividad_id']);
         $pdo->bindParam(':periodo_ingreso', $form['periodo_ingreso']);
         $pdo->bindParam(':tipo_ingreso_id', $form['tipo_ingreso_id']);
-        $pdo->bindParam(':dir_titulo', $form['dir_titulo']);
         $pdo->bindParam(':graduacion_bachiller', $form['graduacion_bachiller']);
         $pdo->bindParam(':liceo_colegio', $form['liceo_colegio']);
         $pdo->bindParam(':tipo_institucion_id', $form['tipo_institucion_id']);
@@ -118,7 +126,7 @@ class Academic extends BDConexion{
         $pdo->bindParam(':turno_id', $form['turno_id']);
         $pdo->bindParam(':grupo_id', $form['grupo_id']);
         $pdo->bindParam(':modalidad_id', $form['modalidad_id']);
-        $pdo->bindParam(':estudiante_id', $form['estudiante_id']);
+        $pdo->bindParam(':id', $form['estudiante_id']);
         if($pdo->execute()){
             return true;
         }else{

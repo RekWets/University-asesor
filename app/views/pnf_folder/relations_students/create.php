@@ -1,6 +1,6 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/pnf.php");?>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/students.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/pnf.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/students.php");?>
 <section class="container">
 	<h2>PNF - Registrar Estudiante -
 		<a href="?route=pnfStudents&method=index" class="btn">
@@ -42,4 +42,4 @@
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

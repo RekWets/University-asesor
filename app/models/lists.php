@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/db/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/db/db.php");
 
 class Estados extends BDConexion{
     public $conn;
@@ -83,6 +83,190 @@ class Sexos extends BDConexion{
         $data = [];
         $sql = "SELECT * FROM sexo ORDER BY sexo ASC";
         $pdo = $this->conn->prepare($sql);        
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class Malla extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM malla ORDER BY malla ASC";
+        $pdo = $this->conn->prepare($sql);        
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class Actividad extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM actividad ORDER BY actividad ASC";
+        $pdo = $this->conn->prepare($sql);        
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class TipoIngreso extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM tipo_ingreso ORDER BY t_ingreso ASC";
+        $pdo = $this->conn->prepare($sql);        
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class TipoInstitucion extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM tipo_institucion ORDER BY t_institucion ASC";
+        $pdo = $this->conn->prepare($sql);        
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class NSE extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM nse ORDER BY nse ASC";
+        $pdo = $this->conn->prepare($sql);        
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class Turno extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM turno ORDER BY turno ASC";
+        $pdo = $this->conn->prepare($sql);
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class Grupo extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM grupo ORDER BY grupo ASC";
+        $pdo = $this->conn->prepare($sql);
+        if($pdo->execute()){
+            if($pdo->rowCount() > 0){
+                while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }                
+            }
+            return $data;
+        }
+    }
+}
+class Modalidad extends BDConexion{
+    public $conn;
+    
+    public function __construct(){
+        $this->conn = parent::__construct();
+
+    }
+
+    // Get all data in the table
+    public function get(){
+        $data = [];
+        $sql = "SELECT * FROM modalidad ORDER BY modalidad ASC";
+        $pdo = $this->conn->prepare($sql);
         if($pdo->execute()){
             if($pdo->rowCount() > 0){
                 while ($row = $pdo->fetch(PDO::FETCH_ASSOC)) {
@@ -265,25 +449,10 @@ class StudentsDegree extends BDConexion{
         }
     }
 
-    // Insert new row in the table
-    public function create($form){
-        print_r($form);
-        $sql = "INSERT INTO estudiantes_datos_academicos (dir_titulo) VALUES (:dir_titulo) ";
-        $pdo = $this->conn->prepare($sql);        
-        $pdo->bindParam(':dir_titulo', $form['dir_titulo']);
-        if($pdo->execute()){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     // Update row in the table by id
-    public function update($form){
-        $sql = "UPDATE estudiantes_datos_academicos SET dir_titulo = :dir_titulo WHERE estudiante_id = :estudiante_id";
-        $pdo = $this->conn->prepare($sql);        
-        $pdo->bindParam(':dir_titulo', $form['dir_titulo']);
-        $pdo->bindParam(':estudiante_id', $form['estudiante_id']);
+    public function update($imgname,$condition){
+        $sql = "UPDATE estudiantes_datos_academicos SET dir_titulo = '$imgname' WHERE $condition";
+        $pdo = $this->conn->prepare($sql);
         if($pdo->execute()){
             return true;
         }else{

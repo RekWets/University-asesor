@@ -1,3 +1,35 @@
+function downloadPdf() {
+  // Obtener el tamaño del lienzo del gráfico
+  var canvas = document.getElementById("myChart");
+  var reportPageWidth = canvas.width;
+  var reportPageHeight = canvas.height;
+
+  // Crear un nuevo lienzo para el PDF
+  var pdfCanvas = document.createElement('canvas');
+  pdfCanvas.width = reportPageWidth;
+  pdfCanvas.height = reportPageHeight;
+  var pdfctx = pdfCanvas.getContext('2d');
+
+  // Establecer el fondo del lienzo del PDF como transparente
+  pdfctx.fillStyle = '#FFFFFF'; // Color blanco
+
+  pdfctx.fillRect(0, 0, reportPageWidth, reportPageHeight);
+
+  // Dibujar el gráfico en el lienzo del PDF
+  pdfctx.drawImage(canvas, 0, 0, reportPageWidth, reportPageHeight);
+
+  // Crear un nuevo objeto jsPDF
+  var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
+
+  // Agregar el lienzo del PDF como una imagen al documento PDF
+  pdf.addImage(pdfCanvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, reportPageWidth, reportPageHeight);
+
+  // Descargar el PDF
+  pdf.save('grafica.pdf');
+}
+
+
+
 
 function elementchange(elementId, action) {
   const value = document.getElementById(elementId).value;
@@ -12,14 +44,14 @@ function label() {
   myChart.update();
 
 }
-["trayecto", "pnf", "trimestre", "UC", "desde", "hasta", "ver"].forEach(elementId => {
+["trayecto", "pnf", "UC", "desde", "hasta", "ver"].forEach(elementId => {
   document.getElementById(elementId).addEventListener("change", () => {
     handleInputChange(),
     getData(),
       elementchange(elementId, {
         trayecto: () => { },
         pnf: () => { },
-        trimestre: () => { },
+        // trimestre: () => { },
         UC: () => { },
         desde: () => { },
         hasta: () => { },
@@ -30,7 +62,7 @@ function label() {
 function getData() {
   const trayecto = document.getElementById("trayecto").value;
   const PNF = document.getElementById("pnf").value;
-  const trimestre = document.getElementById("trimestre").value;
+  // const trimestre = document.getElementById("trimestre").value;
   const unidad_curricular = document.getElementById("UC").value;
   const desde = document.getElementById("desde").value;
   const hasta = document.getElementById("hasta").value;
@@ -39,7 +71,7 @@ function getData() {
   let formData = new FormData();
   formData.append('trayecto', trayecto);
   formData.append('pnf', PNF);
-  formData.append('trimestre', trimestre);
+  // formData.append('trimestre', trimestre);
   formData.append('UC', unidad_curricular);
   formData.append('desde', desde);
   formData.append('hasta', hasta);
@@ -50,14 +82,17 @@ function getData() {
     })
     .then(response => response.json())
     .then(data => {
+
+
+      
       const filtro = {
         PNF,
         trayecto,
-        trimestre,
         unidad_curricular,
-      };
+      }
       let filteredData;
       let filtereditem;
+      
       if  (INfo === "1") {
         filteredData = data.Asistencias;
         filtereditem ="Asistencias";
@@ -84,10 +119,14 @@ function getData() {
         myChart.update();
       } else if (INfo === "2") {
         filteredData = data.Evolucion;
+        console.log(data.Evolucion)
         filtereditem = "evolucion_matricula";
-  const filteredByFechas = filteredData.filter((item) => {
-    return (new Date(item.fecha) >= new Date(desde) && new Date(item.fecha) <= new Date(hasta));
-  });
+        const filteredByFechas = filteredData.filter((item) => {
+          return Object.keys(filtro).every((key) => {
+            return filtro[key] === item[key];
+          }) &&
+            (new Date(item.fecha) >= new Date(desde) && new Date(item.fecha) <= new Date(hasta));
+        });
 
   const sumByTrimestre = {};
 
@@ -107,48 +146,60 @@ function getData() {
   myChart.config.data.labels = trimestres;
   myChart.data.datasets[0].data = info;
   myChart.update();
-      } else if (INfo === "3") {
+      }else if (INfo === "3") {
         filteredData = data.Rendimiento;
-        filtereditem ="rendimiento_academico";
+        console.log(data.Rendimiento);
+        filtereditem = "rendimiento_academico";
               
-  const filteredByFechas = filteredData.filter((item) => {
-    return (new Date(item.fecha) >= new Date(desde) && new Date(item.fecha) <= new Date(hasta));
-  });
+        const filteredByFechas = filteredData.filter((item) => {
+            // Verificamos si los datos cumplen con los filtros seleccionados
+            return Object.keys(filtro).every((key) => {
+                return filtro[key] === item[key];
+            }) && (new Date(item.fecha) >= new Date(desde) && new Date(item.fecha) <= new Date(hasta));
+        });
+    
+        const sumByTrimestre = {};
+const countByTrimestre = {}; // Contador para el número de elementos en cada trimestre
 
+filteredByFechas.forEach(item => {
+    const date = new Date(item.fecha);
+    const year = date.getFullYear();
+    const month = date.getUTCMonth();
+    const trimestre = Math.floor(month / 3) + 1; // Trimestre calculado
+    const trimestreLabel = `${year} - Trimestre ${trimestre}`;
 
-  const sumByTrimestre = {};
-
-  filteredByFechas.forEach(item => {
-    const month = new Date(item.fecha).getMonth();
-    const trimestre = Math.floor(month / 3); 
-    if (!sumByTrimestre[trimestre]) {
-      sumByTrimestre[trimestre] = 0;
+    // Inicializamos el sumador y contador del trimestre si no existen
+    if (!sumByTrimestre[trimestreLabel]) {
+        sumByTrimestre[trimestreLabel] = 0;
+        countByTrimestre[trimestreLabel] = 0;
     }
-    sumByTrimestre[trimestre] += parseInt(item[filtereditem]);
-  });
+    // Sumamos el rendimiento al trimestre correspondiente
+    sumByTrimestre[trimestreLabel] += parseInt(item[filtereditem]);
+    countByTrimestre[trimestreLabel]++;
+});
 
+// Calculamos el promedio por trimestre y lo asignamos a info
+const promedioByTrimestre = {};
+for (const trimestreLabel in sumByTrimestre) {
+    promedioByTrimestre[trimestreLabel] = sumByTrimestre[trimestreLabel] / countByTrimestre[trimestreLabel];
+}
 
-  const trimestres = ["Trimestre 1", "Trimestre 2", "Trimestre 3", "Trimestre 4"];
-  const info = trimestres.map((trimestre, index) => sumByTrimestre[index] || 0); 
+// Creamos las etiquetas de trimestre para la gráfica
+const trimestres = Object.keys(promedioByTrimestre).sort(); // Ordenamos las etiquetas por año y trimestre
+const info = trimestres.map(trimestreLabel => promedioByTrimestre[trimestreLabel] || 0); 
 
-  myChart.config.data.labels = trimestres;
-  myChart.data.datasets[0].data = info;
-  myChart.update();
+// Actualizamos la configuración de la gráfica con los datos
+myChart.config.data.labels = trimestres;
+myChart.data.datasets[0].data = info;
+myChart.update();
+
+        
+        
       }}).catch(error => {
       console.error("Error", error);
     });
 }
 
-const bgColor = {
-  id: 'bgColor',
-  beforeDraw: (chart, steps, options) => {
-    const { ctx, chartArea } = chart;
-    ctx.save();
-    ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // Set background color to white here
-    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-    ctx.restore();
-  }
-}
 
 const config = {
   type: 'line',
@@ -167,16 +218,25 @@ const config = {
     }],
   },
   options: {
-    interaction: {
-      intersect: false,
+    responsive: true,
+    title: {
+    },
+    plugins: {
+      tooltip: {
+        mode: 'index',
+        intersect: false
+      },
+      legend: {
+        display: false,
+      }
     },
     scales: {
-      yAxes: [{
+      x: {
         ticks: {
-          beginAtZero: true,
-        },
-      }],
-    }, 
+          beginAtZero: true
+        }
+      }
+    }
   }
 };
 
@@ -199,12 +259,38 @@ function handleInputChange() {
         hastaInput.type = "month";
     }
 }
-function donwloadpdf(){
-  var canvas = document.getElementById("myChart");
-  const canvasImage = canvas.toDataURL('image/jpeg',1.0);
-  console.log(canvasImage);
-  let pdf = new jsPDF('landscape');
-  pdf.setFontSize(16);
-  pdf.addImage(canvasImage,'PNG',15,15,280,150);
-  pdf.save('grafica.pdf');
+
+
+
+
+function actualizarUC() {
+  const trayectoSeleccionado = document.getElementById("trayecto").value;
+  const ucSelect = document.getElementById("UC");
+  ucSelect.innerHTML = ""; // Limpiar opciones anteriores
+
+  fetch("?route=Statsinfo&method=info") // Realizar solicitud AJAX para obtener datos JSON
+      .then(response => response.json())
+      .then(data => {
+          const trayectoData = data.Materias[trayectoSeleccionado]; // Obtener datos de trayecto seleccionado
+
+          // Verificar si hay datos para el trayecto seleccionado
+          if (trayectoData && trayectoData.length > 0) {
+              trayectoData.forEach(trayecto => {
+                  const option = document.createElement("option");
+                  option.value = trayecto.unidad_curricular_id;
+                  option.textContent = trayecto.descripcion;
+                  ucSelect.appendChild(option);
+              });
+          } else {
+              console.error(`No se encontraron datos para el trayecto seleccionado (${trayectoSeleccionado})`);
+          }
+      })
+      .catch(error => {
+          console.error("Error al obtener los datos:", error);
+      });
 }
+
+  document.getElementById('trayecto').addEventListener("change", () => {
+    actualizarUC();
+});
+actualizarUC();

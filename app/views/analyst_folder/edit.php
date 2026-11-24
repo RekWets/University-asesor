@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>Analistas - Modificar - 
 		<a href="?route=analyst&method=index" class="btn">
@@ -84,9 +84,9 @@
 		</div>
 		<hr class="col-12 my-2">
 		<div class="col-md-4 my-2">
-			<input type="hidden" name="id" value="<?php echo $rows['id']; ?>">
+			<input type="hidden" name="id" id="id" value="<?php echo $rows['id']; ?>">
 			<button type="submit" class="btn btn-info btn-lg"><i class="fa fa-check"></i> Finalizar modificación</button>
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

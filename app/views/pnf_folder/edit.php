@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>PNF - Modificar - 
 		<a href="?route=pnf&method=index" class="btn">
@@ -19,4 +19,4 @@
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

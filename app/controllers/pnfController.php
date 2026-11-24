@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/pnf.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/pnf.php");
 class PNFController{
     private $model;
 
@@ -32,7 +32,7 @@ class PNFController{
     public function store($form)
     {
         $rows = $this->model->create($form);
-        header('location: ?route=quarter&method=index');
+        header('location: ?route=pnf&method=index');
     }
 
     public function edit($id)

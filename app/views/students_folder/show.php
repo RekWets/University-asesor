@@ -1,4 +1,4 @@
-﻿<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+﻿<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>Estudiantes - Detalles del Registro - 
 		<a href="?route=students&method=index" class="btn">
@@ -101,6 +101,19 @@
 		</div>
 		<div class="col-12 my-2">
 			<hr>
+			<h5>Titulo de Bachillerato</h5>
+			<hr>
+		</div>
+		<div class="col-12 my-2">
+			<div class="card" style="width: 18rem;">
+				<img src="public/img/img_folders/degree_img/<?php echo $rows['dir_titulo']; ?>" class="card-img-top" alt="..." width="100%" height="100%">
+				<div class="card-body">
+					<p class="card-text"><?php echo $rows['dir_titulo']; ?></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 my-2">
+			<hr>
 			<h5>Datos Academicos</h5>
 			<hr>
 		</div>
@@ -128,10 +141,6 @@
 			<label for="tipo_ingreso_id">Tipo de ingreso: </label>
 			<input type="text" name="tipo_ingreso_id" id="tipo_ingreso_id" class="form-control" readonly value="<?php echo $rows['t_ingreso']; ?>">
 		</div>
-		<div class="col-md-8 my-2">
-			<label for="dir_titulo">Titulo de Bachiller: </label>
-			<input type="file" name="dir_titulo" id="dir_titulo" class="form-control" readonly >
-		</div>
 		<div class="col-md-4 my-2">
 			<label for="graduacion_bachiller">Año de Graduacion del Bachiller: </label>
 			<input type="year" name="graduacion_bachiller" id="graduacion_bachiller" class="form-control" readonly value="<?php echo $rows['graduacion_bachiller']; ?>">
@@ -156,11 +165,11 @@
 			<label for="nse_id">Nivel Socio Economico: </label>
 			<input type="text" name="nse_id" id="nse_id" class="form-control" readonly value="<?php echo $rows['nse']; ?>">
 		</div>
-		<div class="col-md-4 my-2">
+		<div class="col-md-2 my-2">
 			<label for="trabaja">Trabaja: </label>
 			<input type="text" name="trabaja" id="trabaja" class="form-control" readonly value="<?php echo $rows['trabaja']; ?>">
 		</div>
-		<div class="col-md-8 my-2">
+		<div class="col-md-6 my-2">
 			<label for="direccion_trabajo">Direccion de Trabajo: </label>
 			<input type="text" name="direccion_trabajo" id="direccion_trabajo" class="form-control" readonly value="<?php echo $rows['direccion_trabajo']; ?>">
 		</div>
@@ -227,4 +236,4 @@
 	</form>
 	<hr>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

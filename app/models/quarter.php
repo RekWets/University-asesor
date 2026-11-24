@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/db/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/db/db.php");
 
 class Quarter extends BDConexion{
     public $conn;
@@ -12,7 +12,7 @@ class Quarter extends BDConexion{
     // Get all data in the table
     public function get(){
         $data = [];
-        $sql = "SELECT * FROM lapso WHERE 1";
+        $sql = "SELECT * FROM trimestre WHERE 1";
         $pdo = $this->conn->prepare($sql);        
         if($pdo->execute()){
             if($pdo->rowCount() > 0){
@@ -25,7 +25,7 @@ class Quarter extends BDConexion{
     }
 
     // Get one row in the table by id
-    /* public function show($id){
+    public function show($id){
         $data = "";
         $sql = "SELECT * FROM trimestre WHERE id = :id";
         $pdo = $this->conn->prepare($sql);        
@@ -39,7 +39,7 @@ class Quarter extends BDConexion{
 
             return $data;
         }
-    } */
+    }
 
     // Insert new row in the table
     public function create($form){
@@ -60,20 +60,6 @@ class Quarter extends BDConexion{
         $sql = "UPDATE trimestre SET id = :id, trimestre = :trimestre WHERE id = :id";
         $pdo = $this->conn->prepare($sql);        
         $pdo->bindParam(':trimestre', $form['trimestre']);
-        $pdo->bindParam(':id', $form['id']);
-        if($pdo->execute()){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public function active($form){
-        $form['status'] =!$form['status'];
-        $sql = "UPDATE lapso SET id = :id, status = :status WHERE id = :id";
-        
-        $pdo = $this->conn->prepare($sql);        
-        $pdo->bindParam(':status', $status);
         $pdo->bindParam(':id', $form['id']);
         if($pdo->execute()){
             return true;

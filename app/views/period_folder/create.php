@@ -1,6 +1,6 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
-	<h2>Periodo - Registrar Trayecto -
+	<h2>Periodo - Registrar Periodo -
 		<a href="?route=period&method=index" class="btn">
 			<i class="fa fa-arrow-left"></i> Regresar</a>
 	</h2>
@@ -22,4 +22,4 @@
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>
