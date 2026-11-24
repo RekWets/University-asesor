@@ -21,26 +21,14 @@
 			<?php } ?>
 		<?php } ?>
 	</select>
-	<span>TRIMESTRE:</span>
-	<select class="custom-select custom-select-sm form-control form-control-sm" id="trimestre">
-		<?php if (!empty($trimestre)) { ?>
-			<?php foreach ($trimestre as $key) { ?>
-		<Option value='<?php echo $key['id']; ?>'><?php echo $key['trimestre']; ?></Option>
-			<?php } ?>
-		<?php } ?>
-	</select>
 	<span style="font-size: 14px">UNIDAD CURRICULAR: </span>
 	<select class="custom-select custom-select-sm form-control form-control-sm" id="UC">
-		<?php if (!empty($UC)) { ?>
-			<?php foreach ($UC as $key) { ?>
-				<Option value='<?php echo $key['id']; ?>'><?php echo $key['descripcion']; ?></Option>
-			<?php } ?>
-		<?php } ?>
+
 	</select>
 	<span>VER:</span>
 	<select id='ver' class="custom-select custom-select-sm form-control form-control-sm">
 				<Option value="1">Asistencias</Option>
-				<Option value="2">Evolucion Matricula</Option>
+				<Option value="2">Evaluacion de la Matricula</Option>
 				<Option value="3">Rendimiento Academico</Option>
 	</select>
 	<span>DESDE:</span>
@@ -51,10 +39,8 @@
 	<div class="my-2">
 		<span style="font-size: 14px">TIPO DE DESCARGAS:</span>
 		<!-- <Button class="rounded-0 border-0 bg-white"> <img src='/php/uptt-project/public/img/excel.svg' width="24px" height="24px"></Button> -->
-		<Button onclick="donwloadpdf()"ID="downloadPdf"class="rounded-0 border-0 bg-white"> <img src='/php/uptt-project/public/img/pdf.svg' width="24px" height="24px"></Button>
-
-
-
+		<a onclick="downloadPdf()"ID="downloadPdf"class="rounded-0 border-0 bg-white">
+		 <img  href="#" src='/php/uptt-project/public/img/pdf.svg' width="24px" height="24px"></a>
 	</div>
 </section>
 <section class=" rounded-1 border-0 col-md-10 justify-content-center align-items-center d-flex" style="height:auto">

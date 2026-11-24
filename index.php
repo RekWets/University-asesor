@@ -672,41 +672,17 @@ if($auth){
                         break;
                 }
                 break;
-                case 'resources':
-                    require_once('app/controllers/ResourcesController.php');
-                    $table = new ResourcesController();
+                case 'Statsinfo':
+                    require_once('app/controllers/StatsinfoController.php');
+                    $table = new StatsController();
                     switch ($method) {
+                        case 'info':
+                            $table->info();
+                            break;           
                         case 'index':
                             $table->index();
-                            break;
-                            // case 'show':
-                            //     $table->show($_REQUEST['id']);
-                            //     break;
-                            
-                            case 'create':
-                                $table->create($_POST, $_FILES);
-                                break;
-        
-                            case 'store':
-                                $table->store($_POST,$_FILES);
-                                break;
-                            
-                            case 'edit':
-                                $table->edit($_REQUEST['id']);
-                                break;
-                            
-                            case 'update':
-                                $table->update($_POST, $_FILES);
-                                break;  
-                                
-                            case 'destroy':
-                                $table->destroy($_REQUEST['id']);
-                                break;
-                           
-                                case 'download':
-                                    $table->download($_REQUEST['id']);
-                                    break;
-                            
+                            break;   
+                                     
                             default:
                                 $table->index();
                                 break;
