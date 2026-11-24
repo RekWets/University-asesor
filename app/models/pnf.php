@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/db/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/db/db.php");
 
 class PNF extends BDConexion{
     public $conn;
@@ -44,7 +44,7 @@ class PNF extends BDConexion{
     // Insert new row in the table
     public function create($form){
         print_r($form);
-        $sql = "INSERT INTO lapso (descripcion) VALUES (:descripcion)";
+        $sql = "INSERT INTO pnf (descripcion) VALUES (:descripcion)";
         $pdo = $this->conn->prepare($sql);        
         $pdo->bindParam(':descripcion', $form['descripcion']);
         if($pdo->execute()){

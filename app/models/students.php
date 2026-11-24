@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/db/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/db/db.php");
 
 class Students extends BDConexion{
     public $conn;
@@ -50,7 +50,7 @@ class Students extends BDConexion{
         $pdo->bindParam(':id', $id);
         if($pdo->execute()){
             if($pdo->rowCount() > 0){
-                $data = $pdo->fetch(PDO::FETCH_ASSOC);          
+                $data = $pdo->fetch(PDO::FETCH_ASSOC);      
             }else{
                 $data[] = ['message' => "Not Data", 'status' => "null"];
             }
@@ -90,7 +90,7 @@ class Students extends BDConexion{
 
     // Update row in the table by id
     public function update($form){
-        $sql = "UPDATE estudiantes SET cedula = :cedula, apellidos = :apellidos, nombres = :nombres, fecha_nacimiento = :fecha_nacimiento, edad = :edad, sexo_id = :sexo_id, estado_civil_id = :estado_civil_id, estado_natal_id = :estado_natal_id, municipio_natal_id = :municipio_natal_id,  parroquia_natal_id = :parroquia_natal_id, email = :email, telefono_movil = :telefono_movil, telefono_resd = :telefono_resd, otro_telefono = :otro_telefono, direccion_resd = :direccion_resd, pais_id= :pais_id, foto = :foto, rol_id = :rol_id WHERE estudiantes.id = :id";
+        $sql = "UPDATE estudiantes SET cedula = :cedula, apellidos = :apellidos, nombres = :nombres, fecha_nacimiento = :fecha_nacimiento, edad = :edad, sexo_id = :sexo_id, estado_civil_id = :estado_civil_id, estado_natal_id = :estado_natal_id, municipio_natal_id = :municipio_natal_id,  parroquia_natal_id = :parroquia_natal_id, email = :email, telefono_movil = :telefono_movil, telefono_resd = :telefono_resd, otro_telefono = :otro_telefono, direccion_resd = :direccion_resd, pais_id= :pais_id, rol_id = :rol_id WHERE estudiantes.id = :id";
         $pdo = $this->conn->prepare($sql);        
         $pdo->bindParam(':cedula', $form['cedula']);
         $pdo->bindParam(':apellidos', $form['apellidos']);
@@ -108,7 +108,6 @@ class Students extends BDConexion{
         $pdo->bindParam(':otro_telefono', $form['otro_telefono']);
         $pdo->bindParam(':direccion_resd', $form['direccion_resd']);
         $pdo->bindParam(':pais_id', $form['pais_id']);
-        $pdo->bindParam(':foto', $form['foto']);
         $pdo->bindParam(':rol_id', $form['rol_id']);
         $pdo->bindParam(':id', $form['est_id']);
         if($pdo->execute()){

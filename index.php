@@ -34,6 +34,37 @@ if($auth){
     #route's and method's manager
     if(!empty($route) && !empty($method)){
         switch ($route) {
+            case 'evaluacion':
+                require_once('app/controllers/evaluacionController.php');
+                $table = new evaluacionController();
+                switch ($method) {
+                    case 'index':
+                        $table->index();
+                        break;
+                    
+                    case 'informacion':
+                         $table->show($_POST);
+                        break;
+                        
+                    case 'consulta':
+                        $table->consulta($_POST);
+                        break;
+
+                    case 'archive':
+                        $table->archive();
+                        break;
+                
+                        case 'upload':
+                            $table->upload();
+                            break;
+ 
+                                
+                        
+                    default:
+                        $table->index();
+                        break;
+                }
+                break;
             case 'students':
                 require_once('app/controllers/studentsController.php');
                 $table = new StudentsController();
@@ -75,6 +106,33 @@ if($auth){
             case 'picture':
                 require_once('app/controllers/save_img.php');
                 $table = new StudentsPictureController();
+                switch ($method) {
+
+                    case 'store':
+                        $table->store($_POST);
+                        break;
+                    
+                    /*case 'edit':
+                        $table->edit($_REQUEST['id']);
+                        break;
+                    
+                    case 'update':
+                        $table->update($_POST);
+                        break;  
+                        
+                    case 'destroy':
+                        $table->destroy($_REQUEST['id']);
+                        break;
+                    
+                    default:
+                        $table->index();
+                        break;*/
+                }
+                break;
+            
+            case 'degree':
+                require_once('app/controllers/save_degree.php');
+                $table = new StudentsDegreeController();
                 switch ($method) {
 
                     case 'store':
@@ -479,6 +537,7 @@ if($auth){
                 }
                 break;
             
+            
             case 'period':
                 require_once('app/controllers/periodController.php');
                 $table = new PeriodController();
@@ -619,11 +678,7 @@ if($auth){
                     
                     case 'update':
                         $table->update($_POST);
-                        break;
-                        
-                    case 'active':
-                        $table->active($_POST);
-                        break;    
+                        break;  
                         
                     case 'destroy':
                         $table->destroy($_REQUEST['id']);
@@ -672,23 +727,6 @@ if($auth){
                         break;
                 }
                 break;
-                case 'Statsinfo':
-                    require_once('app/controllers/StatsinfoController.php');
-                    $table = new StatsController();
-                    switch ($method) {
-                        case 'info':
-                            $table->info();
-                            break;           
-                        case 'index':
-                            $table->index();
-                            break;   
-                                     
-                            default:
-                                $table->index();
-                                break;
-
-                    }
-                    break;
         }
     }else{
         $title = "Escritorio";

@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/lists.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/lists.php");
 class PictureController{
     private $model;
 

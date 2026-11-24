@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>Estudiantes</h2>
 </section>
@@ -29,21 +29,8 @@
 			<th>Cedula</th>
 			<th>Apellidos</th>
 			<th>Nombres</th>
-			<th>opciones</th>
+			<th></th>
 		</thead>
-		<tbody id="tb-tables">
-					<tr>
-						<td>1</td>
-						<td>23233445</td>
-						<td>Mendoza</td>
-						<td>Luis</td>
-						<td class="text-right">
-							<a href="?route=students&method=show&id=<?php echo $key['id']; ?>" class="btn btn-success"><i class="fas fa-fw fa-book-open"></i></a>
-							<a href="?route=students&method=edit&id=<?php echo $key['id']; ?>" class="btn btn-warning"><i class="fas fa-fw fa-pencil-alt"></i></a>
-							<!-- <a href="?route=students&method=destroy&id=<?php echo $key['id']; ?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i></a> -->
-						</td>
-					</tr>
-		</tbody>
 		<tbody id="tb-tables">
 			<?php if (!empty($rows)){ ?>
 			<?php 	foreach($rows as $key){ ?>
@@ -63,4 +50,4 @@
 		</tbody>
 	</table>	
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

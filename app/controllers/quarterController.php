@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/quarter.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/quarter.php");
 class QuarterController{
     private $model;
 
@@ -45,12 +45,6 @@ class QuarterController{
     public function update($form)
     {
         $rows = $this->model->update($form);
-        header("location: ?route=quarter&method=index&state=ok&msj=$rows");
-    }
-
-    public function active($form)
-    {
-        $rows = $this->model->active($form);
         header("location: ?route=quarter&method=index&state=ok&msj=$rows");
     }
 

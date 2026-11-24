@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>Periodo - Modificar Periodo - 
 		<a href="?route=period&method=index" class="btn">
@@ -10,7 +10,7 @@
 	<form action="?route=period&method=update" method="POST">
 		<div class="form-group">
 			<label for="id">ID: * </label>
-			<input type="text" name="id" id="id" class="form-control" required value="<?php echo $rows['id']; ?>">
+			<input type="text" name="id" id="id" class="form-control" readonly value="<?php echo $rows['id']; ?>">
 		</div>
 		<div class="form-group">
 			<label for="trayecto">Trayecto: * </label>
@@ -23,4 +23,4 @@
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

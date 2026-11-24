@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/analyst.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/analyst.php");
 class AnalystController{
     private $model;
 

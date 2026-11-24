@@ -1,4 +1,4 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/lists.php");?>
+<?php require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/lists.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,11 +84,6 @@
             </div>
             <!-- Nav Item - Academico -->
             <li class="nav-item">
-                <a class="nav-link" href="?route=quarter&method=index">
-                    <i class="fas fa-fw fa-school"></i>
-                    <span>Lapso Academico</span></a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="?route=pnf&method=index">
                     <i class="fas fa-fw fa-school"></i>
                     <span>PNF</span></a>
@@ -99,16 +94,16 @@
                     <span>Unidades Curriculares</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?route=Statsinfo&method=index">
+                <a class="nav-link" href="?route=evaluacion&method=index">
                     <i class="fas fa-fw fa-book"></i>
-                    <span>Informes y Estadisticas</span></a>
+                    <span>Evaluación y seguimiento del rendimiento académico</span></a>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link dropdown-toggle" id="sidebarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-calendar"></i>
-                    <span>Periodo</span></a> -->
+                    <span>Periodo</span></a>
                 <!-- Dropdown - User Information -->
-                <!-- <div class="dropdown-menu" aria-labelledby="sidebarDropdown">
+                <div class="dropdown-menu" aria-labelledby="sidebarDropdown">
                     <a class="dropdown-item" href="?route=period&method=index">
                         <i class="mr-2 text-gray-400"></i>
                         Trayecto
@@ -119,7 +114,7 @@
                         Trimestre
                     </a>
                 </div>
-            </li> -->
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

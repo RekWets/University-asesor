@@ -1,6 +1,6 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/period.php");?>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/students.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/period.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/students.php");?>
 <section class="container">
 	<h2>Periodo - Trayecto - Registrar Estudiante -
 		<a href="?route=periodStudents&method=index" class="btn">
@@ -42,4 +42,4 @@
 		</div>
 	</form>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

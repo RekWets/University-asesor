@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/relations/analyst/pnfAnalyst.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/relations/analyst/pnfAnalyst.php");
 class PNFanalystController{
     private $model;
 

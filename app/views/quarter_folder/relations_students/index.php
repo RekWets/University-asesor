@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/header.php");?>
 <section class="container">
 	<h2>Periodo - Trimestre - Estudiantes - 
 		<a href="?route=quarter&method=index" class="btn">
@@ -30,7 +30,7 @@
 						<td class="text-right">
 							<a href="?route=students&method=show&id=<?php echo $key['estudiante_id']; ?>" class="btn btn-success"><i class="fas fa-fw fa-book-open"></i></a>
 							<!-- <a href="?route=quarterStudents&method=edit&id=<?php echo $key['r_id']; ?>" class="btn btn-warning"><i class="fas fa-fw fa-pencil-alt"></i></a> -->
-							<a href="?route=quarterStudents&method=destroy&id=<?php echo $key['r_id']; ?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i></a>
+							<!-- <a href="?route=quarterStudents&method=destroy&id=<?php echo $key['r_id']; ?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i></a> -->
 						</td>
 					</tr>
 			<?php 	}?>
@@ -38,4 +38,4 @@
 		</tbody>
 	</table>	
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/views/partials/footer.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/views/partials/footer.php");?>

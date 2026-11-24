@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/db/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/project-bj/app/db/db.php");
 
 class Analyst extends BDConexion{
     public $conn;
@@ -69,7 +69,7 @@ class Analyst extends BDConexion{
 
     // Update row in the table by id
     public function update($form){
-        $sql = "UPDATE analistas SET codigo = :codigo, cedula = :cedula, apellidos = :apellidos, nombres = :nombres, sexo_id = :sexo_id, fecha_nacimiento = :fecha_nacimiento, telefono_movil = :telefono_movil, email = :email, condicion_id = :condicion_id, categoria_analista_id = :categoria_analista_id WHERE id = :id";
+        $sql = "UPDATE analistas SET codigo = :codigo, cedula = :cedula, apellidos = :apellidos, nombres = :nombres, sexo_id = :sexo_id, fecha_nacimiento = :fecha_nacimiento, telefono_movil = :telefono_movil, email = :email, condicion_id = :condicion_id, categoria_analista_id = :categoria_analista_id WHERE analistas.id = :id";
         $pdo = $this->conn->prepare($sql); 
         $pdo->bindParam(':codigo', $form['codigo']);
         $pdo->bindParam(':cedula', $form['cedula']);

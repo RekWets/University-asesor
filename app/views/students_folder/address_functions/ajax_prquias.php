@@ -1,6 +1,6 @@
 ﻿<?php
     if (isset($_POST['id'])){
-        include($_SERVER['DOCUMENT_ROOT']."/php/uptt-project/app/models/lists.php");
+        include($_SERVER['DOCUMENT_ROOT']."/project-bj/app/models/lists.php");
 
         $mcpios = new Parroquias();
         $rows = $mcpios->get("parroquia_natal","mcpio_id = ".$_POST['id'],"parroquia");
