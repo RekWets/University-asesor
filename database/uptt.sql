@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.2.11
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2024 a las 15:03:41
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.1.26
+-- Tiempo de generación: 27-02-2024 a las 16:12:15
+-- Versión del servidor: 5.6.21
+-- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `uptt`
@@ -28,10 +26,10 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `actividad`
 --
 
-CREATE TABLE `actividad` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `actividad` (
+`id` int(11) NOT NULL,
   `actividad` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `actividad`
@@ -47,8 +45,8 @@ INSERT INTO `actividad` (`id`, `actividad`) VALUES
 -- Estructura de tabla para la tabla `analistas`
 --
 
-CREATE TABLE `analistas` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `analistas` (
+`id` int(11) NOT NULL,
   `codigo` varchar(255) DEFAULT NULL,
   `cedula` varchar(255) DEFAULT NULL,
   `apellidos` varchar(255) DEFAULT NULL,
@@ -60,7 +58,7 @@ CREATE TABLE `analistas` (
   `condicion_id` int(11) DEFAULT NULL,
   `categoria_analista_id` int(11) DEFAULT NULL,
   `rol_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `analistas`
@@ -76,10 +74,10 @@ INSERT INTO `analistas` (`id`, `codigo`, `cedula`, `apellidos`, `nombres`, `sexo
 -- Estructura de tabla para la tabla `analista_categoria`
 --
 
-CREATE TABLE `analista_categoria` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `analista_categoria` (
+`id` int(11) NOT NULL,
   `categoria` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `analista_categoria`
@@ -98,10 +96,10 @@ INSERT INTO `analista_categoria` (`id`, `categoria`) VALUES
 -- Estructura de tabla para la tabla `cargo_coordinacion`
 --
 
-CREATE TABLE `cargo_coordinacion` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cargo_coordinacion` (
+`id` int(11) NOT NULL,
   `cargo` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `cargo_coordinacion`
@@ -117,10 +115,10 @@ INSERT INTO `cargo_coordinacion` (`id`, `cargo`) VALUES
 -- Estructura de tabla para la tabla `condicion`
 --
 
-CREATE TABLE `condicion` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `condicion` (
+`id` int(11) NOT NULL,
   `condicion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `condicion`
@@ -136,10 +134,10 @@ INSERT INTO `condicion` (`id`, `condicion`) VALUES
 -- Estructura de tabla para la tabla `dedicacion`
 --
 
-CREATE TABLE `dedicacion` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `dedicacion` (
+`id` int(11) NOT NULL,
   `dedicacion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `dedicacion`
@@ -157,10 +155,10 @@ INSERT INTO `dedicacion` (`id`, `dedicacion`) VALUES
 -- Estructura de tabla para la tabla `delegado`
 --
 
-CREATE TABLE `delegado` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `delegado` (
+`id` int(11) NOT NULL,
   `delegado` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `delegado`
@@ -177,8 +175,8 @@ INSERT INTO `delegado` (`id`, `delegado`) VALUES
 -- Estructura de tabla para la tabla `docentes`
 --
 
-CREATE TABLE `docentes` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `docentes` (
+`id` int(11) NOT NULL,
   `codigo` varchar(255) DEFAULT NULL,
   `cedula` varchar(255) DEFAULT NULL,
   `apellidos` varchar(255) DEFAULT NULL,
@@ -195,7 +193,7 @@ CREATE TABLE `docentes` (
   `docente_categoria_id` int(11) DEFAULT NULL,
   `modalidad_id` int(11) DEFAULT NULL,
   `rol_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `docentes`
@@ -212,10 +210,10 @@ INSERT INTO `docentes` (`id`, `codigo`, `cedula`, `apellidos`, `nombres`, `sexo_
 -- Estructura de tabla para la tabla `docente_categoria`
 --
 
-CREATE TABLE `docente_categoria` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `docente_categoria` (
+`id` int(11) NOT NULL,
   `categoria` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `docente_categoria`
@@ -234,10 +232,10 @@ INSERT INTO `docente_categoria` (`id`, `categoria`) VALUES
 -- Estructura de tabla para la tabla `estado_civil`
 --
 
-CREATE TABLE `estado_civil` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `estado_civil` (
+`id` int(11) NOT NULL,
   `edo_civil` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `estado_civil`
@@ -255,10 +253,10 @@ INSERT INTO `estado_civil` (`id`, `edo_civil`) VALUES
 -- Estructura de tabla para la tabla `estado_natal`
 --
 
-CREATE TABLE `estado_natal` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `estado_natal` (
+`id` int(11) NOT NULL,
   `estado` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `estado_natal`
@@ -296,8 +294,8 @@ INSERT INTO `estado_natal` (`id`, `estado`) VALUES
 -- Estructura de tabla para la tabla `estudiantes`
 --
 
-CREATE TABLE `estudiantes` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `estudiantes` (
+`id` int(11) NOT NULL,
   `cedula` varchar(255) DEFAULT NULL,
   `apellidos` varchar(255) DEFAULT NULL,
   `nombres` varchar(255) DEFAULT NULL,
@@ -316,7 +314,7 @@ CREATE TABLE `estudiantes` (
   `pais_id` int(11) DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL,
   `rol_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `estudiantes`
@@ -345,8 +343,8 @@ INSERT INTO `estudiantes` (`id`, `cedula`, `apellidos`, `nombres`, `fecha_nacimi
 -- Estructura de tabla para la tabla `estudiantes_datos_academicos`
 --
 
-CREATE TABLE `estudiantes_datos_academicos` (
-  `id_eda` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `estudiantes_datos_academicos` (
+`id_eda` int(11) NOT NULL,
   `estudiante_id` int(11) DEFAULT NULL,
   `codigo` varchar(255) DEFAULT NULL,
   `pnf_id` varchar(255) DEFAULT NULL,
@@ -378,7 +376,7 @@ CREATE TABLE `estudiantes_datos_academicos` (
   `turno_id` int(11) DEFAULT NULL,
   `grupo_id` int(11) DEFAULT NULL,
   `modalidad_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `estudiantes_datos_academicos`
@@ -404,36 +402,13 @@ INSERT INTO `estudiantes_datos_academicos` (`id_eda`, `estudiante_id`, `codigo`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `gestion_y_recursos_educativos`
---
-
-CREATE TABLE `gestion_y_recursos_educativos` (
-  `id` int(11) NOT NULL,
-  `Registro` varchar(100) NOT NULL,
-  `PNF` varchar(100) NOT NULL,
-  `Unidad_Curricular` varchar(100) NOT NULL,
-  `Descripcion` varchar(1000) NOT NULL,
-  `link` varchar(100) DEFAULT NULL,
-  `Archivo_Adjunto` mediumblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `gestion_y_recursos_educativos`
---
-
-INSERT INTO `gestion_y_recursos_educativos` (`id`, `Registro`, `PNF`, `Unidad_Curricular`, `Descripcion`, `link`, `Archivo_Adjunto`) VALUES
-(8, 'habitos atomicos ', 'Informatica', 'electiva', 'nwy', 'https://youtube.com/', NULL);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `grupo`
 --
 
-CREATE TABLE `grupo` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `grupo` (
+`id` int(11) NOT NULL,
   `grupo` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `grupo`
@@ -449,10 +424,10 @@ INSERT INTO `grupo` (`id`, `grupo`) VALUES
 -- Estructura de tabla para la tabla `malla`
 --
 
-CREATE TABLE `malla` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `malla` (
+`id` int(11) NOT NULL,
   `malla` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `malla`
@@ -469,10 +444,10 @@ INSERT INTO `malla` (`id`, `malla`) VALUES
 -- Estructura de tabla para la tabla `modalidad`
 --
 
-CREATE TABLE `modalidad` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `modalidad` (
+`id` int(11) NOT NULL,
   `modalidad` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `modalidad`
@@ -488,11 +463,11 @@ INSERT INTO `modalidad` (`id`, `modalidad`) VALUES
 -- Estructura de tabla para la tabla `municipio_natal`
 --
 
-CREATE TABLE `municipio_natal` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `municipio_natal` (
+`id` int(11) NOT NULL,
   `municipio` varchar(255) DEFAULT NULL,
   `estado_id` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=336 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `municipio_natal`
@@ -841,10 +816,10 @@ INSERT INTO `municipio_natal` (`id`, `municipio`, `estado_id`) VALUES
 -- Estructura de tabla para la tabla `nse`
 --
 
-CREATE TABLE `nse` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `nse` (
+`id` int(11) NOT NULL,
   `nse` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `nse`
@@ -861,10 +836,10 @@ INSERT INTO `nse` (`id`, `nse`) VALUES
 -- Estructura de tabla para la tabla `pais`
 --
 
-CREATE TABLE `pais` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pais` (
+`id` int(11) NOT NULL,
   `pais` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `pais`
@@ -897,11 +872,11 @@ INSERT INTO `pais` (`id`, `pais`) VALUES
 -- Estructura de tabla para la tabla `parroquia_natal`
 --
 
-CREATE TABLE `parroquia_natal` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `parroquia_natal` (
+`id` int(11) NOT NULL,
   `parroquia` varchar(255) DEFAULT NULL,
   `mcpio_id` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1135 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `parroquia_natal`
@@ -2049,10 +2024,10 @@ INSERT INTO `parroquia_natal` (`id`, `parroquia`, `mcpio_id`) VALUES
 -- Estructura de tabla para la tabla `pnf`
 --
 
-CREATE TABLE `pnf` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pnf` (
+`id` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `pnf`
@@ -2070,8 +2045,8 @@ INSERT INTO `pnf` (`id`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `pnf_has_analistas`
 --
 
-CREATE TABLE `pnf_has_analistas` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pnf_has_analistas` (
+`r_id` int(11) NOT NULL,
   `pnf_id` int(11) DEFAULT NULL,
   `analista_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -2082,11 +2057,11 @@ CREATE TABLE `pnf_has_analistas` (
 -- Estructura de tabla para la tabla `pnf_has_docentes`
 --
 
-CREATE TABLE `pnf_has_docentes` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pnf_has_docentes` (
+`r_id` int(11) NOT NULL,
   `pnf_id` int(11) DEFAULT NULL,
   `docente_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `pnf_has_docentes`
@@ -2102,11 +2077,11 @@ INSERT INTO `pnf_has_docentes` (`r_id`, `pnf_id`, `docente_id`) VALUES
 -- Estructura de tabla para la tabla `pnf_has_estudiantes`
 --
 
-CREATE TABLE `pnf_has_estudiantes` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pnf_has_estudiantes` (
+`r_id` int(11) NOT NULL,
   `pnf_id` int(11) DEFAULT NULL,
   `estudiante_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `pnf_has_estudiantes`
@@ -2129,8 +2104,8 @@ INSERT INTO `pnf_has_estudiantes` (`r_id`, `pnf_id`, `estudiante_id`) VALUES
 -- Estructura de tabla para la tabla `pnf_has_trayecto`
 --
 
-CREATE TABLE `pnf_has_trayecto` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pnf_has_trayecto` (
+`r_id` int(11) NOT NULL,
   `pnf_id` int(11) DEFAULT NULL,
   `trayecto_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -2141,8 +2116,8 @@ CREATE TABLE `pnf_has_trayecto` (
 -- Estructura de tabla para la tabla `pnf_has_unidad_curricular`
 --
 
-CREATE TABLE `pnf_has_unidad_curricular` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pnf_has_unidad_curricular` (
+`r_id` int(11) NOT NULL,
   `pnf_id` int(11) DEFAULT NULL,
   `unidad_curricular_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -2153,7 +2128,7 @@ CREATE TABLE `pnf_has_unidad_curricular` (
 -- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE `rol` (
+CREATE TABLE IF NOT EXISTS `rol` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -2164,10 +2139,10 @@ CREATE TABLE `rol` (
 -- Estructura de tabla para la tabla `sexo`
 --
 
-CREATE TABLE `sexo` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sexo` (
+`id` int(11) NOT NULL,
   `sexo` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `sexo`
@@ -2183,10 +2158,10 @@ INSERT INTO `sexo` (`id`, `sexo`) VALUES
 -- Estructura de tabla para la tabla `tables`
 --
 
-CREATE TABLE `tables` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tables` (
+`id` int(11) NOT NULL,
   `data` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tables`
@@ -2201,10 +2176,10 @@ INSERT INTO `tables` (`id`, `data`) VALUES
 -- Estructura de tabla para la tabla `tipo_ingreso`
 --
 
-CREATE TABLE `tipo_ingreso` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tipo_ingreso` (
+`id` int(11) NOT NULL,
   `t_ingreso` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `tipo_ingreso`
@@ -2222,10 +2197,10 @@ INSERT INTO `tipo_ingreso` (`id`, `t_ingreso`) VALUES
 -- Estructura de tabla para la tabla `tipo_institucion`
 --
 
-CREATE TABLE `tipo_institucion` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tipo_institucion` (
+`id` int(11) NOT NULL,
   `t_institucion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `tipo_institucion`
@@ -2241,10 +2216,10 @@ INSERT INTO `tipo_institucion` (`id`, `t_institucion`) VALUES
 -- Estructura de tabla para la tabla `trayecto`
 --
 
-CREATE TABLE `trayecto` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trayecto` (
+`id` int(11) NOT NULL,
   `trayecto` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `trayecto`
@@ -2263,11 +2238,11 @@ INSERT INTO `trayecto` (`id`, `trayecto`) VALUES
 -- Estructura de tabla para la tabla `trayecto_has_estudiantes`
 --
 
-CREATE TABLE `trayecto_has_estudiantes` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trayecto_has_estudiantes` (
+`r_id` int(11) NOT NULL,
   `trayecto_id` int(11) DEFAULT NULL,
   `estudiante_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `trayecto_has_estudiantes`
@@ -2285,8 +2260,8 @@ INSERT INTO `trayecto_has_estudiantes` (`r_id`, `trayecto_id`, `estudiante_id`) 
 -- Estructura de tabla para la tabla `trayecto_has_trimestre`
 --
 
-CREATE TABLE `trayecto_has_trimestre` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trayecto_has_trimestre` (
+`r_id` int(11) NOT NULL,
   `trayecto_id` int(11) DEFAULT NULL,
   `trimestre_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -2297,11 +2272,11 @@ CREATE TABLE `trayecto_has_trimestre` (
 -- Estructura de tabla para la tabla `trayecto_has_unidad_curricular`
 --
 
-CREATE TABLE `trayecto_has_unidad_curricular` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trayecto_has_unidad_curricular` (
+`r_id` int(11) NOT NULL,
   `trayecto_id` int(11) DEFAULT NULL,
   `unidad_curricular_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `trayecto_has_unidad_curricular`
@@ -2318,10 +2293,10 @@ INSERT INTO `trayecto_has_unidad_curricular` (`r_id`, `trayecto_id`, `unidad_cur
 -- Estructura de tabla para la tabla `trimestre`
 --
 
-CREATE TABLE `trimestre` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trimestre` (
+`id` int(11) NOT NULL,
   `trimestre` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `trimestre`
@@ -2341,11 +2316,11 @@ INSERT INTO `trimestre` (`id`, `trimestre`) VALUES
 -- Estructura de tabla para la tabla `trimestre_has_estudiantes`
 --
 
-CREATE TABLE `trimestre_has_estudiantes` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trimestre_has_estudiantes` (
+`r_id` int(11) NOT NULL,
   `trimestre_id` int(11) DEFAULT NULL,
   `estudiante_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `trimestre_has_estudiantes`
@@ -2363,10 +2338,10 @@ INSERT INTO `trimestre_has_estudiantes` (`r_id`, `trimestre_id`, `estudiante_id`
 -- Estructura de tabla para la tabla `turno`
 --
 
-CREATE TABLE `turno` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `turno` (
+`id` int(11) NOT NULL,
   `turno` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `turno`
@@ -2382,10 +2357,10 @@ INSERT INTO `turno` (`id`, `turno`) VALUES
 -- Estructura de tabla para la tabla `unidad_curricular`
 --
 
-CREATE TABLE `unidad_curricular` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `unidad_curricular` (
+`id` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `unidad_curricular`
@@ -2403,11 +2378,11 @@ INSERT INTO `unidad_curricular` (`id`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `unidad_curricular_has_docentes`
 --
 
-CREATE TABLE `unidad_curricular_has_docentes` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `unidad_curricular_has_docentes` (
+`r_id` int(11) NOT NULL,
   `unidad_curricular_id` int(11) DEFAULT NULL,
   `docentes_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `unidad_curricular_has_docentes`
@@ -2425,11 +2400,11 @@ INSERT INTO `unidad_curricular_has_docentes` (`r_id`, `unidad_curricular_id`, `d
 -- Estructura de tabla para la tabla `unidad_curricular_has_estudiantes`
 --
 
-CREATE TABLE `unidad_curricular_has_estudiantes` (
-  `r_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `unidad_curricular_has_estudiantes` (
+`r_id` int(11) NOT NULL,
   `unidad_curricular_id` int(11) DEFAULT NULL,
   `estudiante_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `unidad_curricular_has_estudiantes`
@@ -2453,12 +2428,12 @@ INSERT INTO `unidad_curricular_has_estudiantes` (`r_id`, `unidad_curricular_id`,
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+`id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -2479,337 +2454,253 @@ INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
 -- Indices de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `analistas`
 --
 ALTER TABLE `analistas`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE,
-  ADD KEY `sexo` (`sexo_id`) USING BTREE,
-  ADD KEY `condicion` (`condicion_id`) USING BTREE,
-  ADD KEY `categoria_analista` (`categoria_analista_id`) USING BTREE,
-  ADD KEY `rol` (`rol_id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE, ADD KEY `sexo` (`sexo_id`) USING BTREE, ADD KEY `condicion` (`condicion_id`) USING BTREE, ADD KEY `categoria_analista` (`categoria_analista_id`) USING BTREE, ADD KEY `rol` (`rol_id`) USING BTREE;
 
 --
 -- Indices de la tabla `analista_categoria`
 --
 ALTER TABLE `analista_categoria`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `cargo_coordinacion`
 --
 ALTER TABLE `cargo_coordinacion`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `condicion`
 --
 ALTER TABLE `condicion`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `dedicacion`
 --
 ALTER TABLE `dedicacion`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `delegado`
 --
 ALTER TABLE `delegado`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `docentes`
 --
 ALTER TABLE `docentes`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE,
-  ADD KEY `sexo` (`sexo_id`) USING BTREE,
-  ADD KEY `delegado` (`delegado_id`) USING BTREE,
-  ADD KEY `cargo` (`cargo_coordinacion_id`) USING BTREE,
-  ADD KEY `condicion` (`condicion_id`) USING BTREE,
-  ADD KEY `dedicacion` (`dedicacion_id`) USING BTREE,
-  ADD KEY `categoria` (`docente_categoria_id`) USING BTREE,
-  ADD KEY `modalidad` (`modalidad_id`) USING BTREE,
-  ADD KEY `rol` (`rol_id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE, ADD KEY `sexo` (`sexo_id`) USING BTREE, ADD KEY `delegado` (`delegado_id`) USING BTREE, ADD KEY `cargo` (`cargo_coordinacion_id`) USING BTREE, ADD KEY `condicion` (`condicion_id`) USING BTREE, ADD KEY `dedicacion` (`dedicacion_id`) USING BTREE, ADD KEY `categoria` (`docente_categoria_id`) USING BTREE, ADD KEY `modalidad` (`modalidad_id`) USING BTREE, ADD KEY `rol` (`rol_id`) USING BTREE;
 
 --
 -- Indices de la tabla `docente_categoria`
 --
 ALTER TABLE `docente_categoria`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `estado_civil`
 --
 ALTER TABLE `estado_civil`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `estado_natal`
 --
 ALTER TABLE `estado_natal`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE,
-  ADD KEY `edo_civil` (`estado_civil_id`) USING BTREE,
-  ADD KEY `edo_natal` (`estado_natal_id`) USING BTREE,
-  ADD KEY `mcpio_natal` (`municipio_natal_id`) USING BTREE,
-  ADD KEY `parroquia_natal` (`parroquia_natal_id`) USING BTREE,
-  ADD KEY `pais` (`pais_id`) USING BTREE,
-  ADD KEY `sexo_id` (`sexo_id`) USING BTREE,
-  ADD KEY `rol` (`rol_id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE, ADD KEY `edo_civil` (`estado_civil_id`) USING BTREE, ADD KEY `edo_natal` (`estado_natal_id`) USING BTREE, ADD KEY `mcpio_natal` (`municipio_natal_id`) USING BTREE, ADD KEY `parroquia_natal` (`parroquia_natal_id`) USING BTREE, ADD KEY `pais` (`pais_id`) USING BTREE, ADD KEY `sexo_id` (`sexo_id`) USING BTREE, ADD KEY `rol` (`rol_id`) USING BTREE;
 
 --
 -- Indices de la tabla `estudiantes_datos_academicos`
 --
 ALTER TABLE `estudiantes_datos_academicos`
-  ADD PRIMARY KEY (`id_eda`) USING BTREE,
-  ADD KEY `malla` (`malla_id`) USING BTREE,
-  ADD KEY `actividad` (`actividad_id`) USING BTREE,
-  ADD KEY `tipo_ingreso` (`tipo_ingreso_id`) USING BTREE,
-  ADD KEY `tipo_institucion` (`tipo_institucion_id`) USING BTREE,
-  ADD KEY `nse` (`nse_id`) USING BTREE,
-  ADD KEY `turno` (`turno_id`) USING BTREE,
-  ADD KEY `grupo` (`grupo_id`) USING BTREE,
-  ADD KEY `modalidad` (`modalidad_id`) USING BTREE,
-  ADD KEY `estudiante_id` (`estudiante_id`);
-
---
--- Indices de la tabla `gestion_y_recursos_educativos`
---
-ALTER TABLE `gestion_y_recursos_educativos`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id_eda`) USING BTREE, ADD KEY `malla` (`malla_id`) USING BTREE, ADD KEY `actividad` (`actividad_id`) USING BTREE, ADD KEY `tipo_ingreso` (`tipo_ingreso_id`) USING BTREE, ADD KEY `tipo_institucion` (`tipo_institucion_id`) USING BTREE, ADD KEY `nse` (`nse_id`) USING BTREE, ADD KEY `turno` (`turno_id`) USING BTREE, ADD KEY `grupo` (`grupo_id`) USING BTREE, ADD KEY `modalidad` (`modalidad_id`) USING BTREE, ADD KEY `estudiante_id` (`estudiante_id`);
 
 --
 -- Indices de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `malla`
 --
 ALTER TABLE `malla`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `modalidad`
 --
 ALTER TABLE `modalidad`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `municipio_natal`
 --
 ALTER TABLE `municipio_natal`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `nse`
 --
 ALTER TABLE `nse`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `pais`
 --
 ALTER TABLE `pais`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `parroquia_natal`
 --
 ALTER TABLE `parroquia_natal`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `pnf`
 --
 ALTER TABLE `pnf`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `pnf_has_analistas`
 --
 ALTER TABLE `pnf_has_analistas`
-  ADD PRIMARY KEY (`r_id`) USING BTREE,
-  ADD UNIQUE KEY `analista` (`analista_id`) USING BTREE,
-  ADD KEY `pnf` (`pnf_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`) USING BTREE, ADD UNIQUE KEY `analista` (`analista_id`) USING BTREE, ADD KEY `pnf` (`pnf_id`) USING BTREE;
 
 --
 -- Indices de la tabla `pnf_has_docentes`
 --
 ALTER TABLE `pnf_has_docentes`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `docentes` (`docente_id`) USING BTREE,
-  ADD KEY `pnf` (`pnf_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `docentes` (`docente_id`) USING BTREE, ADD KEY `pnf` (`pnf_id`) USING BTREE;
 
 --
 -- Indices de la tabla `pnf_has_estudiantes`
 --
 ALTER TABLE `pnf_has_estudiantes`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `pnf` (`pnf_id`) USING BTREE,
-  ADD KEY `estudiantes` (`estudiante_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `pnf` (`pnf_id`) USING BTREE, ADD KEY `estudiantes` (`estudiante_id`) USING BTREE;
 
 --
 -- Indices de la tabla `pnf_has_trayecto`
 --
 ALTER TABLE `pnf_has_trayecto`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `pnf` (`pnf_id`) USING BTREE,
-  ADD KEY `trayecto` (`trayecto_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `pnf` (`pnf_id`) USING BTREE, ADD KEY `trayecto` (`trayecto_id`) USING BTREE;
 
 --
 -- Indices de la tabla `pnf_has_unidad_curricular`
 --
 ALTER TABLE `pnf_has_unidad_curricular`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE,
-  ADD KEY `pnf` (`pnf_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE, ADD KEY `pnf` (`pnf_id`) USING BTREE;
 
 --
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `sexo`
 --
 ALTER TABLE `sexo`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `tables`
 --
 ALTER TABLE `tables`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tipo_ingreso`
 --
 ALTER TABLE `tipo_ingreso`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `tipo_institucion`
 --
 ALTER TABLE `tipo_institucion`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `trayecto`
 --
 ALTER TABLE `trayecto`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `trayecto_id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD KEY `trayecto_id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `trayecto_has_estudiantes`
 --
 ALTER TABLE `trayecto_has_estudiantes`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `trayecto` (`trayecto_id`) USING BTREE,
-  ADD KEY `estudiante` (`estudiante_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `trayecto` (`trayecto_id`) USING BTREE, ADD KEY `estudiante` (`estudiante_id`) USING BTREE;
 
 --
 -- Indices de la tabla `trayecto_has_trimestre`
 --
 ALTER TABLE `trayecto_has_trimestre`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `trayecto` (`trayecto_id`) USING BTREE,
-  ADD KEY `trimestre` (`trimestre_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `trayecto` (`trayecto_id`) USING BTREE, ADD KEY `trimestre` (`trimestre_id`) USING BTREE;
 
 --
 -- Indices de la tabla `trayecto_has_unidad_curricular`
 --
 ALTER TABLE `trayecto_has_unidad_curricular`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `trayecto` (`trayecto_id`) USING BTREE,
-  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `trayecto` (`trayecto_id`) USING BTREE, ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE;
 
 --
 -- Indices de la tabla `trimestre`
 --
 ALTER TABLE `trimestre`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `trimestre_id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD KEY `trimestre_id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `trimestre_has_estudiantes`
 --
 ALTER TABLE `trimestre_has_estudiantes`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `trimestre` (`trimestre_id`),
-  ADD KEY `estudiante` (`estudiante_id`);
+ ADD PRIMARY KEY (`r_id`), ADD KEY `trimestre` (`trimestre_id`), ADD KEY `estudiante` (`estudiante_id`);
 
 --
 -- Indices de la tabla `turno`
 --
 ALTER TABLE `turno`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `unidad_curricular`
 --
 ALTER TABLE `unidad_curricular`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE;
+ ADD PRIMARY KEY (`id`) USING BTREE, ADD UNIQUE KEY `id` (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `unidad_curricular_has_docentes`
 --
 ALTER TABLE `unidad_curricular_has_docentes`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE,
-  ADD KEY `docente` (`docentes_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE, ADD KEY `docente` (`docentes_id`) USING BTREE;
 
 --
 -- Indices de la tabla `unidad_curricular_has_estudiantes`
 --
 ALTER TABLE `unidad_curricular_has_estudiantes`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `estudiantes` (`estudiante_id`) USING BTREE,
-  ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE;
+ ADD PRIMARY KEY (`r_id`), ADD KEY `estudiantes` (`estudiante_id`) USING BTREE, ADD KEY `unidad_curricular` (`unidad_curricular_id`) USING BTREE;
 
 --
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -2819,254 +2710,207 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `analistas`
 --
 ALTER TABLE `analistas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `analista_categoria`
 --
 ALTER TABLE `analista_categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `cargo_coordinacion`
 --
 ALTER TABLE `cargo_coordinacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `condicion`
 --
 ALTER TABLE `condicion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `dedicacion`
 --
 ALTER TABLE `dedicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `delegado`
 --
 ALTER TABLE `delegado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `docentes`
 --
 ALTER TABLE `docentes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `docente_categoria`
 --
 ALTER TABLE `docente_categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `estado_civil`
 --
 ALTER TABLE `estado_civil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `estado_natal`
 --
 ALTER TABLE `estado_natal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `estudiantes_datos_academicos`
 --
 ALTER TABLE `estudiantes_datos_academicos`
-  MODIFY `id_eda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT de la tabla `gestion_y_recursos_educativos`
---
-ALTER TABLE `gestion_y_recursos_educativos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+MODIFY `id_eda` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `malla`
 --
 ALTER TABLE `malla`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `modalidad`
 --
 ALTER TABLE `modalidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `municipio_natal`
 --
 ALTER TABLE `municipio_natal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=336;
 --
 -- AUTO_INCREMENT de la tabla `nse`
 --
 ALTER TABLE `nse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `parroquia_natal`
 --
 ALTER TABLE `parroquia_natal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1135;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1135;
 --
 -- AUTO_INCREMENT de la tabla `pnf`
 --
 ALTER TABLE `pnf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `pnf_has_analistas`
 --
 ALTER TABLE `pnf_has_analistas`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pnf_has_docentes`
 --
 ALTER TABLE `pnf_has_docentes`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pnf_has_estudiantes`
 --
 ALTER TABLE `pnf_has_estudiantes`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `pnf_has_trayecto`
 --
 ALTER TABLE `pnf_has_trayecto`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pnf_has_unidad_curricular`
 --
 ALTER TABLE `pnf_has_unidad_curricular`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sexo`
 --
 ALTER TABLE `sexo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tipo_ingreso`
 --
 ALTER TABLE `tipo_ingreso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tipo_institucion`
 --
 ALTER TABLE `tipo_institucion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `trayecto`
 --
 ALTER TABLE `trayecto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `trayecto_has_estudiantes`
 --
 ALTER TABLE `trayecto_has_estudiantes`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `trayecto_has_trimestre`
 --
 ALTER TABLE `trayecto_has_trimestre`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `trayecto_has_unidad_curricular`
 --
 ALTER TABLE `trayecto_has_unidad_curricular`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `trimestre`
 --
 ALTER TABLE `trimestre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `trimestre_has_estudiantes`
 --
 ALTER TABLE `trimestre_has_estudiantes`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `unidad_curricular`
 --
 ALTER TABLE `unidad_curricular`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `unidad_curricular_has_docentes`
 --
 ALTER TABLE `unidad_curricular_has_docentes`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `unidad_curricular_has_estudiantes`
 --
 ALTER TABLE `unidad_curricular_has_estudiantes`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
@@ -3075,127 +2919,126 @@ ALTER TABLE `users`
 -- Filtros para la tabla `analistas`
 --
 ALTER TABLE `analistas`
-  ADD CONSTRAINT `r_categoria_a` FOREIGN KEY (`categoria_analista_id`) REFERENCES `analista_categoria` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_condicion_a` FOREIGN KEY (`condicion_id`) REFERENCES `condicion` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_rol_a` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_sexo_a` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_categoria_a` FOREIGN KEY (`categoria_analista_id`) REFERENCES `analista_categoria` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_condicion_a` FOREIGN KEY (`condicion_id`) REFERENCES `condicion` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_rol_a` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_sexo_a` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `docentes`
 --
 ALTER TABLE `docentes`
-  ADD CONSTRAINT `r_cargo_d` FOREIGN KEY (`cargo_coordinacion_id`) REFERENCES `cargo_coordinacion` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_categoria_d` FOREIGN KEY (`docente_categoria_id`) REFERENCES `docente_categoria` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_condicion_d` FOREIGN KEY (`condicion_id`) REFERENCES `condicion` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_dedicacion_d` FOREIGN KEY (`dedicacion_id`) REFERENCES `dedicacion` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_delegado_d` FOREIGN KEY (`delegado_id`) REFERENCES `delegado` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_modalidad_d` FOREIGN KEY (`modalidad_id`) REFERENCES `modalidad` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_rol_d` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_sexo_d` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_cargo_d` FOREIGN KEY (`cargo_coordinacion_id`) REFERENCES `cargo_coordinacion` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_categoria_d` FOREIGN KEY (`docente_categoria_id`) REFERENCES `docente_categoria` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_condicion_d` FOREIGN KEY (`condicion_id`) REFERENCES `condicion` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_dedicacion_d` FOREIGN KEY (`dedicacion_id`) REFERENCES `dedicacion` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_delegado_d` FOREIGN KEY (`delegado_id`) REFERENCES `delegado` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_modalidad_d` FOREIGN KEY (`modalidad_id`) REFERENCES `modalidad` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_rol_d` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_sexo_d` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  ADD CONSTRAINT `r_edo_civil_e` FOREIGN KEY (`estado_civil_id`) REFERENCES `estado_civil` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_estado_e` FOREIGN KEY (`estado_natal_id`) REFERENCES `estado_natal` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_municipio_e` FOREIGN KEY (`municipio_natal_id`) REFERENCES `municipio_natal` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_pais_e` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_parroquia_e` FOREIGN KEY (`parroquia_natal_id`) REFERENCES `parroquia_natal` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_rol_e` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_sexo_e` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_edo_civil_e` FOREIGN KEY (`estado_civil_id`) REFERENCES `estado_civil` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_estado_e` FOREIGN KEY (`estado_natal_id`) REFERENCES `estado_natal` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_municipio_e` FOREIGN KEY (`municipio_natal_id`) REFERENCES `municipio_natal` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_pais_e` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_parroquia_e` FOREIGN KEY (`parroquia_natal_id`) REFERENCES `parroquia_natal` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_rol_e` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_sexo_e` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `estudiantes_datos_academicos`
 --
 ALTER TABLE `estudiantes_datos_academicos`
-  ADD CONSTRAINT `r_actividad` FOREIGN KEY (`actividad_id`) REFERENCES `actividad` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_estudiante_da` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`),
-  ADD CONSTRAINT `r_grupo` FOREIGN KEY (`grupo_id`) REFERENCES `grupo` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_malla` FOREIGN KEY (`malla_id`) REFERENCES `malla` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_modalidad` FOREIGN KEY (`modalidad_id`) REFERENCES `modalidad` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_nse` FOREIGN KEY (`nse_id`) REFERENCES `nse` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_tipo_ingreso` FOREIGN KEY (`tipo_ingreso_id`) REFERENCES `tipo_ingreso` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_tipo_institucion` FOREIGN KEY (`tipo_institucion_id`) REFERENCES `tipo_institucion` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_turno` FOREIGN KEY (`turno_id`) REFERENCES `turno` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_actividad` FOREIGN KEY (`actividad_id`) REFERENCES `actividad` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_estudiante_da` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`),
+ADD CONSTRAINT `r_grupo` FOREIGN KEY (`grupo_id`) REFERENCES `grupo` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_malla` FOREIGN KEY (`malla_id`) REFERENCES `malla` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_modalidad` FOREIGN KEY (`modalidad_id`) REFERENCES `modalidad` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_nse` FOREIGN KEY (`nse_id`) REFERENCES `nse` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_tipo_ingreso` FOREIGN KEY (`tipo_ingreso_id`) REFERENCES `tipo_ingreso` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_tipo_institucion` FOREIGN KEY (`tipo_institucion_id`) REFERENCES `tipo_institucion` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_turno` FOREIGN KEY (`turno_id`) REFERENCES `turno` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pnf_has_analistas`
 --
 ALTER TABLE `pnf_has_analistas`
-  ADD CONSTRAINT `r_analista` FOREIGN KEY (`analista_id`) REFERENCES `analistas` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_pnf` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_analista` FOREIGN KEY (`analista_id`) REFERENCES `analistas` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_pnf` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pnf_has_docentes`
 --
 ALTER TABLE `pnf_has_docentes`
-  ADD CONSTRAINT `rdocentes` FOREIGN KEY (`docente_id`) REFERENCES `docentes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `rpnf` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `rdocentes` FOREIGN KEY (`docente_id`) REFERENCES `docentes` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `rpnf` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pnf_has_estudiantes`
 --
 ALTER TABLE `pnf_has_estudiantes`
-  ADD CONSTRAINT `r_estudiante_p` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_pnf_e` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_estudiante_p` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_pnf_e` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pnf_has_trayecto`
 --
 ALTER TABLE `pnf_has_trayecto`
-  ADD CONSTRAINT `r_pnf_t` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_trayecto_p` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_pnf_t` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_trayecto_p` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pnf_has_unidad_curricular`
 --
 ALTER TABLE `pnf_has_unidad_curricular`
-  ADD CONSTRAINT `r_pnf_u` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_unidad_curricular_p` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_pnf_u` FOREIGN KEY (`pnf_id`) REFERENCES `pnf` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_unidad_curricular_p` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `trayecto_has_estudiantes`
 --
 ALTER TABLE `trayecto_has_estudiantes`
-  ADD CONSTRAINT `r_estudiante_t` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_trayecto_e` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_estudiante_t` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_trayecto_e` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `trayecto_has_trimestre`
 --
 ALTER TABLE `trayecto_has_trimestre`
-  ADD CONSTRAINT `r_trayecto` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_trimestre` FOREIGN KEY (`trimestre_id`) REFERENCES `trimestre` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_trayecto` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_trimestre` FOREIGN KEY (`trimestre_id`) REFERENCES `trimestre` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `trayecto_has_unidad_curricular`
 --
 ALTER TABLE `trayecto_has_unidad_curricular`
-  ADD CONSTRAINT `r_trayecto_u` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_unidad_t` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_trayecto_u` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_unidad_t` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `trimestre_has_estudiantes`
 --
 ALTER TABLE `trimestre_has_estudiantes`
-  ADD CONSTRAINT `r_estudiante_q` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_trimestre_e` FOREIGN KEY (`trimestre_id`) REFERENCES `trimestre` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_estudiante_q` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_trimestre_e` FOREIGN KEY (`trimestre_id`) REFERENCES `trimestre` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `unidad_curricular_has_docentes`
 --
 ALTER TABLE `unidad_curricular_has_docentes`
-  ADD CONSTRAINT `r_docentes` FOREIGN KEY (`docentes_id`) REFERENCES `docentes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_unidad` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `r_docentes` FOREIGN KEY (`docentes_id`) REFERENCES `docentes` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_unidad` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `unidad_curricular_has_estudiantes`
 --
 ALTER TABLE `unidad_curricular_has_estudiantes`
-  ADD CONSTRAINT `r_estudiante_u` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `r_unidad_e` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
-COMMIT;
+ADD CONSTRAINT `r_estudiante_u` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `r_unidad_e` FOREIGN KEY (`unidad_curricular_id`) REFERENCES `unidad_curricular` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

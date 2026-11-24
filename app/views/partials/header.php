@@ -99,9 +99,9 @@
                     <span>Unidades Curriculares</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?route=resources&method=index">
+                <a class="nav-link" href="?route=Statsinfo&method=index">
                     <i class="fas fa-fw fa-book"></i>
-                    <span>Gestion y Recursos Educativos</span></a>
+                    <span>Informes y Estadisticas</span></a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link dropdown-toggle" id="sidebarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
